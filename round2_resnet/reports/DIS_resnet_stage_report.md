@@ -51,7 +51,7 @@ These formal values are distinct from the later 20-epoch train/validation
 diagnostics on the 3,100-object training split, fixed 750-object validation
 split and seed `20261119`:
 
-![Training curves](../assets/dis_training_curves_compact.svg)
+![Training curves](assets/dis_training_curves_compact.svg)
 
 *Figure 2. Blue is target loss: one-hot CE for hard and vote-distribution CE
 for soft; green and red are train-evaluation and validation soft CE. Dotted
