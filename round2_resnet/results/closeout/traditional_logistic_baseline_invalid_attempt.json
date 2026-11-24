@@ -1,0 +1,11 @@
+{
+  "status": "invalid_attempt_preserved",
+  "reason": "The previous implementation used 0.5*l2*mean(W[:,1:]**2) but added l2*W to the gradient without dividing by the number of averaged weights.",
+  "affected_result": "traditional_logistic_baseline.json before gradient correction",
+  "metrics": {
+    "natural_evaluation_cross_entropy": 0.776819238751208,
+    "natural_evaluation_brier": 0.14403753116078524,
+    "natural_evaluation_accuracy": 0.7659
+  },
+  "use": "Do not cite or compare as a valid baseline; retained only for provenance."
+}

@@ -1,0 +1,49 @@
+{
+  "label_rows": 239695,
+  "label_sample_counts": {
+    "original": 209294,
+    "extra": 21844,
+    "stripe82": 8557
+  },
+  "mapping_rows": 355990,
+  "mapping_sample_counts": {
+    "original": 245609,
+    "stripe82_coadd_1": 30346,
+    "stripe82_coadd_2": 30339,
+    "extra": 28174,
+    "stripe82": 21522
+  },
+  "image_archive": {
+    "path": "data/raw/images_gz2.zip",
+    "compressed_bytes": 3353409422,
+    "jpg_members_excluding_macos_metadata": 243434
+  },
+  "formal_rows": {
+    "large_train": 10000,
+    "fixed_validation": 750,
+    "natural_evaluation": 10000,
+    "diagnostic_evaluation": 5
+  },
+  "image_storage": {
+    "large_train_files": 10000,
+    "large_train_bytes": 135410569,
+    "validation_files": 750,
+    "validation_bytes": 10091214,
+    "evaluation_files": 10005,
+    "evaluation_bytes": 135178478
+  },
+  "formal_training_seconds": {
+    "runs": 12,
+    "sum": 2145.3182821646333,
+    "mean": 178.77652351371944
+  },
+  "processing_boundary": {
+    "archive_and_mapping": "matching is performed by object ID, asset ID and archive member before image extraction",
+    "formal_and_diagnostic_training": "train_formal.load_images decodes, converts RGB, resizes bilinearly and applies ImageNet normalization before the first epoch; batches then stack cached tensors",
+    "historical_short_grid": "train_resnet.VoteDataset decodes and transforms in __getitem__ with num_workers=0",
+    "formal_and_extra_inference": "the selected evaluation frame is decoded and normalized into a cache before batched forward passes",
+    "memory": "decoded image bytes and batch tensor estimates are available; peak process memory was not measured",
+    "throughput": "existing 128/224 benchmark times forward/loss/backward/optimizer step after materialising loader batches; it is not end-to-end formal fine-tuning throughput",
+    "service_scope": "static local archive experiment; no real-time cutout or inference service"
+  }
+}

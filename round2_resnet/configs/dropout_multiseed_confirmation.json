@@ -1,0 +1,39 @@
+{
+  "split": "round2_resnet/results/resnet_split.csv",
+  "image_size": 128,
+  "batch_size": 32,
+  "epochs": 20,
+  "seeds": [
+    20261120,
+    20261121
+  ],
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "optimizer": "Adam",
+  "unfreeze_range": "layer4_plus_head",
+  "target": "soft",
+  "dropout_values": [
+    0.0,
+    0.2
+  ],
+  "normalization": {
+    "mean": [0.485, 0.456, 0.406],
+    "std": [0.229, 0.224, 0.225]
+  },
+  "validation_frequency": "every epoch",
+  "early_stopping": false,
+  "checkpoint_selection": "minimum validation soft cross-entropy, then calibration discrepancy, then earliest epoch",
+  "reference": {
+    "source": "round2_resnet/results/closeout/regularization_diagnostic/regularization_diagnostic_runs.json",
+    "seed": 20261119,
+    "policy": "reuse existing original/dropout soft records; do not retrain"
+  },
+  "output": "round2_resnet/results/closeout/dropout_multiseed_confirmation/dropout_multiseed_confirmation_runs.json",
+  "checkpoint_dir": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints",
+  "cost_estimate_before_run": {
+    "basis": "measured 20-epoch soft regularization runs at seed 20261119, approximately 950--980 seconds per run",
+    "per_run_seconds": [950, 1150],
+    "all_four_seconds": [3800, 4600],
+    "note": "Estimate only; seed changes may affect runtime modestly."
+  }
+}

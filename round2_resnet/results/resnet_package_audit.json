@@ -1,0 +1,162 @@
+{
+  "status": "resnet_round2_package_audit",
+  "overall_pass": true,
+  "source_root": "review-package/DIS",
+  "checks": {
+    "configuration_complete": {
+      "status": "PASS",
+      "expected_runs": [
+        [
+          "small_3100",
+          "hard",
+          20261119
+        ],
+        [
+          "small_3100",
+          "hard",
+          20261120
+        ],
+        [
+          "small_3100",
+          "hard",
+          20261121
+        ],
+        [
+          "small_3100",
+          "soft",
+          20261119
+        ],
+        [
+          "small_3100",
+          "soft",
+          20261120
+        ],
+        [
+          "small_3100",
+          "soft",
+          20261121
+        ],
+        [
+          "large_10000",
+          "hard",
+          20261119
+        ],
+        [
+          "large_10000",
+          "hard",
+          20261120
+        ],
+        [
+          "large_10000",
+          "hard",
+          20261121
+        ],
+        [
+          "large_10000",
+          "soft",
+          20261119
+        ],
+        [
+          "large_10000",
+          "soft",
+          20261120
+        ],
+        [
+          "large_10000",
+          "soft",
+          20261121
+        ]
+      ],
+      "run_count": 12,
+      "evaluation_count": 12
+    },
+    "selected_epoch_records": {
+      "status": "PASS",
+      "failures": []
+    },
+    "split_hash": {
+      "status": "PASS"
+    },
+    "split_roles_and_counts": {
+      "status": "PASS",
+      "rows": 20755
+    },
+    "evaluation_rows_and_ids": {
+      "status": "PASS",
+      "rows": 10005
+    },
+    "probabilities": {
+      "status": "PASS",
+      "failures": []
+    },
+    "evaluation_metrics_recompute": {
+      "status": "PASS",
+      "failures": []
+    },
+    "training_evaluation_hash_metadata": {
+      "status": "PASS",
+      "failures": []
+    },
+    "paired_summary": {
+      "status": "PASS",
+      "paired_rows": 6
+    },
+    "checkpoint_binary_hashes": {
+      "status": "PASS",
+      "items": [
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_hard_seed20261119.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_soft_seed20261119.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261119.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261119.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_hard_seed20261120.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_soft_seed20261120.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261120.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261120.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_hard_seed20261121.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_soft_seed20261121.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261121.pt",
+          "status": "PASS"
+        },
+        {
+          "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261121.pt",
+          "status": "PASS"
+        }
+      ]
+    },
+    "historical_tinycnn_audit": {
+      "status": "NOT_USED",
+      "reason": "This audit covers the twelve ResNet runs only; historical TinyCNN evidence remains separate."
+    }
+  }
+}

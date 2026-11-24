@@ -1,0 +1,11 @@
+{
+  "feature": "RGB 16x16 flattened",
+  "training_pool": "small_train (3100 objects)",
+  "validation_pool": "fixed_validation (750 objects)",
+  "standardization": "training mean and standard deviation only",
+  "solver": "L-BFGS-B multinomial softmax",
+  "l2": 1.0,
+  "maxiter": 1000,
+  "selection": "fixed before scoring; no parameter search",
+  "status": "supplemental post-hoc baseline"
+}

@@ -1,0 +1,1343 @@
+{
+  "status": "extra_cross_sample_inference_completed_without_model_selection",
+  "research_label": "original-to-extra cross-sample generalisation under selection shift",
+  "policy": "fixed object list, frozen 128-pixel preprocessing, six large_10000 checkpoints, no tuning, calibration, threshold, or checkpoint reselection",
+  "environment": {
+    "python": "3.12.6",
+    "torch": "2.14.1",
+    "device": "cpu",
+    "torch_threads": 6
+  },
+  "rows": 1000,
+  "source_split": "round2_resnet/results/extra_cross_sample_split.csv",
+  "source_manifest": "round2_resnet/results/extra_cross_sample_manifest.json",
+  "total_forward_seconds": 28.19851704221219,
+  "total_loop_seconds_including_load_and_metrics": 31.62203975021839,
+  "timing_note": "total_forward_seconds is the sum of the six per-checkpoint forward-only records; total_loop_seconds_including_load_and_metrics includes the surrounding scoring loop, loading and metric/bootstrap work",
+  "records": [
+    {
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261119.pt",
+      "checkpoint_sha256": "94405dcd58883036862dadead3c7d108b756a6c6b37184f3d57d02efcf220cd4",
+      "seed": 20261119,
+      "target": "hard",
+      "train_size": "large_10000",
+      "selected_epoch": 1,
+      "inference_seconds_forward_only": 4.822980917058885,
+      "n": 1000,
+      "soft_cross_entropy": 1.004976511001587,
+      "soft_brier": 0.14123846590518951,
+      "hard_accuracy": 0.778,
+      "target_class_counts": [
+        613,
+        383,
+        4
+      ],
+      "predicted_class_counts": [
+        754,
+        236,
+        10
+      ],
+      "confusion_matrix_true_rows_predicted_columns": [
+        [
+          574,
+          36,
+          3
+        ],
+        [
+          180,
+          200,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ]
+      ],
+      "per_class_metrics": [
+        {
+          "class": 0,
+          "support": 613,
+          "precision": 0.7612732095490716,
+          "recall": 0.9363784665579119,
+          "f1": 0.8397951719092904
+        },
+        {
+          "class": 1,
+          "support": 383,
+          "precision": 0.847457627118644,
+          "recall": 0.5221932114882507,
+          "f1": 0.6462035541195478
+        },
+        {
+          "class": 2,
+          "support": 4,
+          "precision": 0.4,
+          "recall": 1.0,
+          "f1": 0.5714285714285715
+        }
+      ],
+      "bootstrap_95_percentile": {
+        "objects": 1000,
+        "replicates": 2000,
+        "seed": 20261123,
+        "scalar": {
+          "ce": {
+            "lower": 0.9762417674064636,
+            "upper": 1.0328075885772705
+          },
+          "brier": {
+            "lower": 0.12894129753112793,
+            "upper": 0.1537596881389618
+          },
+          "accuracy": {
+            "lower": 0.752,
+            "upper": 0.803
+          }
+        },
+        "classwise": {
+          "0": {
+            "precision": {
+              "lower": 0.7305648617855303,
+              "upper": 0.7913551426003781
+            },
+            "recall": {
+              "lower": 0.9166633226324237,
+              "upper": 0.9551543366873844
+            },
+            "f1": {
+              "lower": 0.818711935278611,
+              "upper": 0.8606151612810463
+            }
+          },
+          "1": {
+            "precision": {
+              "lower": 0.8,
+              "upper": 0.8927076946658492
+            },
+            "recall": {
+              "lower": 0.4717822966507177,
+              "upper": 0.5702702702702702
+            },
+            "f1": {
+              "lower": 0.6025908838364582,
+              "upper": 0.6852621899957965
+            }
+          },
+          "2": {
+            "precision": {
+              "lower": 0.10513157894736842,
+              "upper": 0.75
+            },
+            "recall": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "f1": {
+              "lower": 0.2222222222222222,
+              "upper": 0.8571428571428571
+            }
+          }
+        }
+      }
+    },
+    {
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261119.pt",
+      "checkpoint_sha256": "3356c3e54373aec5455b10e130e4d9989b61ae21b7670bf8a6dc0ced608bc4d9",
+      "seed": 20261119,
+      "target": "soft",
+      "train_size": "large_10000",
+      "selected_epoch": 3,
+      "inference_seconds_forward_only": 4.675683917477727,
+      "n": 1000,
+      "soft_cross_entropy": 0.7377259135246277,
+      "soft_brier": 0.05927642807364464,
+      "hard_accuracy": 0.818,
+      "target_class_counts": [
+        613,
+        383,
+        4
+      ],
+      "predicted_class_counts": [
+        525,
+        471,
+        4
+      ],
+      "confusion_matrix_true_rows_predicted_columns": [
+        [
+          478,
+          135,
+          0
+        ],
+        [
+          47,
+          336,
+          0
+        ],
+        [
+          0,
+          0,
+          4
+        ]
+      ],
+      "per_class_metrics": [
+        {
+          "class": 0,
+          "support": 613,
+          "precision": 0.9104761904761904,
+          "recall": 0.7797716150081566,
+          "f1": 0.8400702987697716
+        },
+        {
+          "class": 1,
+          "support": 383,
+          "precision": 0.7133757961783439,
+          "recall": 0.8772845953002611,
+          "f1": 0.7868852459016393
+        },
+        {
+          "class": 2,
+          "support": 4,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      ],
+      "bootstrap_95_percentile": {
+        "objects": 1000,
+        "replicates": 2000,
+        "seed": 20261124,
+        "scalar": {
+          "ce": {
+            "lower": 0.72329181432724,
+            "upper": 0.7519699335098267
+          },
+          "brier": {
+            "lower": 0.05425579100847244,
+            "upper": 0.06484667211771011
+          },
+          "accuracy": {
+            "lower": 0.793975,
+            "upper": 0.842
+          }
+        },
+        "classwise": {
+          "0": {
+            "precision": {
+              "lower": 0.8858731148829349,
+              "upper": 0.9351895859738065
+            },
+            "recall": {
+              "lower": 0.744334712716855,
+              "upper": 0.8120808110716323
+            },
+            "f1": {
+              "lower": 0.8154702319942978,
+              "upper": 0.8625529855042127
+            }
+          },
+          "1": {
+            "precision": {
+              "lower": 0.673381423683843,
+              "upper": 0.7537868311998455
+            },
+            "recall": {
+              "lower": 0.8443228934653737,
+              "upper": 0.9088399641550515
+            },
+            "f1": {
+              "lower": 0.7566319256263809,
+              "upper": 0.815819209039548
+            }
+          },
+          "2": {
+            "precision": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "recall": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "f1": {
+              "lower": 1.0,
+              "upper": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261120.pt",
+      "checkpoint_sha256": "aae0e0ec958f0b4c9f8cdcfaa2130cd7c11368c5613d56a8bf411b9b1e67ea65",
+      "seed": 20261120,
+      "target": "hard",
+      "train_size": "large_10000",
+      "selected_epoch": 1,
+      "inference_seconds_forward_only": 4.6921755420044065,
+      "n": 1000,
+      "soft_cross_entropy": 0.9529429078102112,
+      "soft_brier": 0.11115243285894394,
+      "hard_accuracy": 0.788,
+      "target_class_counts": [
+        613,
+        383,
+        4
+      ],
+      "predicted_class_counts": [
+        506,
+        487,
+        7
+      ],
+      "confusion_matrix_true_rows_predicted_columns": [
+        [
+          455,
+          156,
+          2
+        ],
+        [
+          51,
+          330,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ]
+      ],
+      "per_class_metrics": [
+        {
+          "class": 0,
+          "support": 613,
+          "precision": 0.8992094861660079,
+          "recall": 0.7422512234910277,
+          "f1": 0.8132260947274352
+        },
+        {
+          "class": 1,
+          "support": 383,
+          "precision": 0.6776180698151951,
+          "recall": 0.8616187989556136,
+          "f1": 0.7586206896551724
+        },
+        {
+          "class": 2,
+          "support": 4,
+          "precision": 0.42857142857142855,
+          "recall": 0.75,
+          "f1": 0.5454545454545454
+        }
+      ],
+      "bootstrap_95_percentile": {
+        "objects": 1000,
+        "replicates": 2000,
+        "seed": 20261125,
+        "scalar": {
+          "ce": {
+            "lower": 0.9279848337173462,
+            "upper": 0.9779238700866699
+          },
+          "brier": {
+            "lower": 0.10175740718841553,
+            "upper": 0.12045830488204956
+          },
+          "accuracy": {
+            "lower": 0.763,
+            "upper": 0.812
+          }
+        },
+        "classwise": {
+          "0": {
+            "precision": {
+              "lower": 0.8720918787767808,
+              "upper": 0.9245744092341132
+            },
+            "recall": {
+              "lower": 0.7084019769357496,
+              "upper": 0.7762943721992795
+            },
+            "f1": {
+              "lower": 0.7885781733623869,
+              "upper": 0.837005538721938
+            }
+          },
+          "1": {
+            "precision": {
+              "lower": 0.6382408981649762,
+              "upper": 0.717582609162107
+            },
+            "recall": {
+              "lower": 0.8266521739130435,
+              "upper": 0.8946016973847162
+            },
+            "f1": {
+              "lower": 0.7262174069163628,
+              "upper": 0.7882387140902872
+            }
+          },
+          "2": {
+            "precision": {
+              "lower": 0.0,
+              "upper": 0.8333333333333334
+            },
+            "recall": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "f1": {
+              "lower": 0.2222222222222222,
+              "upper": 0.8571428571428571
+            }
+          }
+        }
+      }
+    },
+    {
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261120.pt",
+      "checkpoint_sha256": "31f3e715327c05e73326f3f93d58426227723d6348f3a148d03e42df29739898",
+      "seed": 20261120,
+      "target": "soft",
+      "train_size": "large_10000",
+      "selected_epoch": 3,
+      "inference_seconds_forward_only": 4.669815832749009,
+      "n": 1000,
+      "soft_cross_entropy": 0.7376722693443298,
+      "soft_brier": 0.05818250775337219,
+      "hard_accuracy": 0.814,
+      "target_class_counts": [
+        613,
+        383,
+        4
+      ],
+      "predicted_class_counts": [
+        613,
+        382,
+        5
+      ],
+      "confusion_matrix_true_rows_predicted_columns": [
+        [
+          521,
+          91,
+          1
+        ],
+        [
+          92,
+          290,
+          1
+        ],
+        [
+          0,
+          1,
+          3
+        ]
+      ],
+      "per_class_metrics": [
+        {
+          "class": 0,
+          "support": 613,
+          "precision": 0.8499184339314845,
+          "recall": 0.8499184339314845,
+          "f1": 0.8499184339314844
+        },
+        {
+          "class": 1,
+          "support": 383,
+          "precision": 0.7591623036649214,
+          "recall": 0.7571801566579635,
+          "f1": 0.7581699346405228
+        },
+        {
+          "class": 2,
+          "support": 4,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.6666666666666665
+        }
+      ],
+      "bootstrap_95_percentile": {
+        "objects": 1000,
+        "replicates": 2000,
+        "seed": 20261126,
+        "scalar": {
+          "ce": {
+            "lower": 0.7239840626716614,
+            "upper": 0.7510157227516174
+          },
+          "brier": {
+            "lower": 0.05273526534438133,
+            "upper": 0.06397838890552521
+          },
+          "accuracy": {
+            "lower": 0.789,
+            "upper": 0.839
+          }
+        },
+        "classwise": {
+          "0": {
+            "precision": {
+              "lower": 0.8206408408355295,
+              "upper": 0.8773128646363003
+            },
+            "recall": {
+              "lower": 0.821077197536573,
+              "upper": 0.8773169267707083
+            },
+            "f1": {
+              "lower": 0.8267063186180834,
+              "upper": 0.870969026094103
+            }
+          },
+          "1": {
+            "precision": {
+              "lower": 0.7146526373535246,
+              "upper": 0.8021115234292325
+            },
+            "recall": {
+              "lower": 0.7142765095729013,
+              "upper": 0.7994579945799458
+            },
+            "f1": {
+              "lower": 0.7232945469931771,
+              "upper": 0.7909949453569538
+            }
+          },
+          "2": {
+            "precision": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "recall": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "f1": {
+              "lower": 0.28571428571428575,
+              "upper": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261121.pt",
+      "checkpoint_sha256": "ed170253103001ae0c32bdb005e30d49447802e69639f2fb5bed6f8299ea417f",
+      "seed": 20261121,
+      "target": "hard",
+      "train_size": "large_10000",
+      "selected_epoch": 1,
+      "inference_seconds_forward_only": 4.661044541746378,
+      "n": 1000,
+      "soft_cross_entropy": 0.919641375541687,
+      "soft_brier": 0.09825874119997025,
+      "hard_accuracy": 0.787,
+      "target_class_counts": [
+        613,
+        383,
+        4
+      ],
+      "predicted_class_counts": [
+        565,
+        429,
+        6
+      ],
+      "confusion_matrix_true_rows_predicted_columns": [
+        [
+          484,
+          128,
+          1
+        ],
+        [
+          81,
+          300,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ]
+      ],
+      "per_class_metrics": [
+        {
+          "class": 0,
+          "support": 613,
+          "precision": 0.856637168141593,
+          "recall": 0.7895595432300163,
+          "f1": 0.8217317487266553
+        },
+        {
+          "class": 1,
+          "support": 383,
+          "precision": 0.6993006993006993,
+          "recall": 0.783289817232376,
+          "f1": 0.7389162561576355
+        },
+        {
+          "class": 2,
+          "support": 4,
+          "precision": 0.5,
+          "recall": 0.75,
+          "f1": 0.6
+        }
+      ],
+      "bootstrap_95_percentile": {
+        "objects": 1000,
+        "replicates": 2000,
+        "seed": 20261127,
+        "scalar": {
+          "ce": {
+            "lower": 0.8974507451057434,
+            "upper": 0.9428268671035767
+          },
+          "brier": {
+            "lower": 0.08992590010166168,
+            "upper": 0.10655591636896133
+          },
+          "accuracy": {
+            "lower": 0.763,
+            "upper": 0.812
+          }
+        },
+        "classwise": {
+          "0": {
+            "precision": {
+              "lower": 0.8269572299285414,
+              "upper": 0.8854545454545455
+            },
+            "recall": {
+              "lower": 0.7591317486770484,
+              "upper": 0.819935691318328
+            },
+            "f1": {
+              "lower": 0.7985791730844735,
+              "upper": 0.8443344613649182
+            }
+          },
+          "1": {
+            "precision": {
+              "lower": 0.6534789139868699,
+              "upper": 0.741723408885987
+            },
+            "recall": {
+              "lower": 0.7408352724452201,
+              "upper": 0.8242582252411287
+            },
+            "f1": {
+              "lower": 0.7031816601219606,
+              "upper": 0.7703197946362463
+            }
+          },
+          "2": {
+            "precision": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "recall": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "f1": {
+              "lower": 0.25,
+              "upper": 0.9090909090909091
+            }
+          }
+        }
+      }
+    },
+    {
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261121.pt",
+      "checkpoint_sha256": "4871d1d28be6880512e1e01d933ea0588fff4ca7e75f8d040363d6a6307e29d1",
+      "seed": 20261121,
+      "target": "soft",
+      "train_size": "large_10000",
+      "selected_epoch": 2,
+      "inference_seconds_forward_only": 4.676816291175783,
+      "n": 1000,
+      "soft_cross_entropy": 0.7496289014816284,
+      "soft_brier": 0.06594239175319672,
+      "hard_accuracy": 0.803,
+      "target_class_counts": [
+        613,
+        383,
+        4
+      ],
+      "predicted_class_counts": [
+        528,
+        466,
+        6
+      ],
+      "confusion_matrix_true_rows_predicted_columns": [
+        [
+          473,
+          138,
+          2
+        ],
+        [
+          55,
+          327,
+          1
+        ],
+        [
+          0,
+          1,
+          3
+        ]
+      ],
+      "per_class_metrics": [
+        {
+          "class": 0,
+          "support": 613,
+          "precision": 0.8958333333333334,
+          "recall": 0.7716150081566069,
+          "f1": 0.8290972830850133
+        },
+        {
+          "class": 1,
+          "support": 383,
+          "precision": 0.7017167381974249,
+          "recall": 0.8537859007832899,
+          "f1": 0.7703180212014133
+        },
+        {
+          "class": 2,
+          "support": 4,
+          "precision": 0.5,
+          "recall": 0.75,
+          "f1": 0.6
+        }
+      ],
+      "bootstrap_95_percentile": {
+        "objects": 1000,
+        "replicates": 2000,
+        "seed": 20261128,
+        "scalar": {
+          "ce": {
+            "lower": 0.7347180843353271,
+            "upper": 0.7649782299995422
+          },
+          "brier": {
+            "lower": 0.06033037230372429,
+            "upper": 0.07187923043966293
+          },
+          "accuracy": {
+            "lower": 0.779,
+            "upper": 0.828
+          }
+        },
+        "classwise": {
+          "0": {
+            "precision": {
+              "lower": 0.8682149246102734,
+              "upper": 0.920854501117659
+            },
+            "recall": {
+              "lower": 0.7387092721672881,
+              "upper": 0.8042475791609153
+            },
+            "f1": {
+              "lower": 0.805212650287852,
+              "upper": 0.852233676975945
+            }
+          },
+          "1": {
+            "precision": {
+              "lower": 0.6617623441239451,
+              "upper": 0.7433273972851666
+            },
+            "recall": {
+              "lower": 0.8172575186943944,
+              "upper": 0.8888955823293172
+            },
+            "f1": {
+              "lower": 0.7388672611670888,
+              "upper": 0.8014969130164761
+            }
+          },
+          "2": {
+            "precision": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "recall": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "f1": {
+              "lower": 0.25,
+              "upper": 0.923076923076923
+            }
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "hard": {
+      "20261119": {
+        "soft_cross_entropy": 1.004976511001587,
+        "soft_brier": 0.14123846590518951,
+        "hard_accuracy": 0.778,
+        "per_class_metrics": [
+          {
+            "class": 0,
+            "support": 613,
+            "precision": 0.7612732095490716,
+            "recall": 0.9363784665579119,
+            "f1": 0.8397951719092904
+          },
+          {
+            "class": 1,
+            "support": 383,
+            "precision": 0.847457627118644,
+            "recall": 0.5221932114882507,
+            "f1": 0.6462035541195478
+          },
+          {
+            "class": 2,
+            "support": 4,
+            "precision": 0.4,
+            "recall": 1.0,
+            "f1": 0.5714285714285715
+          }
+        ],
+        "bootstrap_95_percentile": {
+          "objects": 1000,
+          "replicates": 2000,
+          "seed": 20261123,
+          "scalar": {
+            "ce": {
+              "lower": 0.9762417674064636,
+              "upper": 1.0328075885772705
+            },
+            "brier": {
+              "lower": 0.12894129753112793,
+              "upper": 0.1537596881389618
+            },
+            "accuracy": {
+              "lower": 0.752,
+              "upper": 0.803
+            }
+          },
+          "classwise": {
+            "0": {
+              "precision": {
+                "lower": 0.7305648617855303,
+                "upper": 0.7913551426003781
+              },
+              "recall": {
+                "lower": 0.9166633226324237,
+                "upper": 0.9551543366873844
+              },
+              "f1": {
+                "lower": 0.818711935278611,
+                "upper": 0.8606151612810463
+              }
+            },
+            "1": {
+              "precision": {
+                "lower": 0.8,
+                "upper": 0.8927076946658492
+              },
+              "recall": {
+                "lower": 0.4717822966507177,
+                "upper": 0.5702702702702702
+              },
+              "f1": {
+                "lower": 0.6025908838364582,
+                "upper": 0.6852621899957965
+              }
+            },
+            "2": {
+              "precision": {
+                "lower": 0.10513157894736842,
+                "upper": 0.75
+              },
+              "recall": {
+                "lower": 1.0,
+                "upper": 1.0
+              },
+              "f1": {
+                "lower": 0.2222222222222222,
+                "upper": 0.8571428571428571
+              }
+            }
+          }
+        }
+      },
+      "20261120": {
+        "soft_cross_entropy": 0.9529429078102112,
+        "soft_brier": 0.11115243285894394,
+        "hard_accuracy": 0.788,
+        "per_class_metrics": [
+          {
+            "class": 0,
+            "support": 613,
+            "precision": 0.8992094861660079,
+            "recall": 0.7422512234910277,
+            "f1": 0.8132260947274352
+          },
+          {
+            "class": 1,
+            "support": 383,
+            "precision": 0.6776180698151951,
+            "recall": 0.8616187989556136,
+            "f1": 0.7586206896551724
+          },
+          {
+            "class": 2,
+            "support": 4,
+            "precision": 0.42857142857142855,
+            "recall": 0.75,
+            "f1": 0.5454545454545454
+          }
+        ],
+        "bootstrap_95_percentile": {
+          "objects": 1000,
+          "replicates": 2000,
+          "seed": 20261125,
+          "scalar": {
+            "ce": {
+              "lower": 0.9279848337173462,
+              "upper": 0.9779238700866699
+            },
+            "brier": {
+              "lower": 0.10175740718841553,
+              "upper": 0.12045830488204956
+            },
+            "accuracy": {
+              "lower": 0.763,
+              "upper": 0.812
+            }
+          },
+          "classwise": {
+            "0": {
+              "precision": {
+                "lower": 0.8720918787767808,
+                "upper": 0.9245744092341132
+              },
+              "recall": {
+                "lower": 0.7084019769357496,
+                "upper": 0.7762943721992795
+              },
+              "f1": {
+                "lower": 0.7885781733623869,
+                "upper": 0.837005538721938
+              }
+            },
+            "1": {
+              "precision": {
+                "lower": 0.6382408981649762,
+                "upper": 0.717582609162107
+              },
+              "recall": {
+                "lower": 0.8266521739130435,
+                "upper": 0.8946016973847162
+              },
+              "f1": {
+                "lower": 0.7262174069163628,
+                "upper": 0.7882387140902872
+              }
+            },
+            "2": {
+              "precision": {
+                "lower": 0.0,
+                "upper": 0.8333333333333334
+              },
+              "recall": {
+                "lower": 0.0,
+                "upper": 1.0
+              },
+              "f1": {
+                "lower": 0.2222222222222222,
+                "upper": 0.8571428571428571
+              }
+            }
+          }
+        }
+      },
+      "20261121": {
+        "soft_cross_entropy": 0.919641375541687,
+        "soft_brier": 0.09825874119997025,
+        "hard_accuracy": 0.787,
+        "per_class_metrics": [
+          {
+            "class": 0,
+            "support": 613,
+            "precision": 0.856637168141593,
+            "recall": 0.7895595432300163,
+            "f1": 0.8217317487266553
+          },
+          {
+            "class": 1,
+            "support": 383,
+            "precision": 0.6993006993006993,
+            "recall": 0.783289817232376,
+            "f1": 0.7389162561576355
+          },
+          {
+            "class": 2,
+            "support": 4,
+            "precision": 0.5,
+            "recall": 0.75,
+            "f1": 0.6
+          }
+        ],
+        "bootstrap_95_percentile": {
+          "objects": 1000,
+          "replicates": 2000,
+          "seed": 20261127,
+          "scalar": {
+            "ce": {
+              "lower": 0.8974507451057434,
+              "upper": 0.9428268671035767
+            },
+            "brier": {
+              "lower": 0.08992590010166168,
+              "upper": 0.10655591636896133
+            },
+            "accuracy": {
+              "lower": 0.763,
+              "upper": 0.812
+            }
+          },
+          "classwise": {
+            "0": {
+              "precision": {
+                "lower": 0.8269572299285414,
+                "upper": 0.8854545454545455
+              },
+              "recall": {
+                "lower": 0.7591317486770484,
+                "upper": 0.819935691318328
+              },
+              "f1": {
+                "lower": 0.7985791730844735,
+                "upper": 0.8443344613649182
+              }
+            },
+            "1": {
+              "precision": {
+                "lower": 0.6534789139868699,
+                "upper": 0.741723408885987
+              },
+              "recall": {
+                "lower": 0.7408352724452201,
+                "upper": 0.8242582252411287
+              },
+              "f1": {
+                "lower": 0.7031816601219606,
+                "upper": 0.7703197946362463
+              }
+            },
+            "2": {
+              "precision": {
+                "lower": 0.0,
+                "upper": 1.0
+              },
+              "recall": {
+                "lower": 0.0,
+                "upper": 1.0
+              },
+              "f1": {
+                "lower": 0.25,
+                "upper": 0.9090909090909091
+              }
+            }
+          }
+        }
+      }
+    },
+    "soft": {
+      "20261119": {
+        "soft_cross_entropy": 0.7377259135246277,
+        "soft_brier": 0.05927642807364464,
+        "hard_accuracy": 0.818,
+        "per_class_metrics": [
+          {
+            "class": 0,
+            "support": 613,
+            "precision": 0.9104761904761904,
+            "recall": 0.7797716150081566,
+            "f1": 0.8400702987697716
+          },
+          {
+            "class": 1,
+            "support": 383,
+            "precision": 0.7133757961783439,
+            "recall": 0.8772845953002611,
+            "f1": 0.7868852459016393
+          },
+          {
+            "class": 2,
+            "support": 4,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        ],
+        "bootstrap_95_percentile": {
+          "objects": 1000,
+          "replicates": 2000,
+          "seed": 20261124,
+          "scalar": {
+            "ce": {
+              "lower": 0.72329181432724,
+              "upper": 0.7519699335098267
+            },
+            "brier": {
+              "lower": 0.05425579100847244,
+              "upper": 0.06484667211771011
+            },
+            "accuracy": {
+              "lower": 0.793975,
+              "upper": 0.842
+            }
+          },
+          "classwise": {
+            "0": {
+              "precision": {
+                "lower": 0.8858731148829349,
+                "upper": 0.9351895859738065
+              },
+              "recall": {
+                "lower": 0.744334712716855,
+                "upper": 0.8120808110716323
+              },
+              "f1": {
+                "lower": 0.8154702319942978,
+                "upper": 0.8625529855042127
+              }
+            },
+            "1": {
+              "precision": {
+                "lower": 0.673381423683843,
+                "upper": 0.7537868311998455
+              },
+              "recall": {
+                "lower": 0.8443228934653737,
+                "upper": 0.9088399641550515
+              },
+              "f1": {
+                "lower": 0.7566319256263809,
+                "upper": 0.815819209039548
+              }
+            },
+            "2": {
+              "precision": {
+                "lower": 1.0,
+                "upper": 1.0
+              },
+              "recall": {
+                "lower": 1.0,
+                "upper": 1.0
+              },
+              "f1": {
+                "lower": 1.0,
+                "upper": 1.0
+              }
+            }
+          }
+        }
+      },
+      "20261120": {
+        "soft_cross_entropy": 0.7376722693443298,
+        "soft_brier": 0.05818250775337219,
+        "hard_accuracy": 0.814,
+        "per_class_metrics": [
+          {
+            "class": 0,
+            "support": 613,
+            "precision": 0.8499184339314845,
+            "recall": 0.8499184339314845,
+            "f1": 0.8499184339314844
+          },
+          {
+            "class": 1,
+            "support": 383,
+            "precision": 0.7591623036649214,
+            "recall": 0.7571801566579635,
+            "f1": 0.7581699346405228
+          },
+          {
+            "class": 2,
+            "support": 4,
+            "precision": 0.6,
+            "recall": 0.75,
+            "f1": 0.6666666666666665
+          }
+        ],
+        "bootstrap_95_percentile": {
+          "objects": 1000,
+          "replicates": 2000,
+          "seed": 20261126,
+          "scalar": {
+            "ce": {
+              "lower": 0.7239840626716614,
+              "upper": 0.7510157227516174
+            },
+            "brier": {
+              "lower": 0.05273526534438133,
+              "upper": 0.06397838890552521
+            },
+            "accuracy": {
+              "lower": 0.789,
+              "upper": 0.839
+            }
+          },
+          "classwise": {
+            "0": {
+              "precision": {
+                "lower": 0.8206408408355295,
+                "upper": 0.8773128646363003
+              },
+              "recall": {
+                "lower": 0.821077197536573,
+                "upper": 0.8773169267707083
+              },
+              "f1": {
+                "lower": 0.8267063186180834,
+                "upper": 0.870969026094103
+              }
+            },
+            "1": {
+              "precision": {
+                "lower": 0.7146526373535246,
+                "upper": 0.8021115234292325
+              },
+              "recall": {
+                "lower": 0.7142765095729013,
+                "upper": 0.7994579945799458
+              },
+              "f1": {
+                "lower": 0.7232945469931771,
+                "upper": 0.7909949453569538
+              }
+            },
+            "2": {
+              "precision": {
+                "lower": 0.0,
+                "upper": 1.0
+              },
+              "recall": {
+                "lower": 0.0,
+                "upper": 1.0
+              },
+              "f1": {
+                "lower": 0.28571428571428575,
+                "upper": 1.0
+              }
+            }
+          }
+        }
+      },
+      "20261121": {
+        "soft_cross_entropy": 0.7496289014816284,
+        "soft_brier": 0.06594239175319672,
+        "hard_accuracy": 0.803,
+        "per_class_metrics": [
+          {
+            "class": 0,
+            "support": 613,
+            "precision": 0.8958333333333334,
+            "recall": 0.7716150081566069,
+            "f1": 0.8290972830850133
+          },
+          {
+            "class": 1,
+            "support": 383,
+            "precision": 0.7017167381974249,
+            "recall": 0.8537859007832899,
+            "f1": 0.7703180212014133
+          },
+          {
+            "class": 2,
+            "support": 4,
+            "precision": 0.5,
+            "recall": 0.75,
+            "f1": 0.6
+          }
+        ],
+        "bootstrap_95_percentile": {
+          "objects": 1000,
+          "replicates": 2000,
+          "seed": 20261128,
+          "scalar": {
+            "ce": {
+              "lower": 0.7347180843353271,
+              "upper": 0.7649782299995422
+            },
+            "brier": {
+              "lower": 0.06033037230372429,
+              "upper": 0.07187923043966293
+            },
+            "accuracy": {
+              "lower": 0.779,
+              "upper": 0.828
+            }
+          },
+          "classwise": {
+            "0": {
+              "precision": {
+                "lower": 0.8682149246102734,
+                "upper": 0.920854501117659
+              },
+              "recall": {
+                "lower": 0.7387092721672881,
+                "upper": 0.8042475791609153
+              },
+              "f1": {
+                "lower": 0.805212650287852,
+                "upper": 0.852233676975945
+              }
+            },
+            "1": {
+              "precision": {
+                "lower": 0.6617623441239451,
+                "upper": 0.7433273972851666
+              },
+              "recall": {
+                "lower": 0.8172575186943944,
+                "upper": 0.8888955823293172
+              },
+              "f1": {
+                "lower": 0.7388672611670888,
+                "upper": 0.8014969130164761
+              }
+            },
+            "2": {
+              "precision": {
+                "lower": 0.0,
+                "upper": 1.0
+              },
+              "recall": {
+                "lower": 0.0,
+                "upper": 1.0
+              },
+              "f1": {
+                "lower": 0.25,
+                "upper": 0.923076923076923
+              }
+            }
+          }
+        }
+      }
+    },
+    "paired_mean_sample_sd": {
+      "soft_cross_entropy": {
+        "mean": -0.21751123666763306,
+        "sample_sd": 0.04865776784477859
+      },
+      "soft_brier": {
+        "mean": -0.055749437461296715,
+        "sample_sd": 0.024939283480107762
+      },
+      "hard_accuracy": {
+        "mean": 0.027333333333333282,
+        "sample_sd": 0.012055427546683374
+      }
+    }
+  },
+  "predictions": "round2_resnet/results/extra_cross_sample_predictions.csv",
+  "interval_definition": "percentile bootstrap over the fixed 1,000 object IDs within each checkpoint; seed mean/sample SD is reported separately and is not a confidence interval"
+}

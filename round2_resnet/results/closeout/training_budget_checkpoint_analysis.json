@@ -1,0 +1,334 @@
+{
+  "status": "complete",
+  "policy": "inference-only analysis of four existing best and four existing last checkpoints",
+  "independent_pools_loaded": false,
+  "source_runs": "round2_resnet/results/closeout/training_budget_diagnostic_runs.json",
+  "split": "round2_resnet/results/resnet_split.csv",
+  "config": {
+    "image_size": 128,
+    "batch_size": 32,
+    "normalization": {
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    },
+    "train_subset": "small_3100",
+    "validation_subset": "fixed_validation"
+  },
+  "environment": {
+    "python": "3.12.6",
+    "platform": "macOS-14.4-arm64-arm-64bit",
+    "torch": "2.14.1",
+    "torchvision": "0.29.2",
+    "device": "cpu",
+    "mps_available": false,
+    "cuda_available": false,
+    "torch_threads": 6
+  },
+  "records": [
+    {
+      "seed": 20261119,
+      "learning_rate": 0.0003,
+      "target": "hard",
+      "train_count": 3100,
+      "validation_count": 750,
+      "original_selected_epoch": 1,
+      "selection_sensitivity": {
+        "soft_ce_selected_epoch": 1,
+        "soft_ce_selected_validation": {
+          "soft_cross_entropy": 0.8676156401634216,
+          "brier": 0.0869084894657135,
+          "accuracy": 0.8653333333333333
+        },
+        "earliest_max_accuracy_epoch": 18,
+        "earliest_max_accuracy_validation": {
+          "accuracy": 0.8866666666666667,
+          "soft_cross_entropy": 1.9590833187103271,
+          "brier": 0.14780770242214203
+        }
+      },
+      "checkpoints": [
+        {
+          "label": "best",
+          "path": "round2_resnet/results/closeout/training_budget_checkpoints/seed20261119_lr0.0003_hard_best.pt",
+          "sha256": "4fc31ece84abb8bb8accb22947ce9493481aadf5f03455f1d6a12085234145cc",
+          "recorded_sha256": "4fc31ece84abb8bb8accb22947ce9493481aadf5f03455f1d6a12085234145cc",
+          "sha256_matches_source_record": true,
+          "checkpoint_epoch": 1,
+          "inference_seconds": 22.91935758292675,
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.17717230319976807,
+            "soft_label_cross_entropy": 0.8261698484420776,
+            "hard_accuracy": 0.9387096762657166,
+            "mean_max_probability": 0.8912373781204224,
+            "mean_prediction_entropy": 0.2690543234348297
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.29938942193984985,
+            "soft_label_cross_entropy": 0.8676156401634216,
+            "hard_accuracy": 0.8653333187103271,
+            "mean_max_probability": 0.878039538860321,
+            "mean_prediction_entropy": 0.2910650372505188
+          }
+        },
+        {
+          "label": "last",
+          "path": "round2_resnet/results/closeout/training_budget_checkpoints/seed20261119_lr0.0003_hard_last.pt",
+          "sha256": "40bf511ef963bda34b3f97cce0a591f308db0c11cec1e71a34242e24606e2d00",
+          "recorded_sha256": "40bf511ef963bda34b3f97cce0a591f308db0c11cec1e71a34242e24606e2d00",
+          "sha256_matches_source_record": true,
+          "checkpoint_epoch": 20,
+          "inference_seconds": 23.01043162494898,
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.0017575920792296529,
+            "soft_label_cross_entropy": 2.4895105361938477,
+            "hard_accuracy": 0.9996774196624756,
+            "mean_max_probability": 0.9984945058822632,
+            "mean_prediction_entropy": 0.006779511459171772
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.6325814723968506,
+            "soft_label_cross_entropy": 2.1351308822631836,
+            "hard_accuracy": 0.8759999871253967,
+            "mean_max_probability": 0.9693178534507751,
+            "mean_prediction_entropy": 0.07583098858594894
+          }
+        }
+      ]
+    },
+    {
+      "seed": 20261119,
+      "learning_rate": 0.0003,
+      "target": "soft",
+      "train_count": 3100,
+      "validation_count": 750,
+      "original_selected_epoch": 19,
+      "selection_sensitivity": {
+        "soft_ce_selected_epoch": 19,
+        "soft_ce_selected_validation": {
+          "soft_cross_entropy": 0.625058650970459,
+          "brier": 0.04260287061333656,
+          "accuracy": 0.8773333333333333
+        },
+        "earliest_max_accuracy_epoch": 11,
+        "earliest_max_accuracy_validation": {
+          "accuracy": 0.8826666666666667,
+          "soft_cross_entropy": 0.6265751719474792,
+          "brier": 0.04445645213127136
+        }
+      },
+      "checkpoints": [
+        {
+          "label": "best",
+          "path": "round2_resnet/results/closeout/training_budget_checkpoints/seed20261119_lr0.0003_soft_best.pt",
+          "sha256": "531f728128e394660a5b9168441222a666a63af888cec526b166a85c71c81cef",
+          "recorded_sha256": "531f728128e394660a5b9168441222a666a63af888cec526b166a85c71c81cef",
+          "sha256_matches_source_record": true,
+          "checkpoint_epoch": 19,
+          "inference_seconds": 23.49265024997294,
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2677387595176697,
+            "soft_label_cross_entropy": 0.5460782051086426,
+            "hard_accuracy": 0.9777419567108154,
+            "mean_max_probability": 0.7801666259765625,
+            "mean_prediction_entropy": 0.5605064034461975
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.36537495255470276,
+            "soft_label_cross_entropy": 0.625058650970459,
+            "hard_accuracy": 0.8773333430290222,
+            "mean_max_probability": 0.7536378502845764,
+            "mean_prediction_entropy": 0.6076505184173584
+          }
+        },
+        {
+          "label": "last",
+          "path": "round2_resnet/results/closeout/training_budget_checkpoints/seed20261119_lr0.0003_soft_last.pt",
+          "sha256": "04eff936cd595150999cea6a7e21377b9992e430215afd56b1313b1e35eda8ef",
+          "recorded_sha256": "04eff936cd595150999cea6a7e21377b9992e430215afd56b1313b1e35eda8ef",
+          "sha256_matches_source_record": true,
+          "checkpoint_epoch": 20,
+          "inference_seconds": 23.34190033469349,
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.26725760102272034,
+            "soft_label_cross_entropy": 0.5478192567825317,
+            "hard_accuracy": 0.9732258319854736,
+            "mean_max_probability": 0.7813266515731812,
+            "mean_prediction_entropy": 0.562825083732605
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.372595876455307,
+            "soft_label_cross_entropy": 0.6289505958557129,
+            "hard_accuracy": 0.8773333430290222,
+            "mean_max_probability": 0.7512478828430176,
+            "mean_prediction_entropy": 0.611814022064209
+          }
+        }
+      ]
+    },
+    {
+      "seed": 20261119,
+      "learning_rate": 0.0001,
+      "target": "hard",
+      "train_count": 3100,
+      "validation_count": 750,
+      "original_selected_epoch": 1,
+      "selection_sensitivity": {
+        "soft_ce_selected_epoch": 1,
+        "soft_ce_selected_validation": {
+          "soft_cross_entropy": 0.8231244087219238,
+          "brier": 0.0902845561504364,
+          "accuracy": 0.864
+        },
+        "earliest_max_accuracy_epoch": 7,
+        "earliest_max_accuracy_validation": {
+          "accuracy": 0.8786666666666667,
+          "soft_cross_entropy": 1.456370234489441,
+          "brier": 0.14214585721492767
+        }
+      },
+      "checkpoints": [
+        {
+          "label": "best",
+          "path": "round2_resnet/results/closeout/training_budget_checkpoints/seed20261119_lr0.0001_hard_best.pt",
+          "sha256": "54a8ad008abb41fc69983e2c6b8541274b319d0dbc4d72cce85c0049a1a47b1c",
+          "recorded_sha256": "54a8ad008abb41fc69983e2c6b8541274b319d0dbc4d72cce85c0049a1a47b1c",
+          "sha256_matches_source_record": true,
+          "checkpoint_epoch": 1,
+          "inference_seconds": 23.504476624540985,
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.14323444664478302,
+            "soft_label_cross_entropy": 0.7930832505226135,
+            "hard_accuracy": 0.9609677195549011,
+            "mean_max_probability": 0.9042252898216248,
+            "mean_prediction_entropy": 0.2732444703578949
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.31990253925323486,
+            "soft_label_cross_entropy": 0.8231244087219238,
+            "hard_accuracy": 0.8640000224113464,
+            "mean_max_probability": 0.8727214932441711,
+            "mean_prediction_entropy": 0.3235795497894287
+          }
+        },
+        {
+          "label": "last",
+          "path": "round2_resnet/results/closeout/training_budget_checkpoints/seed20261119_lr0.0001_hard_last.pt",
+          "sha256": "ea43487c591ed5c8dd8ff7b4b1095cadbe7ac0957a6d7fa32717061a25dee66f",
+          "recorded_sha256": "ea43487c591ed5c8dd8ff7b4b1095cadbe7ac0957a6d7fa32717061a25dee66f",
+          "sha256_matches_source_record": true,
+          "checkpoint_epoch": 20,
+          "inference_seconds": 23.075693749822676,
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.0007943601231090724,
+            "soft_label_cross_entropy": 2.422278642654419,
+            "hard_accuracy": 1.0,
+            "mean_max_probability": 0.9992402791976929,
+            "mean_prediction_entropy": 0.004002637695521116
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.6104934215545654,
+            "soft_label_cross_entropy": 1.956121802330017,
+            "hard_accuracy": 0.874666690826416,
+            "mean_max_probability": 0.969941258430481,
+            "mean_prediction_entropy": 0.07820024341344833
+          }
+        }
+      ]
+    },
+    {
+      "seed": 20261119,
+      "learning_rate": 0.0001,
+      "target": "soft",
+      "train_count": 3100,
+      "validation_count": 750,
+      "original_selected_epoch": 11,
+      "selection_sensitivity": {
+        "soft_ce_selected_epoch": 11,
+        "soft_ce_selected_validation": {
+          "soft_cross_entropy": 0.6288076639175415,
+          "brier": 0.04709500074386597,
+          "accuracy": 0.88
+        },
+        "earliest_max_accuracy_epoch": 7,
+        "earliest_max_accuracy_validation": {
+          "accuracy": 0.88,
+          "soft_cross_entropy": 0.6320958137512207,
+          "brier": 0.048774007707834244
+        }
+      },
+      "checkpoints": [
+        {
+          "label": "best",
+          "path": "round2_resnet/results/closeout/training_budget_checkpoints/seed20261119_lr0.0001_soft_best.pt",
+          "sha256": "a4fbf7299df96b60dfd8807501ec2651aaa0bc6a4a8ceb2c690b364c58169beb",
+          "recorded_sha256": "a4fbf7299df96b60dfd8807501ec2651aaa0bc6a4a8ceb2c690b364c58169beb",
+          "sha256_matches_source_record": true,
+          "checkpoint_epoch": 11,
+          "inference_seconds": 22.93804783280939,
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2717374265193939,
+            "soft_label_cross_entropy": 0.5492258667945862,
+            "hard_accuracy": 0.963225781917572,
+            "mean_max_probability": 0.7798207402229309,
+            "mean_prediction_entropy": 0.570586621761322
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3860641419887543,
+            "soft_label_cross_entropy": 0.6288076639175415,
+            "hard_accuracy": 0.8799999952316284,
+            "mean_max_probability": 0.7413550019264221,
+            "mean_prediction_entropy": 0.6290568709373474
+          }
+        },
+        {
+          "label": "last",
+          "path": "round2_resnet/results/closeout/training_budget_checkpoints/seed20261119_lr0.0001_soft_last.pt",
+          "sha256": "9c2db40ae9da46c07b00ec2141ab00ec5e8cb786ff6e37a8166c3b07be3e8238",
+          "recorded_sha256": "9c2db40ae9da46c07b00ec2141ab00ec5e8cb786ff6e37a8166c3b07be3e8238",
+          "sha256_matches_source_record": true,
+          "checkpoint_epoch": 20,
+          "inference_seconds": 23.35970149934292,
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.25708433985710144,
+            "soft_label_cross_entropy": 0.5454213619232178,
+            "hard_accuracy": 0.9712903499603271,
+            "mean_max_probability": 0.7893137335777283,
+            "mean_prediction_entropy": 0.54619961977005
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37642377614974976,
+            "soft_label_cross_entropy": 0.62884920835495,
+            "hard_accuracy": 0.8706666827201843,
+            "mean_max_probability": 0.7515935897827148,
+            "mean_prediction_entropy": 0.6033849120140076
+          }
+        }
+      ]
+    }
+  ],
+  "total_inference_seconds": 185.64284795802087
+}

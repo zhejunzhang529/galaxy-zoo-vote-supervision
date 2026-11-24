@@ -1,0 +1,2386 @@
+{
+  "status": "complete",
+  "policy": "two new seeds, soft target only, original/dropout paired within seed; seed 20261119 is reused from history",
+  "config": {
+    "split": "round2_resnet/results/resnet_split.csv",
+    "image_size": 128,
+    "batch_size": 32,
+    "epochs": 20,
+    "seeds": [
+      20261120,
+      20261121
+    ],
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "optimizer": "Adam",
+    "unfreeze_range": "layer4_plus_head",
+    "target": "soft",
+    "dropout_values": [
+      0.0,
+      0.2
+    ],
+    "normalization": {
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    },
+    "validation_frequency": "every epoch",
+    "early_stopping": false,
+    "checkpoint_selection": "minimum validation soft cross-entropy, then calibration discrepancy, then earliest epoch",
+    "reference": {
+      "source": "round2_resnet/results/closeout/regularization_diagnostic/regularization_diagnostic_runs.json",
+      "seed": 20261119,
+      "policy": "reuse existing original/dropout soft records; do not retrain"
+    },
+    "output": "round2_resnet/results/closeout/dropout_multiseed_confirmation/dropout_multiseed_confirmation_runs.json",
+    "checkpoint_dir": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints",
+    "cost_estimate_before_run": {
+      "basis": "measured 20-epoch soft regularization runs at seed 20261119, approximately 950--980 seconds per run",
+      "per_run_seconds": [
+        950,
+        1150
+      ],
+      "all_four_seconds": [
+        3800,
+        4600
+      ],
+      "note": "Estimate only; seed changes may affect runtime modestly."
+    }
+  },
+  "environment": {
+    "python": "3.12.6",
+    "platform": "macOS-14.4-arm64-arm-64bit",
+    "torch": "2.14.1",
+    "torchvision": "0.29.2",
+    "device": "cpu",
+    "mps_available": false,
+    "cuda_available": false,
+    "torch_threads": 6
+  },
+  "weights": {
+    "name": "ResNet18_Weights.IMAGENET1K_V1",
+    "url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+    "cache_file": "resnet18-f37072fd.pth"
+  },
+  "records": [
+    {
+      "status": "complete",
+      "seed": 20261120,
+      "dropout": 0.0,
+      "weight_decay": 0.0001,
+      "learning_rate": 0.0003,
+      "target": "soft",
+      "train_size": "small_3100",
+      "train_count": 3100,
+      "validation_count": 750,
+      "training_seconds": 946.4376396248117,
+      "validation_soft_ce_best_epoch": 12,
+      "validation_accuracy_best_epoch": 9,
+      "last_ten_validation_soft_ce_mean": 0.6280859470367431,
+      "initial_state_sha256": "12a7f64952c6662a70bd30d0f1ca727810de65b2980a92808b162437f18dded2",
+      "checkpoints": [
+        {
+          "kind": "validation_soft_ce_best",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261120_dropout0_soft_soft_ce_best.pt",
+          "state_epoch": 12,
+          "sha256": "ab269213eed8d8dfbb8b265a3f0cd8ef3f9e44169ae54490cc9451ada5649375"
+        },
+        {
+          "kind": "validation_accuracy_best",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261120_dropout0_soft_accuracy_best.pt",
+          "state_epoch": 9,
+          "sha256": "89eb7343bdb6e2693d0755d46b1dc47379f564c4855f042a1dc6e32ef2e17055"
+        },
+        {
+          "kind": "last",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261120_dropout0_soft_last.pt",
+          "state_epoch": 20,
+          "sha256": "cf7c5d2f147a1d013ba1348de397287657d22191e1a50ca61b2d18bb1cdd72c8"
+        }
+      ],
+      "history": [
+        {
+          "epoch": 1,
+          "epoch_seconds": 47.462480291724205,
+          "train_loss_mean": 0.6843969367214084,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.332635760307312,
+            "soft_label_cross_entropy": 0.5987648963928223,
+            "brier": 0.031451985239982605,
+            "hard_accuracy": 0.9080645442008972,
+            "mean_max_probability": 0.7605233788490295,
+            "mean_prediction_entropy": 0.5974936485290527,
+            "calibration_discrepancy": 0.0740306599390122
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3950323164463043,
+            "soft_label_cross_entropy": 0.6340886354446411,
+            "brier": 0.051530543714761734,
+            "hard_accuracy": 0.862666666507721,
+            "mean_max_probability": 0.7476354837417603,
+            "mean_prediction_entropy": 0.6146568059921265,
+            "calibration_discrepancy": 0.08051668941477934
+          }
+        },
+        {
+          "epoch": 2,
+          "epoch_seconds": 47.08053933363408,
+          "train_loss_mean": 0.604943785778026,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.3238840699195862,
+            "soft_label_cross_entropy": 0.5940320491790771,
+            "brier": 0.028247596696019173,
+            "hard_accuracy": 0.9193548560142517,
+            "mean_max_probability": 0.7653703689575195,
+            "mean_prediction_entropy": 0.6018375754356384,
+            "calibration_discrepancy": 0.1182997965584359
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.4222407341003418,
+            "soft_label_cross_entropy": 0.6548063158988953,
+            "brier": 0.06456603854894638,
+            "hard_accuracy": 0.846666693687439,
+            "mean_max_probability": 0.744277834892273,
+            "mean_prediction_entropy": 0.6325904130935669,
+            "calibration_discrepancy": 0.1390260440657536
+          }
+        },
+        {
+          "epoch": 3,
+          "epoch_seconds": 46.76247074920684,
+          "train_loss_mean": 0.5865963808040029,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.3015870749950409,
+            "soft_label_cross_entropy": 0.5692855715751648,
+            "brier": 0.011976521462202072,
+            "hard_accuracy": 0.953870952129364,
+            "mean_max_probability": 0.7602087259292603,
+            "mean_prediction_entropy": 0.6251057386398315,
+            "calibration_discrepancy": 0.05245864388442808
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.4004632830619812,
+            "soft_label_cross_entropy": 0.6290973424911499,
+            "brier": 0.04676022008061409,
+            "hard_accuracy": 0.8706666827201843,
+            "mean_max_probability": 0.7321875691413879,
+            "mean_prediction_entropy": 0.6626302599906921,
+            "calibration_discrepancy": 0.0467141223748525
+          }
+        },
+        {
+          "epoch": 4,
+          "epoch_seconds": 47.49939808342606,
+          "train_loss_mean": 0.5790899122498699,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.3062914311885834,
+            "soft_label_cross_entropy": 0.575587809085846,
+            "brier": 0.01834404096007347,
+            "hard_accuracy": 0.935161292552948,
+            "mean_max_probability": 0.7678541541099548,
+            "mean_prediction_entropy": 0.6021515727043152,
+            "calibration_discrepancy": 0.09741994458821514
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.41200894117355347,
+            "soft_label_cross_entropy": 0.6441305875778198,
+            "brier": 0.057944174855947495,
+            "hard_accuracy": 0.871999979019165,
+            "mean_max_probability": 0.7383634448051453,
+            "mean_prediction_entropy": 0.6468186974525452,
+            "calibration_discrepancy": 0.1092582317441702
+          }
+        },
+        {
+          "epoch": 5,
+          "epoch_seconds": 46.79190354142338,
+          "train_loss_mean": 0.5709694341285941,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.29140111804008484,
+            "soft_label_cross_entropy": 0.5617545247077942,
+            "brier": 0.010367254726588726,
+            "hard_accuracy": 0.9574193358421326,
+            "mean_max_probability": 0.7674134373664856,
+            "mean_prediction_entropy": 0.5979596376419067,
+            "calibration_discrepancy": 0.059837695568078934
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3951064348220825,
+            "soft_label_cross_entropy": 0.6279155015945435,
+            "brier": 0.04676973074674606,
+            "hard_accuracy": 0.871999979019165,
+            "mean_max_probability": 0.7380864024162292,
+            "mean_prediction_entropy": 0.6386489868164062,
+            "calibration_discrepancy": 0.053765907550851505
+          }
+        },
+        {
+          "epoch": 6,
+          "epoch_seconds": 47.1525722919032,
+          "train_loss_mean": 0.5682981929828211,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.24521633982658386,
+            "soft_label_cross_entropy": 0.559627115726471,
+            "brier": 0.008779143914580345,
+            "hard_accuracy": 0.9545161128044128,
+            "mean_max_probability": 0.8060101270675659,
+            "mean_prediction_entropy": 0.5080353617668152,
+            "calibration_discrepancy": 0.046830041336436444
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3529042899608612,
+            "soft_label_cross_entropy": 0.6328879594802856,
+            "brier": 0.04725274071097374,
+            "hard_accuracy": 0.8759999871253967,
+            "mean_max_probability": 0.7810715436935425,
+            "mean_prediction_entropy": 0.5448897480964661,
+            "calibration_discrepancy": 0.06971270350615183
+          }
+        },
+        {
+          "epoch": 7,
+          "epoch_seconds": 47.24493516702205,
+          "train_loss_mean": 0.5640561663612877,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2256239801645279,
+            "soft_label_cross_entropy": 0.5696938633918762,
+            "brier": 0.01332800928503275,
+            "hard_accuracy": 0.9532257914543152,
+            "mean_max_probability": 0.8258392810821533,
+            "mean_prediction_entropy": 0.46838873624801636,
+            "calibration_discrepancy": 0.1062324140329034
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3368323743343353,
+            "soft_label_cross_entropy": 0.6503238677978516,
+            "brier": 0.05523907393217087,
+            "hard_accuracy": 0.8666666746139526,
+            "mean_max_probability": 0.806570291519165,
+            "mean_prediction_entropy": 0.5006851553916931,
+            "calibration_discrepancy": 0.14091541060805327
+          }
+        },
+        {
+          "epoch": 8,
+          "epoch_seconds": 47.07976720761508,
+          "train_loss_mean": 0.5640679966543138,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.28676721453666687,
+            "soft_label_cross_entropy": 0.5586257576942444,
+            "brier": 0.009779057465493679,
+            "hard_accuracy": 0.9551612734794617,
+            "mean_max_probability": 0.7723906636238098,
+            "mean_prediction_entropy": 0.5756545066833496,
+            "calibration_discrepancy": 0.07449918675086191
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3797009587287903,
+            "soft_label_cross_entropy": 0.631396472454071,
+            "brier": 0.048311859369277954,
+            "hard_accuracy": 0.8813333511352539,
+            "mean_max_probability": 0.7510265111923218,
+            "mean_prediction_entropy": 0.6089746952056885,
+            "calibration_discrepancy": 0.07411686022082964
+          }
+        },
+        {
+          "epoch": 9,
+          "epoch_seconds": 47.32225883286446,
+          "train_loss_mean": 0.5590792439647556,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2766830027103424,
+            "soft_label_cross_entropy": 0.552166759967804,
+            "brier": 0.00632392568513751,
+            "hard_accuracy": 0.9658064246177673,
+            "mean_max_probability": 0.7761358022689819,
+            "mean_prediction_entropy": 0.5777945518493652,
+            "calibration_discrepancy": 0.04385015318410529
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37492626905441284,
+            "soft_label_cross_entropy": 0.6275128722190857,
+            "brier": 0.04495605453848839,
+            "hard_accuracy": 0.8866666555404663,
+            "mean_max_probability": 0.7501300573348999,
+            "mean_prediction_entropy": 0.620000422000885,
+            "calibration_discrepancy": 0.04438310746351878
+          }
+        },
+        {
+          "epoch": 10,
+          "epoch_seconds": 47.34014737512916,
+          "train_loss_mean": 0.5585075816542832,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.28229835629463196,
+            "soft_label_cross_entropy": 0.551660418510437,
+            "brier": 0.006397444289177656,
+            "hard_accuracy": 0.957741916179657,
+            "mean_max_probability": 0.7734465003013611,
+            "mean_prediction_entropy": 0.579037070274353,
+            "calibration_discrepancy": 0.05160105835285878
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3809362053871155,
+            "soft_label_cross_entropy": 0.6294378042221069,
+            "brier": 0.046990010887384415,
+            "hard_accuracy": 0.871999979019165,
+            "mean_max_probability": 0.747220516204834,
+            "mean_prediction_entropy": 0.6174134016036987,
+            "calibration_discrepancy": 0.054587861915429435
+          }
+        },
+        {
+          "epoch": 11,
+          "epoch_seconds": 47.23400291707367,
+          "train_loss_mean": 0.5557200168211436,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.25964999198913574,
+            "soft_label_cross_entropy": 0.5511224269866943,
+            "brier": 0.006290403660386801,
+            "hard_accuracy": 0.9603225588798523,
+            "mean_max_probability": 0.7908501029014587,
+            "mean_prediction_entropy": 0.5397665500640869,
+            "calibration_discrepancy": 0.0286823819577694
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3565067648887634,
+            "soft_label_cross_entropy": 0.6292534470558167,
+            "brier": 0.04515453055500984,
+            "hard_accuracy": 0.8826666474342346,
+            "mean_max_probability": 0.7712088227272034,
+            "mean_prediction_entropy": 0.5738428831100464,
+            "calibration_discrepancy": 0.0649891590923071
+          }
+        },
+        {
+          "epoch": 12,
+          "epoch_seconds": 47.46481179166585,
+          "train_loss_mean": 0.5561167616205117,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2831161320209503,
+            "soft_label_cross_entropy": 0.5505650639533997,
+            "brier": 0.005696015432476997,
+            "hard_accuracy": 0.9603225588798523,
+            "mean_max_probability": 0.7717625498771667,
+            "mean_prediction_entropy": 0.5837365984916687,
+            "calibration_discrepancy": 0.05169251041486859
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3794839680194855,
+            "soft_label_cross_entropy": 0.6246038675308228,
+            "brier": 0.043073490262031555,
+            "hard_accuracy": 0.8786666393280029,
+            "mean_max_probability": 0.7450643181800842,
+            "mean_prediction_entropy": 0.6251013875007629,
+            "calibration_discrepancy": 0.04502798614899318
+          }
+        },
+        {
+          "epoch": 13,
+          "epoch_seconds": 47.0711909160018,
+          "train_loss_mean": 0.5534186209599996,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2434455305337906,
+            "soft_label_cross_entropy": 0.5485697388648987,
+            "brier": 0.004821533337235451,
+            "hard_accuracy": 0.9700000286102295,
+            "mean_max_probability": 0.8008675575256348,
+            "mean_prediction_entropy": 0.5174607634544373,
+            "calibration_discrepancy": 0.0432901312158473
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.34927064180374146,
+            "soft_label_cross_entropy": 0.631779134273529,
+            "brier": 0.046074189245700836,
+            "hard_accuracy": 0.8759999871253967,
+            "mean_max_probability": 0.7818318009376526,
+            "mean_prediction_entropy": 0.5497530102729797,
+            "calibration_discrepancy": 0.08254699977487326
+          }
+        },
+        {
+          "epoch": 14,
+          "epoch_seconds": 47.530849874950945,
+          "train_loss_mean": 0.5523367060213974,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.24964426457881927,
+            "soft_label_cross_entropy": 0.5525289177894592,
+            "brier": 0.006175579037517309,
+            "hard_accuracy": 0.9596773982048035,
+            "mean_max_probability": 0.7985931038856506,
+            "mean_prediction_entropy": 0.5052669048309326,
+            "calibration_discrepancy": 0.05757489262809676
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.353761225938797,
+            "soft_label_cross_entropy": 0.6356287598609924,
+            "brier": 0.04602857306599617,
+            "hard_accuracy": 0.8759999871253967,
+            "mean_max_probability": 0.7771260738372803,
+            "mean_prediction_entropy": 0.5367582440376282,
+            "calibration_discrepancy": 0.0895071049282948
+          }
+        },
+        {
+          "epoch": 15,
+          "epoch_seconds": 47.225311832502484,
+          "train_loss_mean": 0.5544916084132243,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2625705897808075,
+            "soft_label_cross_entropy": 0.5482147336006165,
+            "brier": 0.004958419594913721,
+            "hard_accuracy": 0.9654838442802429,
+            "mean_max_probability": 0.7878709435462952,
+            "mean_prediction_entropy": 0.5439951419830322,
+            "calibration_discrepancy": 0.02539614274977677
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3626004755496979,
+            "soft_label_cross_entropy": 0.6249151825904846,
+            "brier": 0.04297906532883644,
+            "hard_accuracy": 0.8773333430290222,
+            "mean_max_probability": 0.7641964554786682,
+            "mean_prediction_entropy": 0.5836163759231567,
+            "calibration_discrepancy": 0.04753432691593965
+          }
+        },
+        {
+          "epoch": 16,
+          "epoch_seconds": 47.38883024919778,
+          "train_loss_mean": 0.5519092033818825,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2637884020805359,
+            "soft_label_cross_entropy": 0.5486540198326111,
+            "brier": 0.005016067065298557,
+            "hard_accuracy": 0.9661290049552917,
+            "mean_max_probability": 0.785802960395813,
+            "mean_prediction_entropy": 0.5498619079589844,
+            "calibration_discrepancy": 0.03420412891814784
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3601566553115845,
+            "soft_label_cross_entropy": 0.6260163187980652,
+            "brier": 0.042907606810331345,
+            "hard_accuracy": 0.8733333349227905,
+            "mean_max_probability": 0.7639560699462891,
+            "mean_prediction_entropy": 0.5880725979804993,
+            "calibration_discrepancy": 0.056622035657366114
+          }
+        },
+        {
+          "epoch": 17,
+          "epoch_seconds": 48.08679358288646,
+          "train_loss_mean": 0.5498946570244032,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2763686776161194,
+            "soft_label_cross_entropy": 0.5476577281951904,
+            "brier": 0.00514399167150259,
+            "hard_accuracy": 0.9596773982048035,
+            "mean_max_probability": 0.7776898741722107,
+            "mean_prediction_entropy": 0.5593211650848389,
+            "calibration_discrepancy": 0.05645276470890928
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37393009662628174,
+            "soft_label_cross_entropy": 0.6273741722106934,
+            "brier": 0.04389050230383873,
+            "hard_accuracy": 0.871999979019165,
+            "mean_max_probability": 0.7548044323921204,
+            "mean_prediction_entropy": 0.5960199236869812,
+            "calibration_discrepancy": 0.07194305206835268
+          }
+        },
+        {
+          "epoch": 18,
+          "epoch_seconds": 47.421301749534905,
+          "train_loss_mean": 0.548679642456094,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.26764801144599915,
+            "soft_label_cross_entropy": 0.5484262108802795,
+            "brier": 0.0043081860058009624,
+            "hard_accuracy": 0.9716129302978516,
+            "mean_max_probability": 0.7815420031547546,
+            "mean_prediction_entropy": 0.5697683691978455,
+            "calibration_discrepancy": 0.045003002406127986
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.36629489064216614,
+            "soft_label_cross_entropy": 0.6270593404769897,
+            "brier": 0.04417404159903526,
+            "hard_accuracy": 0.8826666474342346,
+            "mean_max_probability": 0.762495756149292,
+            "mean_prediction_entropy": 0.6094630360603333,
+            "calibration_discrepancy": 0.07185641853014631
+          }
+        },
+        {
+          "epoch": 19,
+          "epoch_seconds": 47.82161658257246,
+          "train_loss_mean": 0.5490650973983646,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2743130624294281,
+            "soft_label_cross_entropy": 0.5469344258308411,
+            "brier": 0.004145530983805656,
+            "hard_accuracy": 0.9700000286102295,
+            "mean_max_probability": 0.7762936353683472,
+            "mean_prediction_entropy": 0.5676202774047852,
+            "calibration_discrepancy": 0.029014182673586957
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3726714253425598,
+            "soft_label_cross_entropy": 0.6258431673049927,
+            "brier": 0.04353625327348709,
+            "hard_accuracy": 0.8813333511352539,
+            "mean_max_probability": 0.7510768175125122,
+            "mean_prediction_entropy": 0.6105734705924988,
+            "calibration_discrepancy": 0.03026811342438062
+          }
+        },
+        {
+          "epoch": 20,
+          "epoch_seconds": 47.41433895751834,
+          "train_loss_mean": 0.5508142682080416,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.24555116891860962,
+            "soft_label_cross_entropy": 0.5472372174263,
+            "brier": 0.0043578664772212505,
+            "hard_accuracy": 0.9712903499603271,
+            "mean_max_probability": 0.7997181415557861,
+            "mean_prediction_entropy": 0.5191332101821899,
+            "calibration_discrepancy": 0.029312860328824294
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3426031172275543,
+            "soft_label_cross_entropy": 0.6283860802650452,
+            "brier": 0.04311312735080719,
+            "hard_accuracy": 0.8759999871253967,
+            "mean_max_probability": 0.7788682579994202,
+            "mean_prediction_entropy": 0.5569626688957214,
+            "calibration_discrepancy": 0.05676911229888598
+          }
+        }
+      ]
+    },
+    {
+      "status": "complete",
+      "seed": 20261120,
+      "dropout": 0.2,
+      "weight_decay": 0.0001,
+      "learning_rate": 0.0003,
+      "target": "soft",
+      "train_size": "small_3100",
+      "train_count": 3100,
+      "validation_count": 750,
+      "training_seconds": 956.8837248338386,
+      "validation_soft_ce_best_epoch": 12,
+      "validation_accuracy_best_epoch": 20,
+      "last_ten_validation_soft_ce_mean": 0.6268118500709534,
+      "initial_state_sha256": "12a7f64952c6662a70bd30d0f1ca727810de65b2980a92808b162437f18dded2",
+      "checkpoints": [
+        {
+          "kind": "validation_soft_ce_best",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261120_dropout0.2_soft_soft_ce_best.pt",
+          "state_epoch": 12,
+          "sha256": "db196f2ffdcdbb8326d91a45fd973cfa96d81baa1add86154d989167a437a678"
+        },
+        {
+          "kind": "validation_accuracy_best",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261120_dropout0.2_soft_accuracy_best.pt",
+          "state_epoch": 20,
+          "sha256": "fdfc6950ca40dad932520f561f3d3f52ddd75dd3df7e8c3e4f42a23a958983e2"
+        },
+        {
+          "kind": "last",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261120_dropout0.2_soft_last.pt",
+          "state_epoch": 20,
+          "sha256": "69b68d25333a377d3347ac7704aff3bf19b09c6de9ab0cf501421d55a198c8b1"
+        }
+      ],
+      "history": [
+        {
+          "epoch": 1,
+          "epoch_seconds": 47.74253120832145,
+          "train_loss_mean": 0.7019883676902535,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.33082956075668335,
+            "soft_label_cross_entropy": 0.602709949016571,
+            "brier": 0.03306855633854866,
+            "hard_accuracy": 0.9100000262260437,
+            "mean_max_probability": 0.7658796310424805,
+            "mean_prediction_entropy": 0.5946280360221863,
+            "calibration_discrepancy": 0.05371984951558613
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.386317640542984,
+            "soft_label_cross_entropy": 0.6370319128036499,
+            "brier": 0.05252552777528763,
+            "hard_accuracy": 0.8666666746139526,
+            "mean_max_probability": 0.754314124584198,
+            "mean_prediction_entropy": 0.6086602807044983,
+            "calibration_discrepancy": 0.06404673855503401
+          }
+        },
+        {
+          "epoch": 2,
+          "epoch_seconds": 47.697723207995296,
+          "train_loss_mean": 0.6210281726011296,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.3107704818248749,
+            "soft_label_cross_entropy": 0.5921767354011536,
+            "brier": 0.027244003489613533,
+            "hard_accuracy": 0.9187096953392029,
+            "mean_max_probability": 0.774756908416748,
+            "mean_prediction_entropy": 0.5818650722503662,
+            "calibration_discrepancy": 0.07919830646365883
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.39872604608535767,
+            "soft_label_cross_entropy": 0.6451201438903809,
+            "brier": 0.05776982754468918,
+            "hard_accuracy": 0.8573333621025085,
+            "mean_max_probability": 0.7556079030036926,
+            "mean_prediction_entropy": 0.6088049411773682,
+            "calibration_discrepancy": 0.09383014707267281
+          }
+        },
+        {
+          "epoch": 3,
+          "epoch_seconds": 47.68704437557608,
+          "train_loss_mean": 0.6039878732150363,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.25548189878463745,
+            "soft_label_cross_entropy": 0.5789189338684082,
+            "brier": 0.017172539606690407,
+            "hard_accuracy": 0.9480645060539246,
+            "mean_max_probability": 0.8029353618621826,
+            "mean_prediction_entropy": 0.5383799076080322,
+            "calibration_discrepancy": 0.06936846788011254
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.35691675543785095,
+            "soft_label_cross_entropy": 0.6396163105964661,
+            "brier": 0.05101098492741585,
+            "hard_accuracy": 0.874666690826416,
+            "mean_max_probability": 0.7824290990829468,
+            "mean_prediction_entropy": 0.5694147944450378,
+            "calibration_discrepancy": 0.09450266524155937
+          }
+        },
+        {
+          "epoch": 4,
+          "epoch_seconds": 47.70629783254117,
+          "train_loss_mean": 0.5933201352960056,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.28083038330078125,
+            "soft_label_cross_entropy": 0.5667516589164734,
+            "brier": 0.011484195478260517,
+            "hard_accuracy": 0.9496774077415466,
+            "mean_max_probability": 0.7783607840538025,
+            "mean_prediction_entropy": 0.5827421545982361,
+            "calibration_discrepancy": 0.029802884829621158
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3805651366710663,
+            "soft_label_cross_entropy": 0.6301133036613464,
+            "brier": 0.047265585511922836,
+            "hard_accuracy": 0.8826666474342346,
+            "mean_max_probability": 0.751876950263977,
+            "mean_prediction_entropy": 0.622016966342926,
+            "calibration_discrepancy": 0.041576636463403704
+          }
+        },
+        {
+          "epoch": 5,
+          "epoch_seconds": 47.89706658292562,
+          "train_loss_mean": 0.5806700710168818,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2792779803276062,
+            "soft_label_cross_entropy": 0.5655533075332642,
+            "brier": 0.011683419346809387,
+            "hard_accuracy": 0.9509677290916443,
+            "mean_max_probability": 0.779033362865448,
+            "mean_prediction_entropy": 0.5693437457084656,
+            "calibration_discrepancy": 0.06087935535537621
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.385183721780777,
+            "soft_label_cross_entropy": 0.6301952600479126,
+            "brier": 0.047185394912958145,
+            "hard_accuracy": 0.8733333349227905,
+            "mean_max_probability": 0.7499664425849915,
+            "mean_prediction_entropy": 0.6093981862068176,
+            "calibration_discrepancy": 0.06434538335104785
+          }
+        },
+        {
+          "epoch": 6,
+          "epoch_seconds": 47.27116287499666,
+          "train_loss_mean": 0.5779208436454695,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2765829861164093,
+            "soft_label_cross_entropy": 0.5650722980499268,
+            "brier": 0.011861505918204784,
+            "hard_accuracy": 0.9425806403160095,
+            "mean_max_probability": 0.7849240899085999,
+            "mean_prediction_entropy": 0.5502287149429321,
+            "calibration_discrepancy": 0.06395156517504684
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3837387263774872,
+            "soft_label_cross_entropy": 0.6342487335205078,
+            "brier": 0.050062622874975204,
+            "hard_accuracy": 0.8706666827201843,
+            "mean_max_probability": 0.756947934627533,
+            "mean_prediction_entropy": 0.5924981236457825,
+            "calibration_discrepancy": 0.08739026004572707
+          }
+        },
+        {
+          "epoch": 7,
+          "epoch_seconds": 47.51782741677016,
+          "train_loss_mean": 0.573591591156635,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.24492605030536652,
+            "soft_label_cross_entropy": 0.5629532337188721,
+            "brier": 0.00944702047854662,
+            "hard_accuracy": 0.957741916179657,
+            "mean_max_probability": 0.8058285117149353,
+            "mean_prediction_entropy": 0.508534848690033,
+            "calibration_discrepancy": 0.05472227759058437
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3559960126876831,
+            "soft_label_cross_entropy": 0.6378841400146484,
+            "brier": 0.04999634623527527,
+            "hard_accuracy": 0.8679999709129333,
+            "mean_max_probability": 0.7790104150772095,
+            "mean_prediction_entropy": 0.5502535104751587,
+            "calibration_discrepancy": 0.08583904566367467
+          }
+        },
+        {
+          "epoch": 8,
+          "epoch_seconds": 47.209490582346916,
+          "train_loss_mean": 0.5720894152356177,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2563532590866089,
+            "soft_label_cross_entropy": 0.5545934438705444,
+            "brier": 0.0067290496081113815,
+            "hard_accuracy": 0.9564515948295593,
+            "mean_max_probability": 0.7955187559127808,
+            "mean_prediction_entropy": 0.5362304449081421,
+            "calibration_discrepancy": 0.028521702445803154
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3557153344154358,
+            "soft_label_cross_entropy": 0.6271470785140991,
+            "brier": 0.044756948947906494,
+            "hard_accuracy": 0.8813333511352539,
+            "mean_max_probability": 0.7697319388389587,
+            "mean_prediction_entropy": 0.5769884586334229,
+            "calibration_discrepancy": 0.05856857055922349
+          }
+        },
+        {
+          "epoch": 9,
+          "epoch_seconds": 47.468015999533236,
+          "train_loss_mean": 0.5657887126981598,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2729140818119049,
+            "soft_label_cross_entropy": 0.5558153390884399,
+            "brier": 0.008434820920228958,
+            "hard_accuracy": 0.9516128897666931,
+            "mean_max_probability": 0.7827734351158142,
+            "mean_prediction_entropy": 0.5504854917526245,
+            "calibration_discrepancy": 0.04853024600974975
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.36518681049346924,
+            "soft_label_cross_entropy": 0.6277227997779846,
+            "brier": 0.04495946317911148,
+            "hard_accuracy": 0.8853333592414856,
+            "mean_max_probability": 0.7567147016525269,
+            "mean_prediction_entropy": 0.5914657115936279,
+            "calibration_discrepancy": 0.056923068220416706
+          }
+        },
+        {
+          "epoch": 10,
+          "epoch_seconds": 47.8027218747884,
+          "train_loss_mean": 0.563735055247533,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.281495600938797,
+            "soft_label_cross_entropy": 0.5532260537147522,
+            "brier": 0.0067525943741202354,
+            "hard_accuracy": 0.9690322875976562,
+            "mean_max_probability": 0.771580159664154,
+            "mean_prediction_entropy": 0.5837830901145935,
+            "calibration_discrepancy": 0.059005539232204016
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.38131192326545715,
+            "soft_label_cross_entropy": 0.626761794090271,
+            "brier": 0.045101460069417953,
+            "hard_accuracy": 0.8853333592414856,
+            "mean_max_probability": 0.7424131631851196,
+            "mean_prediction_entropy": 0.6288237571716309,
+            "calibration_discrepancy": 0.055661789615948996
+          }
+        },
+        {
+          "epoch": 11,
+          "epoch_seconds": 47.44158033374697,
+          "train_loss_mean": 0.5612361053216088,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2506187856197357,
+            "soft_label_cross_entropy": 0.5527467131614685,
+            "brier": 0.006772966124117374,
+            "hard_accuracy": 0.9625806212425232,
+            "mean_max_probability": 0.7990050315856934,
+            "mean_prediction_entropy": 0.5327500104904175,
+            "calibration_discrepancy": 0.048397363572111045
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3543843924999237,
+            "soft_label_cross_entropy": 0.6292708516120911,
+            "brier": 0.04559963941574097,
+            "hard_accuracy": 0.8706666827201843,
+            "mean_max_probability": 0.7766669988632202,
+            "mean_prediction_entropy": 0.5711824893951416,
+            "calibration_discrepancy": 0.07904521976908047
+          }
+        },
+        {
+          "epoch": 12,
+          "epoch_seconds": 47.37595587503165,
+          "train_loss_mean": 0.5600617205359272,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.29125648736953735,
+            "soft_label_cross_entropy": 0.552391529083252,
+            "brier": 0.006345770321786404,
+            "hard_accuracy": 0.9629032015800476,
+            "mean_max_probability": 0.7649325132369995,
+            "mean_prediction_entropy": 0.5958085656166077,
+            "calibration_discrepancy": 0.057571439621669634
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3842211961746216,
+            "soft_label_cross_entropy": 0.623853325843811,
+            "brier": 0.04302771016955376,
+            "hard_accuracy": 0.871999979019165,
+            "mean_max_probability": 0.7371271252632141,
+            "mean_prediction_entropy": 0.6395353674888611,
+            "calibration_discrepancy": 0.05439518626530965
+          }
+        },
+        {
+          "epoch": 13,
+          "epoch_seconds": 48.46832100022584,
+          "train_loss_mean": 0.5566247501938614,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2325199991464615,
+            "soft_label_cross_entropy": 0.5510316491127014,
+            "brier": 0.0054953140206635,
+            "hard_accuracy": 0.971935510635376,
+            "mean_max_probability": 0.8105752468109131,
+            "mean_prediction_entropy": 0.49420204758644104,
+            "calibration_discrepancy": 0.05936974521486028
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3381231725215912,
+            "soft_label_cross_entropy": 0.633806586265564,
+            "brier": 0.04546568915247917,
+            "hard_accuracy": 0.8733333349227905,
+            "mean_max_probability": 0.7904146909713745,
+            "mean_prediction_entropy": 0.5296874046325684,
+            "calibration_discrepancy": 0.09411600347111622
+          }
+        },
+        {
+          "epoch": 14,
+          "epoch_seconds": 47.56949699949473,
+          "train_loss_mean": 0.5559403828738891,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.25998878479003906,
+            "soft_label_cross_entropy": 0.5483840107917786,
+            "brier": 0.004677449353039265,
+            "hard_accuracy": 0.9690322875976562,
+            "mean_max_probability": 0.7878584861755371,
+            "mean_prediction_entropy": 0.53886479139328,
+            "calibration_discrepancy": 0.028389175435708413
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.36291760206222534,
+            "soft_label_cross_entropy": 0.6266592741012573,
+            "brier": 0.044103026390075684,
+            "hard_accuracy": 0.8773333430290222,
+            "mean_max_probability": 0.7627204060554504,
+            "mean_prediction_entropy": 0.5790711641311646,
+            "calibration_discrepancy": 0.04775568490723769
+          }
+        },
+        {
+          "epoch": 15,
+          "epoch_seconds": 48.14555629063398,
+          "train_loss_mean": 0.5562962035542911,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2587028741836548,
+            "soft_label_cross_entropy": 0.5470103621482849,
+            "brier": 0.003967863507568836,
+            "hard_accuracy": 0.9703226089477539,
+            "mean_max_probability": 0.7889573574066162,
+            "mean_prediction_entropy": 0.5391964912414551,
+            "calibration_discrepancy": 0.01852014636200282
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3582787811756134,
+            "soft_label_cross_entropy": 0.6256034970283508,
+            "brier": 0.04242366552352905,
+            "hard_accuracy": 0.8813333511352539,
+            "mean_max_probability": 0.764028787612915,
+            "mean_prediction_entropy": 0.5806631445884705,
+            "calibration_discrepancy": 0.04981088554362456
+          }
+        },
+        {
+          "epoch": 16,
+          "epoch_seconds": 48.31601774971932,
+          "train_loss_mean": 0.5547423061636305,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2605445384979248,
+            "soft_label_cross_entropy": 0.5464707612991333,
+            "brier": 0.003721602726727724,
+            "hard_accuracy": 0.9700000286102295,
+            "mean_max_probability": 0.7871488928794861,
+            "mean_prediction_entropy": 0.5478971600532532,
+            "calibration_discrepancy": 0.01861189763272001
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.36015093326568604,
+            "soft_label_cross_entropy": 0.6242944598197937,
+            "brier": 0.04213554784655571,
+            "hard_accuracy": 0.8733333349227905,
+            "mean_max_probability": 0.7618143558502197,
+            "mean_prediction_entropy": 0.5897502899169922,
+            "calibration_discrepancy": 0.03966211042056481
+          }
+        },
+        {
+          "epoch": 17,
+          "epoch_seconds": 48.51174883265048,
+          "train_loss_mean": 0.5520977958575967,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.24994155764579773,
+            "soft_label_cross_entropy": 0.5458764433860779,
+            "brier": 0.0032605931628495455,
+            "hard_accuracy": 0.973548412322998,
+            "mean_max_probability": 0.7953866124153137,
+            "mean_prediction_entropy": 0.522392213344574,
+            "calibration_discrepancy": 0.026978899957311727
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.34543952345848083,
+            "soft_label_cross_entropy": 0.6256893873214722,
+            "brier": 0.04057276248931885,
+            "hard_accuracy": 0.8826666474342346,
+            "mean_max_probability": 0.7708916068077087,
+            "mean_prediction_entropy": 0.5604245662689209,
+            "calibration_discrepancy": 0.0588004251793027
+          }
+        },
+        {
+          "epoch": 18,
+          "epoch_seconds": 48.140539209358394,
+          "train_loss_mean": 0.5519936318250046,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.27584490180015564,
+            "soft_label_cross_entropy": 0.5502265095710754,
+            "brier": 0.005312336143106222,
+            "hard_accuracy": 0.9700000286102295,
+            "mean_max_probability": 0.7759166955947876,
+            "mean_prediction_entropy": 0.5773890614509583,
+            "calibration_discrepancy": 0.040852440219492685
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3737001121044159,
+            "soft_label_cross_entropy": 0.6262168884277344,
+            "brier": 0.04408303648233414,
+            "hard_accuracy": 0.8866666555404663,
+            "mean_max_probability": 0.7514474987983704,
+            "mean_prediction_entropy": 0.6208571791648865,
+            "calibration_discrepancy": 0.06380802884697914
+          }
+        },
+        {
+          "epoch": 19,
+          "epoch_seconds": 48.17770508304238,
+          "train_loss_mean": 0.5528724992398134,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2516874074935913,
+            "soft_label_cross_entropy": 0.547188937664032,
+            "brier": 0.003637886606156826,
+            "hard_accuracy": 0.9770967960357666,
+            "mean_max_probability": 0.7933650612831116,
+            "mean_prediction_entropy": 0.5410205721855164,
+            "calibration_discrepancy": 0.030962972669832167
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3462274670600891,
+            "soft_label_cross_entropy": 0.6259889602661133,
+            "brier": 0.04168543592095375,
+            "hard_accuracy": 0.8840000033378601,
+            "mean_max_probability": 0.7701101303100586,
+            "mean_prediction_entropy": 0.5835568308830261,
+            "calibration_discrepancy": 0.05552787565191587
+          }
+        },
+        {
+          "epoch": 20,
+          "epoch_seconds": 48.7076776670292,
+          "train_loss_mean": 0.5534701430305993,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2443740963935852,
+            "soft_label_cross_entropy": 0.547467052936554,
+            "brier": 0.0040372819639742374,
+            "hard_accuracy": 0.9712903499603271,
+            "mean_max_probability": 0.800590991973877,
+            "mean_prediction_entropy": 0.5167304873466492,
+            "calibration_discrepancy": 0.033916835194874186
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.342360258102417,
+            "soft_label_cross_entropy": 0.626735270023346,
+            "brier": 0.0419781431555748,
+            "hard_accuracy": 0.8880000114440918,
+            "mean_max_probability": 0.7770051956176758,
+            "mean_prediction_entropy": 0.5585342049598694,
+            "calibration_discrepancy": 0.06244893899559974
+          }
+        }
+      ]
+    },
+    {
+      "status": "complete",
+      "seed": 20261121,
+      "dropout": 0.0,
+      "weight_decay": 0.0001,
+      "learning_rate": 0.0003,
+      "target": "soft",
+      "train_size": "small_3100",
+      "train_count": 3100,
+      "validation_count": 750,
+      "training_seconds": 970.4265941670164,
+      "validation_soft_ce_best_epoch": 17,
+      "validation_accuracy_best_epoch": 17,
+      "last_ten_validation_soft_ce_mean": 0.6291932880878448,
+      "initial_state_sha256": "4e08566c239296645b829da151e219f7da61297c2c8eff16085fdbc54addc2b7",
+      "checkpoints": [
+        {
+          "kind": "validation_soft_ce_best",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261121_dropout0_soft_soft_ce_best.pt",
+          "state_epoch": 17,
+          "sha256": "dcbc8df5cf7cf0e43f416bbc9c93f68a7c225e8f8998209b661666f34d611e5e"
+        },
+        {
+          "kind": "validation_accuracy_best",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261121_dropout0_soft_accuracy_best.pt",
+          "state_epoch": 17,
+          "sha256": "8249094ac7460c5035eb651445edf24f0af5f7d10f47ab09069292a131a3dc92"
+        },
+        {
+          "kind": "last",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261121_dropout0_soft_last.pt",
+          "state_epoch": 20,
+          "sha256": "07a0313d9cfeb6d8ac208dbc5b193e98cfb028ff87e38348123c3f4a24760b98"
+        }
+      ],
+      "history": [
+        {
+          "epoch": 1,
+          "epoch_seconds": 48.73080795817077,
+          "train_loss_mean": 0.6858678656755034,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.3393236994743347,
+            "soft_label_cross_entropy": 0.6187874674797058,
+            "brier": 0.04278547316789627,
+            "hard_accuracy": 0.9006451368331909,
+            "mean_max_probability": 0.7713616490364075,
+            "mean_prediction_entropy": 0.5742869973182678,
+            "calibration_discrepancy": 0.1261115298035645
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.4107220768928528,
+            "soft_label_cross_entropy": 0.6641700267791748,
+            "brier": 0.06947656720876694,
+            "hard_accuracy": 0.8493333458900452,
+            "mean_max_probability": 0.7572562098503113,
+            "mean_prediction_entropy": 0.5958951115608215,
+            "calibration_discrepancy": 0.14639317629734677
+          }
+        },
+        {
+          "epoch": 2,
+          "epoch_seconds": 48.82238291576505,
+          "train_loss_mean": 0.6080336884124992,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.3211885392665863,
+            "soft_label_cross_entropy": 0.5807153582572937,
+            "brier": 0.019304828718304634,
+            "hard_accuracy": 0.9370967745780945,
+            "mean_max_probability": 0.7518491744995117,
+            "mean_prediction_entropy": 0.6323775053024292,
+            "calibration_discrepancy": 0.05867832097194848
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3990354835987091,
+            "soft_label_cross_entropy": 0.6306065917015076,
+            "brier": 0.048553649336099625,
+            "hard_accuracy": 0.8679999709129333,
+            "mean_max_probability": 0.7328388690948486,
+            "mean_prediction_entropy": 0.6564803719520569,
+            "calibration_discrepancy": 0.04557000282903512
+          }
+        },
+        {
+          "epoch": 3,
+          "epoch_seconds": 48.28936804179102,
+          "train_loss_mean": 0.5930614207208771,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.30561232566833496,
+            "soft_label_cross_entropy": 0.5774638056755066,
+            "brier": 0.017259148880839348,
+            "hard_accuracy": 0.9399999976158142,
+            "mean_max_probability": 0.7657914757728577,
+            "mean_prediction_entropy": 0.6155434250831604,
+            "calibration_discrepancy": 0.10051923980035128
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.4055406451225281,
+            "soft_label_cross_entropy": 0.6409863233566284,
+            "brier": 0.05293513834476471,
+            "hard_accuracy": 0.8733333349227905,
+            "mean_max_probability": 0.7374412417411804,
+            "mean_prediction_entropy": 0.658878743648529,
+            "calibration_discrepancy": 0.10551176462570828
+          }
+        },
+        {
+          "epoch": 4,
+          "epoch_seconds": 48.30946041736752,
+          "train_loss_mean": 0.5754828216488829,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2899227738380432,
+            "soft_label_cross_entropy": 0.5630059838294983,
+            "brier": 0.009887280873954296,
+            "hard_accuracy": 0.9529032111167908,
+            "mean_max_probability": 0.7685632109642029,
+            "mean_prediction_entropy": 0.5953291058540344,
+            "calibration_discrepancy": 0.040132581844565376
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.38834524154663086,
+            "soft_label_cross_entropy": 0.6276786923408508,
+            "brier": 0.046588145196437836,
+            "hard_accuracy": 0.8733333349227905,
+            "mean_max_probability": 0.7418736815452576,
+            "mean_prediction_entropy": 0.6324679851531982,
+            "calibration_discrepancy": 0.03538215041160583
+          }
+        },
+        {
+          "epoch": 5,
+          "epoch_seconds": 48.42795895785093,
+          "train_loss_mean": 0.5731548067835188,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2543916702270508,
+            "soft_label_cross_entropy": 0.561535120010376,
+            "brier": 0.009517673403024673,
+            "hard_accuracy": 0.9522580504417419,
+            "mean_max_probability": 0.7997708320617676,
+            "mean_prediction_entropy": 0.5274826288223267,
+            "calibration_discrepancy": 0.03507417042709646
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.35517245531082153,
+            "soft_label_cross_entropy": 0.6301044225692749,
+            "brier": 0.046375833451747894,
+            "hard_accuracy": 0.871999979019165,
+            "mean_max_probability": 0.770872175693512,
+            "mean_prediction_entropy": 0.5709779262542725,
+            "calibration_discrepancy": 0.05669216823577879
+          }
+        },
+        {
+          "epoch": 6,
+          "epoch_seconds": 48.482417833060026,
+          "train_loss_mean": 0.5678595107855257,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.25466856360435486,
+            "soft_label_cross_entropy": 0.569792628288269,
+            "brier": 0.01458598393946886,
+            "hard_accuracy": 0.9422580599784851,
+            "mean_max_probability": 0.8034084439277649,
+            "mean_prediction_entropy": 0.5171182751655579,
+            "calibration_discrepancy": 0.10306369944685889
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3557506501674652,
+            "soft_label_cross_entropy": 0.6439936757087708,
+            "brier": 0.05502333119511604,
+            "hard_accuracy": 0.8706666827201843,
+            "mean_max_probability": 0.7814410924911499,
+            "mean_prediction_entropy": 0.5521765351295471,
+            "calibration_discrepancy": 0.12998856561879318
+          }
+        },
+        {
+          "epoch": 7,
+          "epoch_seconds": 48.82952933385968,
+          "train_loss_mean": 0.5691143283524465,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.24210815131664276,
+            "soft_label_cross_entropy": 0.5554454922676086,
+            "brier": 0.007446034345775843,
+            "hard_accuracy": 0.9580644965171814,
+            "mean_max_probability": 0.8074488043785095,
+            "mean_prediction_entropy": 0.5118579268455505,
+            "calibration_discrepancy": 0.047721819940714116
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.33970895409584045,
+            "soft_label_cross_entropy": 0.6289331316947937,
+            "brier": 0.04560210555791855,
+            "hard_accuracy": 0.8773333430290222,
+            "mean_max_probability": 0.7825870513916016,
+            "mean_prediction_entropy": 0.5520844459533691,
+            "calibration_discrepancy": 0.06915110737830402
+          }
+        },
+        {
+          "epoch": 8,
+          "epoch_seconds": 48.46158824954182,
+          "train_loss_mean": 0.5612845814105162,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2714061439037323,
+            "soft_label_cross_entropy": 0.5532321929931641,
+            "brier": 0.007237349636852741,
+            "hard_accuracy": 0.9596773982048035,
+            "mean_max_probability": 0.7822396159172058,
+            "mean_prediction_entropy": 0.5566779375076294,
+            "calibration_discrepancy": 0.04121465309012321
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.36669957637786865,
+            "soft_label_cross_entropy": 0.6280522346496582,
+            "brier": 0.04517413303256035,
+            "hard_accuracy": 0.8799999952316284,
+            "mean_max_probability": 0.7555589079856873,
+            "mean_prediction_entropy": 0.5993579030036926,
+            "calibration_discrepancy": 0.053159489254156755
+          }
+        },
+        {
+          "epoch": 9,
+          "epoch_seconds": 48.490907249972224,
+          "train_loss_mean": 0.5590181015815932,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2772359251976013,
+            "soft_label_cross_entropy": 0.5506805777549744,
+            "brier": 0.005392572842538357,
+            "hard_accuracy": 0.9599999785423279,
+            "mean_max_probability": 0.7763752341270447,
+            "mean_prediction_entropy": 0.5781446695327759,
+            "calibration_discrepancy": 0.036792415520476726
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37498778104782104,
+            "soft_label_cross_entropy": 0.6257697939872742,
+            "brier": 0.044632069766521454,
+            "hard_accuracy": 0.8706666827201843,
+            "mean_max_probability": 0.7481473684310913,
+            "mean_prediction_entropy": 0.6221687197685242,
+            "calibration_discrepancy": 0.043231588944792745
+          }
+        },
+        {
+          "epoch": 10,
+          "epoch_seconds": 48.48471145890653,
+          "train_loss_mean": 0.5561569081139319,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2702326774597168,
+            "soft_label_cross_entropy": 0.5533794164657593,
+            "brier": 0.00778071628883481,
+            "hard_accuracy": 0.9548386931419373,
+            "mean_max_probability": 0.784127414226532,
+            "mean_prediction_entropy": 0.5559870600700378,
+            "calibration_discrepancy": 0.0392365641459342
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.36229208111763,
+            "soft_label_cross_entropy": 0.6281412839889526,
+            "brier": 0.0453837551176548,
+            "hard_accuracy": 0.8679999709129333,
+            "mean_max_probability": 0.7623101472854614,
+            "mean_prediction_entropy": 0.5912473797798157,
+            "calibration_discrepancy": 0.06726456237087648
+          }
+        },
+        {
+          "epoch": 11,
+          "epoch_seconds": 48.24745333287865,
+          "train_loss_mean": 0.5571391772978085,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2823030650615692,
+            "soft_label_cross_entropy": 0.5519413352012634,
+            "brier": 0.0055936602875590324,
+            "hard_accuracy": 0.9664515852928162,
+            "mean_max_probability": 0.7710906863212585,
+            "mean_prediction_entropy": 0.5903484225273132,
+            "calibration_discrepancy": 0.033904818559606226
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3788544237613678,
+            "soft_label_cross_entropy": 0.6254501938819885,
+            "brier": 0.043090738356113434,
+            "hard_accuracy": 0.8799999952316284,
+            "mean_max_probability": 0.7443168759346008,
+            "mean_prediction_entropy": 0.6375877261161804,
+            "calibration_discrepancy": 0.03495889050761859
+          }
+        },
+        {
+          "epoch": 12,
+          "epoch_seconds": 48.45305179152638,
+          "train_loss_mean": 0.5535902522273899,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.24239800870418549,
+            "soft_label_cross_entropy": 0.549042284488678,
+            "brier": 0.005250913556665182,
+            "hard_accuracy": 0.9667741656303406,
+            "mean_max_probability": 0.8036413192749023,
+            "mean_prediction_entropy": 0.5129109621047974,
+            "calibration_discrepancy": 0.04167795910049349
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3468375504016876,
+            "soft_label_cross_entropy": 0.6316623687744141,
+            "brier": 0.04549909383058548,
+            "hard_accuracy": 0.8706666827201843,
+            "mean_max_probability": 0.782488226890564,
+            "mean_prediction_entropy": 0.5500112175941467,
+            "calibration_discrepancy": 0.08139430179446937
+          }
+        },
+        {
+          "epoch": 13,
+          "epoch_seconds": 48.24526583310217,
+          "train_loss_mean": 0.5526280839418628,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2510576546192169,
+            "soft_label_cross_entropy": 0.5491870045661926,
+            "brier": 0.005142834968864918,
+            "hard_accuracy": 0.9661290049552917,
+            "mean_max_probability": 0.7958651781082153,
+            "mean_prediction_entropy": 0.5240520238876343,
+            "calibration_discrepancy": 0.034712759484687154
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3588904142379761,
+            "soft_label_cross_entropy": 0.6285045146942139,
+            "brier": 0.04471953213214874,
+            "hard_accuracy": 0.8666666746139526,
+            "mean_max_probability": 0.7710415720939636,
+            "mean_prediction_entropy": 0.5656235218048096,
+            "calibration_discrepancy": 0.05919615074743826
+          }
+        },
+        {
+          "epoch": 14,
+          "epoch_seconds": 48.13815529178828,
+          "train_loss_mean": 0.5546457589287119,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2559429407119751,
+            "soft_label_cross_entropy": 0.5481930375099182,
+            "brier": 0.004500990733504295,
+            "hard_accuracy": 0.9687096476554871,
+            "mean_max_probability": 0.7916014790534973,
+            "mean_prediction_entropy": 0.5388237833976746,
+            "calibration_discrepancy": 0.02624986125817222
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3540486991405487,
+            "soft_label_cross_entropy": 0.6255455017089844,
+            "brier": 0.04256216809153557,
+            "hard_accuracy": 0.8799999952316284,
+            "mean_max_probability": 0.7645577788352966,
+            "mean_prediction_entropy": 0.5843720436096191,
+            "calibration_discrepancy": 0.044859090204040206
+          }
+        },
+        {
+          "epoch": 15,
+          "epoch_seconds": 48.770638790912926,
+          "train_loss_mean": 0.5522887983272985,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.25662440061569214,
+            "soft_label_cross_entropy": 0.5477635264396667,
+            "brier": 0.004749226849526167,
+            "hard_accuracy": 0.9690322875976562,
+            "mean_max_probability": 0.7912343144416809,
+            "mean_prediction_entropy": 0.5372044444084167,
+            "calibration_discrepancy": 0.03489045373494588
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.35687437653541565,
+            "soft_label_cross_entropy": 0.6282541751861572,
+            "brier": 0.04463261738419533,
+            "hard_accuracy": 0.8786666393280029,
+            "mean_max_probability": 0.7662238478660583,
+            "mean_prediction_entropy": 0.5795049667358398,
+            "calibration_discrepancy": 0.061019137377540264
+          }
+        },
+        {
+          "epoch": 16,
+          "epoch_seconds": 49.44293179176748,
+          "train_loss_mean": 0.5506022925843898,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2834325432777405,
+            "soft_label_cross_entropy": 0.5497350096702576,
+            "brier": 0.006686356849968433,
+            "hard_accuracy": 0.9525806307792664,
+            "mean_max_probability": 0.7739002704620361,
+            "mean_prediction_entropy": 0.5696589946746826,
+            "calibration_discrepancy": 0.06568795697763562
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37663036584854126,
+            "soft_label_cross_entropy": 0.6279811859130859,
+            "brier": 0.04490175470709801,
+            "hard_accuracy": 0.8693333268165588,
+            "mean_max_probability": 0.7427838444709778,
+            "mean_prediction_entropy": 0.6156350374221802,
+            "calibration_discrepancy": 0.06816186864674091
+          }
+        },
+        {
+          "epoch": 17,
+          "epoch_seconds": 48.690538708120584,
+          "train_loss_mean": 0.5503740796108836,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2752766013145447,
+            "soft_label_cross_entropy": 0.5476694703102112,
+            "brier": 0.003874249989166856,
+            "hard_accuracy": 0.9777419567108154,
+            "mean_max_probability": 0.7743672132492065,
+            "mean_prediction_entropy": 0.5804129838943481,
+            "calibration_discrepancy": 0.029559796877926394
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37632447481155396,
+            "soft_label_cross_entropy": 0.623649001121521,
+            "brier": 0.04197601228952408,
+            "hard_accuracy": 0.8813333511352539,
+            "mean_max_probability": 0.7463198304176331,
+            "mean_prediction_entropy": 0.6329220533370972,
+            "calibration_discrepancy": 0.03473250128328801
+          }
+        },
+        {
+          "epoch": 18,
+          "epoch_seconds": 47.99732545763254,
+          "train_loss_mean": 0.5510041514008316,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2564585506916046,
+            "soft_label_cross_entropy": 0.5481679439544678,
+            "brier": 0.0044763945043087006,
+            "hard_accuracy": 0.9700000286102295,
+            "mean_max_probability": 0.7901942133903503,
+            "mean_prediction_entropy": 0.5465983152389526,
+            "calibration_discrepancy": 0.02469521071581591
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.35582050681114197,
+            "soft_label_cross_entropy": 0.6293421387672424,
+            "brier": 0.04436825215816498,
+            "hard_accuracy": 0.8813333511352539,
+            "mean_max_probability": 0.7630844712257385,
+            "mean_prediction_entropy": 0.5915613770484924,
+            "calibration_discrepancy": 0.0445891323586305
+          }
+        },
+        {
+          "epoch": 19,
+          "epoch_seconds": 48.5805022502318,
+          "train_loss_mean": 0.5518980020100308,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2690190374851227,
+            "soft_label_cross_entropy": 0.5492498874664307,
+            "brier": 0.005610093008726835,
+            "hard_accuracy": 0.9619354605674744,
+            "mean_max_probability": 0.7837555408477783,
+            "mean_prediction_entropy": 0.5469783544540405,
+            "calibration_discrepancy": 0.04161328962012644
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37484920024871826,
+            "soft_label_cross_entropy": 0.6309875249862671,
+            "brier": 0.04622209817171097,
+            "hard_accuracy": 0.862666666507721,
+            "mean_max_probability": 0.7555744051933289,
+            "mean_prediction_entropy": 0.595037579536438,
+            "calibration_discrepancy": 0.07307416364053886
+          }
+        },
+        {
+          "epoch": 20,
+          "epoch_seconds": 48.495267583057284,
+          "train_loss_mean": 0.5503495443113071,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.23905104398727417,
+            "soft_label_cross_entropy": 0.5539947152137756,
+            "brier": 0.007450237404555082,
+            "hard_accuracy": 0.9622580409049988,
+            "mean_max_probability": 0.806550920009613,
+            "mean_prediction_entropy": 0.49915480613708496,
+            "calibration_discrepancy": 0.08184345109207973
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3413032591342926,
+            "soft_label_cross_entropy": 0.640556275844574,
+            "brier": 0.04889499768614769,
+            "hard_accuracy": 0.8679999709129333,
+            "mean_max_probability": 0.7871046662330627,
+            "mean_prediction_entropy": 0.5324134230613708,
+            "calibration_discrepancy": 0.13040303135911624
+          }
+        }
+      ]
+    },
+    {
+      "status": "complete",
+      "seed": 20261121,
+      "dropout": 0.2,
+      "weight_decay": 0.0001,
+      "learning_rate": 0.0003,
+      "target": "soft",
+      "train_size": "small_3100",
+      "train_count": 3100,
+      "validation_count": 750,
+      "training_seconds": 974.6940806657076,
+      "validation_soft_ce_best_epoch": 18,
+      "validation_accuracy_best_epoch": 7,
+      "last_ten_validation_soft_ce_mean": 0.6291897475719452,
+      "initial_state_sha256": "4e08566c239296645b829da151e219f7da61297c2c8eff16085fdbc54addc2b7",
+      "checkpoints": [
+        {
+          "kind": "validation_soft_ce_best",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261121_dropout0.2_soft_soft_ce_best.pt",
+          "state_epoch": 18,
+          "sha256": "7a6443a2d0797fe600e0a6e1873761d5147a648a2220f6cd182f12e9b8a4bc5f"
+        },
+        {
+          "kind": "validation_accuracy_best",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261121_dropout0.2_soft_accuracy_best.pt",
+          "state_epoch": 7,
+          "sha256": "4c68221963e85aaa84d6c5d0e306d8424a16762f0ca6513075c68111e06e67f6"
+        },
+        {
+          "kind": "last",
+          "path": "round2_resnet/results/closeout/dropout_multiseed_confirmation/checkpoints/seed20261121_dropout0.2_soft_last.pt",
+          "state_epoch": 20,
+          "sha256": "4da01c8c22ccb4e48f94d3e3666bbdcb5d32e81b29e28db2202b1ff9b97372af"
+        }
+      ],
+      "history": [
+        {
+          "epoch": 1,
+          "epoch_seconds": 49.152480208314955,
+          "train_loss_mean": 0.7062628508843097,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.3558366596698761,
+            "soft_label_cross_entropy": 0.6359699964523315,
+            "brier": 0.051950037479400635,
+            "hard_accuracy": 0.8838709592819214,
+            "mean_max_probability": 0.7736265659332275,
+            "mean_prediction_entropy": 0.5576950311660767,
+            "calibration_discrepancy": 0.16049802592685147
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.4322415292263031,
+            "soft_label_cross_entropy": 0.6823667883872986,
+            "brier": 0.07971342653036118,
+            "hard_accuracy": 0.8293333053588867,
+            "mean_max_probability": 0.7608585357666016,
+            "mean_prediction_entropy": 0.5762134790420532,
+            "calibration_discrepancy": 0.1879314131538073
+          }
+        },
+        {
+          "epoch": 2,
+          "epoch_seconds": 48.842865999788046,
+          "train_loss_mean": 0.6251945704528966,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.3329249322414398,
+            "soft_label_cross_entropy": 0.5943436026573181,
+            "brier": 0.028885493054986,
+            "hard_accuracy": 0.9177419543266296,
+            "mean_max_probability": 0.7594217658042908,
+            "mean_prediction_entropy": 0.6095255613327026,
+            "calibration_discrepancy": 0.10323576375361408
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.40801000595092773,
+            "soft_label_cross_entropy": 0.6457707285881042,
+            "brier": 0.059681568294763565,
+            "hard_accuracy": 0.8519999980926514,
+            "mean_max_probability": 0.7423227429389954,
+            "mean_prediction_entropy": 0.6326301097869873,
+            "calibration_discrepancy": 0.12118734750648338
+          }
+        },
+        {
+          "epoch": 3,
+          "epoch_seconds": 48.17385037522763,
+          "train_loss_mean": 0.6069273988610691,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.27936750650405884,
+            "soft_label_cross_entropy": 0.5730655193328857,
+            "brier": 0.014054750092327595,
+            "hard_accuracy": 0.9429032206535339,
+            "mean_max_probability": 0.7850111722946167,
+            "mean_prediction_entropy": 0.5740777850151062,
+            "calibration_discrepancy": 0.027906196282034917
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37195658683776855,
+            "soft_label_cross_entropy": 0.6339858174324036,
+            "brier": 0.04861541837453842,
+            "hard_accuracy": 0.8706666827201843,
+            "mean_max_probability": 0.7634772062301636,
+            "mean_prediction_entropy": 0.6059278845787048,
+            "calibration_discrepancy": 0.07104759158194066
+          }
+        },
+        {
+          "epoch": 4,
+          "epoch_seconds": 48.26473775040358,
+          "train_loss_mean": 0.5895938052959049,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.30651089549064636,
+            "soft_label_cross_entropy": 0.5713996887207031,
+            "brier": 0.014498159289360046,
+            "hard_accuracy": 0.9509677290916443,
+            "mean_max_probability": 0.7570705413818359,
+            "mean_prediction_entropy": 0.6111340522766113,
+            "calibration_discrepancy": 0.0715186051711921
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.4055955410003662,
+            "soft_label_cross_entropy": 0.6351345777511597,
+            "brier": 0.05194289982318878,
+            "hard_accuracy": 0.8693333268165588,
+            "mean_max_probability": 0.7283053994178772,
+            "mean_prediction_entropy": 0.6495894193649292,
+            "calibration_discrepancy": 0.07066449405749639
+          }
+        },
+        {
+          "epoch": 5,
+          "epoch_seconds": 48.33643254172057,
+          "train_loss_mean": 0.5840767087395659,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.25125449895858765,
+            "soft_label_cross_entropy": 0.56693035364151,
+            "brier": 0.011350373737514019,
+            "hard_accuracy": 0.9503225684165955,
+            "mean_max_probability": 0.802582323551178,
+            "mean_prediction_entropy": 0.5192112922668457,
+            "calibration_discrepancy": 0.04150149223785247
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.35210710763931274,
+            "soft_label_cross_entropy": 0.6318604946136475,
+            "brier": 0.046768609434366226,
+            "hard_accuracy": 0.871999979019165,
+            "mean_max_probability": 0.7770109176635742,
+            "mean_prediction_entropy": 0.5559956431388855,
+            "calibration_discrepancy": 0.0635784750878811
+          }
+        },
+        {
+          "epoch": 6,
+          "epoch_seconds": 49.94739137496799,
+          "train_loss_mean": 0.5790143083665789,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.269715815782547,
+            "soft_label_cross_entropy": 0.5751557946205139,
+            "brier": 0.017872003838419914,
+            "hard_accuracy": 0.9335483908653259,
+            "mean_max_probability": 0.7967729568481445,
+            "mean_prediction_entropy": 0.5266443490982056,
+            "calibration_discrepancy": 0.09138163580649321
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3725110590457916,
+            "soft_label_cross_entropy": 0.648151159286499,
+            "brier": 0.05881766229867935,
+            "hard_accuracy": 0.8600000143051147,
+            "mean_max_probability": 0.7780765891075134,
+            "mean_prediction_entropy": 0.557235598564148,
+            "calibration_discrepancy": 0.11683965839942295
+          }
+        },
+        {
+          "epoch": 7,
+          "epoch_seconds": 49.824548833072186,
+          "train_loss_mean": 0.5766121093759832,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2522183656692505,
+            "soft_label_cross_entropy": 0.5562968254089355,
+            "brier": 0.007361028343439102,
+            "hard_accuracy": 0.9638709425926208,
+            "mean_max_probability": 0.7971738576889038,
+            "mean_prediction_entropy": 0.5355253219604492,
+            "calibration_discrepancy": 0.028383861821024644
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.35226789116859436,
+            "soft_label_cross_entropy": 0.6275658011436462,
+            "brier": 0.04511244595050812,
+            "hard_accuracy": 0.8866666555404663,
+            "mean_max_probability": 0.7696196436882019,
+            "mean_prediction_entropy": 0.5791191458702087,
+            "calibration_discrepancy": 0.053536499192317316
+          }
+        },
+        {
+          "epoch": 8,
+          "epoch_seconds": 48.3320980835706,
+          "train_loss_mean": 0.5690151280963544,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.29410484433174133,
+            "soft_label_cross_entropy": 0.5598495602607727,
+            "brier": 0.011083364486694336,
+            "hard_accuracy": 0.953870952129364,
+            "mean_max_probability": 0.7686348557472229,
+            "mean_prediction_entropy": 0.5824919939041138,
+            "calibration_discrepancy": 0.07970051818677495
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3908340334892273,
+            "soft_label_cross_entropy": 0.6347009539604187,
+            "brier": 0.050778087228536606,
+            "hard_accuracy": 0.8759999871253967,
+            "mean_max_probability": 0.7381883263587952,
+            "mean_prediction_entropy": 0.6258162260055542,
+            "calibration_discrepancy": 0.07778775213658808
+          }
+        },
+        {
+          "epoch": 9,
+          "epoch_seconds": 48.60248866584152,
+          "train_loss_mean": 0.5673550459527478,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2649253308773041,
+            "soft_label_cross_entropy": 0.5531629323959351,
+            "brier": 0.00641237199306488,
+            "hard_accuracy": 0.9641935229301453,
+            "mean_max_probability": 0.7870091795921326,
+            "mean_prediction_entropy": 0.5558191537857056,
+            "calibration_discrepancy": 0.031245028750310024
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3621715009212494,
+            "soft_label_cross_entropy": 0.6271515488624573,
+            "brier": 0.044752802699804306,
+            "hard_accuracy": 0.8773333430290222,
+            "mean_max_probability": 0.7595639824867249,
+            "mean_prediction_entropy": 0.597719669342041,
+            "calibration_discrepancy": 0.05601968904336294
+          }
+        },
+        {
+          "epoch": 10,
+          "epoch_seconds": 49.95315350033343,
+          "train_loss_mean": 0.5648675434982654,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.26219308376312256,
+            "soft_label_cross_entropy": 0.5606475472450256,
+            "brier": 0.012312510050833225,
+            "hard_accuracy": 0.9432258009910583,
+            "mean_max_probability": 0.7956569790840149,
+            "mean_prediction_entropy": 0.532283365726471,
+            "calibration_discrepancy": 0.08983031783012616
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3595868647098541,
+            "soft_label_cross_entropy": 0.6381474137306213,
+            "brier": 0.053647369146347046,
+            "hard_accuracy": 0.8653333187103271,
+            "mean_max_probability": 0.7769569754600525,
+            "mean_prediction_entropy": 0.5632466077804565,
+            "calibration_discrepancy": 0.12351180290430785
+          }
+        },
+        {
+          "epoch": 11,
+          "epoch_seconds": 48.4580633752048,
+          "train_loss_mean": 0.5636513088781809,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.26111236214637756,
+            "soft_label_cross_entropy": 0.5506725907325745,
+            "brier": 0.005099817179143429,
+            "hard_accuracy": 0.9651612639427185,
+            "mean_max_probability": 0.7879588007926941,
+            "mean_prediction_entropy": 0.551781415939331,
+            "calibration_discrepancy": 0.020597333489887175
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3589666783809662,
+            "soft_label_cross_entropy": 0.626558244228363,
+            "brier": 0.04399867728352547,
+            "hard_accuracy": 0.8733333349227905,
+            "mean_max_probability": 0.7650588154792786,
+            "mean_prediction_entropy": 0.592615008354187,
+            "calibration_discrepancy": 0.047694041594862936
+          }
+        },
+        {
+          "epoch": 12,
+          "epoch_seconds": 48.171579166315496,
+          "train_loss_mean": 0.5596158664251111,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.23529750108718872,
+            "soft_label_cross_entropy": 0.5546760559082031,
+            "brier": 0.007527654059231281,
+            "hard_accuracy": 0.9587096571922302,
+            "mean_max_probability": 0.8112785220146179,
+            "mean_prediction_entropy": 0.49653202295303345,
+            "calibration_discrepancy": 0.07917985490493235
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.33936646580696106,
+            "soft_label_cross_entropy": 0.6367713809013367,
+            "brier": 0.04920358210802078,
+            "hard_accuracy": 0.8733333349227905,
+            "mean_max_probability": 0.7905385494232178,
+            "mean_prediction_entropy": 0.530932605266571,
+            "calibration_discrepancy": 0.11456447133421896
+          }
+        },
+        {
+          "epoch": 13,
+          "epoch_seconds": 49.782763165421784,
+          "train_loss_mean": 0.5586545753110316,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2423766851425171,
+            "soft_label_cross_entropy": 0.5501633286476135,
+            "brier": 0.0052841720171272755,
+            "hard_accuracy": 0.967096745967865,
+            "mean_max_probability": 0.8033680319786072,
+            "mean_prediction_entropy": 0.5110390186309814,
+            "calibration_discrepancy": 0.046543477382510905
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3436565399169922,
+            "soft_label_cross_entropy": 0.6301478147506714,
+            "brier": 0.045123424381017685,
+            "hard_accuracy": 0.8706666827201843,
+            "mean_max_probability": 0.7814547419548035,
+            "mean_prediction_entropy": 0.5474698543548584,
+            "calibration_discrepancy": 0.07871329141408206
+          }
+        },
+        {
+          "epoch": 14,
+          "epoch_seconds": 48.78281091619283,
+          "train_loss_mean": 0.5584848357230118,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2584061622619629,
+            "soft_label_cross_entropy": 0.5484502911567688,
+            "brier": 0.00451136939227581,
+            "hard_accuracy": 0.9690322875976562,
+            "mean_max_probability": 0.789699137210846,
+            "mean_prediction_entropy": 0.5342060327529907,
+            "calibration_discrepancy": 0.023232364933336937
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3591923713684082,
+            "soft_label_cross_entropy": 0.6283215284347534,
+            "brier": 0.04394031688570976,
+            "hard_accuracy": 0.874666690826416,
+            "mean_max_probability": 0.7612411379814148,
+            "mean_prediction_entropy": 0.5788252949714661,
+            "calibration_discrepancy": 0.051553593282898255
+          }
+        },
+        {
+          "epoch": 15,
+          "epoch_seconds": 47.80122887529433,
+          "train_loss_mean": 0.5571271995293725,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.24669460952281952,
+            "soft_label_cross_entropy": 0.5477579236030579,
+            "brier": 0.004124609287828207,
+            "hard_accuracy": 0.9700000286102295,
+            "mean_max_probability": 0.7985325455665588,
+            "mean_prediction_entropy": 0.52047199010849,
+            "calibration_discrepancy": 0.028192623890936363
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3444933295249939,
+            "soft_label_cross_entropy": 0.6275558471679688,
+            "brier": 0.04285835847258568,
+            "hard_accuracy": 0.8813333511352539,
+            "mean_max_probability": 0.7744457721710205,
+            "mean_prediction_entropy": 0.5627948641777039,
+            "calibration_discrepancy": 0.05779330354183912
+          }
+        },
+        {
+          "epoch": 16,
+          "epoch_seconds": 48.39861025009304,
+          "train_loss_mean": 0.5546511291843099,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2612898349761963,
+            "soft_label_cross_entropy": 0.549048125743866,
+            "brier": 0.004123081918805838,
+            "hard_accuracy": 0.9693548679351807,
+            "mean_max_probability": 0.7870324850082397,
+            "mean_prediction_entropy": 0.5322660803794861,
+            "calibration_discrepancy": 0.03575200294294664
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3591059446334839,
+            "soft_label_cross_entropy": 0.6304270625114441,
+            "brier": 0.042674388736486435,
+            "hard_accuracy": 0.8799999952316284,
+            "mean_max_probability": 0.7589204907417297,
+            "mean_prediction_entropy": 0.5713101625442505,
+            "calibration_discrepancy": 0.06413556228081387
+          }
+        },
+        {
+          "epoch": 17,
+          "epoch_seconds": 48.58960987534374,
+          "train_loss_mean": 0.5536685957736576,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2767969071865082,
+            "soft_label_cross_entropy": 0.5498051643371582,
+            "brier": 0.004994613118469715,
+            "hard_accuracy": 0.9690322875976562,
+            "mean_max_probability": 0.7746907472610474,
+            "mean_prediction_entropy": 0.5786306262016296,
+            "calibration_discrepancy": 0.03482649476117183
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37370678782463074,
+            "soft_label_cross_entropy": 0.626576840877533,
+            "brier": 0.04432988539338112,
+            "hard_accuracy": 0.8826666474342346,
+            "mean_max_probability": 0.7526242136955261,
+            "mean_prediction_entropy": 0.6175906658172607,
+            "calibration_discrepancy": 0.05146657186746596
+          }
+        },
+        {
+          "epoch": 18,
+          "epoch_seconds": 48.47061037551612,
+          "train_loss_mean": 0.5541859705423572,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.25744080543518066,
+            "soft_label_cross_entropy": 0.546146035194397,
+            "brier": 0.0035147981252521276,
+            "hard_accuracy": 0.973548412322998,
+            "mean_max_probability": 0.7883806228637695,
+            "mean_prediction_entropy": 0.5430004000663757,
+            "calibration_discrepancy": 0.01070309478188715
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3574877977371216,
+            "soft_label_cross_entropy": 0.6252216696739197,
+            "brier": 0.04214521497488022,
+            "hard_accuracy": 0.8786666393280029,
+            "mean_max_probability": 0.7603292465209961,
+            "mean_prediction_entropy": 0.5851516723632812,
+            "calibration_discrepancy": 0.03745483530561129
+          }
+        },
+        {
+          "epoch": 19,
+          "epoch_seconds": 48.579931957647204,
+          "train_loss_mean": 0.5539722626971215,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.24839206039905548,
+            "soft_label_cross_entropy": 0.5498253703117371,
+            "brier": 0.005120899528264999,
+            "hard_accuracy": 0.9661290049552917,
+            "mean_max_probability": 0.7986493706703186,
+            "mean_prediction_entropy": 0.5178582072257996,
+            "calibration_discrepancy": 0.043662026200083
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.3551688492298126,
+            "soft_label_cross_entropy": 0.6325907707214355,
+            "brier": 0.04542376846075058,
+            "hard_accuracy": 0.8733333349227905,
+            "mean_max_probability": 0.7727370858192444,
+            "mean_prediction_entropy": 0.5604814887046814,
+            "calibration_discrepancy": 0.0822781657129526
+          }
+        },
+        {
+          "epoch": 20,
+          "epoch_seconds": 48.1822519171983,
+          "train_loss_mean": 0.5534809182599648,
+          "train_loss_definition": "soft normalized vote cross-entropy",
+          "train_eval_mode": "eval",
+          "train": {
+            "count": 3100,
+            "hard_label_cross_entropy": 0.2699674665927887,
+            "soft_label_cross_entropy": 0.5489035844802856,
+            "brier": 0.0052897133864462376,
+            "hard_accuracy": 0.9703226089477539,
+            "mean_max_probability": 0.779599130153656,
+            "mean_prediction_entropy": 0.5612632036209106,
+            "calibration_discrepancy": 0.035991559091715086
+          },
+          "validation": {
+            "count": 750,
+            "hard_label_cross_entropy": 0.37076783180236816,
+            "soft_label_cross_entropy": 0.6277263164520264,
+            "brier": 0.04514000564813614,
+            "hard_accuracy": 0.8666666746139526,
+            "mean_max_probability": 0.7548447251319885,
+            "mean_prediction_entropy": 0.6033551096916199,
+            "calibration_discrepancy": 0.06272176508108775
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "development_split": "data/splits/expanded_split.csv",
+  "historical_eval_split": "data/splits/independent_eval_split.csv",
+  "labels": "data/processed/normalized_t01_labels.csv.gz",
+  "mapping": "data/raw/gz2_filename_mapping.csv",
+  "image_zip": "data/raw/images_gz2.zip",
+  "candidate_sample": "original",
+  "new_natural_eval_rows": 10000,
+  "new_natural_eval_seed": 20261115,
+  "new_diagnostic_seed": 20261116,
+  "additional_large_train_rows": 6900,
+  "additional_large_train_seed": 20261117,
+  "extract_train_and_validation_images": true,
+  "image_output_dir": "data/processed/resnet_round2_images",
+  "small_train_rows": 3100,
+  "large_train_rows": 10000,
+  "validation_rows": 750,
+  "diagnostic_policy": "use all remaining unseen class-2 objects after natural-pool sampling; recall only"
+}

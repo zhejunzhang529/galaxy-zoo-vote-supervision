@@ -1,0 +1,13 @@
+{
+  "source": "round2_resnet/results/throughput.json",
+  "decoded_float32_bytes_per_image": 196608,
+  "batch_16_decoded_float32_mib": 3.0,
+  "throughput_boundary": "The benchmark materializes list(loader) before timing, so image decode, resize, normalization, and batch loading are outside the timed interval. Each timed batch includes model forward, soft-target loss, backward, optimizer.step, and MPS synchronization when applicable; it is not an end-to-end epoch or formal-finetuning throughput.",
+  "throughput_test_setting": "128/224 pixels, batch size 16, 3 warm-up and 12 timed batches, ResNet-18 ImageNet initialization, train mode, SGD lr=1e-3, targets loaded",
+  "formal_training_difference": "Formal runs used batch size 32, Adam lr=3e-4, weight decay=1e-4, layer4+head fine-tuning, three epochs, and their own data-loop timing; the feasibility throughput is not a direct formal-training timing.",
+  "peak_memory": "not measured; values are decoded-tensor estimates only",
+  "image_counts": {
+    "development_cache": 6900,
+    "evaluation_cache": 10005
+  }
+}

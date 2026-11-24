@@ -1,0 +1,12 @@
+{
+  "status": "new_eval_images_extracted_after_checkpoint_selection",
+  "source_split": "round2_resnet/results/resnet_split.csv",
+  "source_split_sha256": "3dc7a21d30c8017a710949f1fbde0958361b5ae6b0760c25dc77558db0fa3846",
+  "image_zip": "data/raw/images_gz2.zip",
+  "image_zip_sha256": "7d780d1b54ae501aa54c3dc175767136ab1c2925133bf890a1b2b595151294b2",
+  "rows": 10005,
+  "natural_rows": 10000,
+  "diagnostic_rows": 5,
+  "output": "round2_resnet/results/new_eval_with_images.csv",
+  "output_sha256": "d31e84112653db0fabb1cee0cb564b0dad403faa98aba1e54da393d182d15746"
+}

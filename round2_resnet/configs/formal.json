@@ -1,0 +1,25 @@
+{
+  "split": "round2_resnet/results/resnet_split.csv",
+  "image_size": 128,
+  "batch_size": 32,
+  "epochs": 3,
+  "seeds": [20261119, 20261120, 20261121],
+  "train_sizes": ["small_3100", "large_10000"],
+  "targets": ["hard", "soft"],
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "unfreeze_range": "layer4_plus_head",
+  "optimizer": "Adam",
+  "augmentation": "none",
+  "normalization": {
+    "mean": [0.485, 0.456, 0.406],
+    "std": [0.229, 0.224, 0.225]
+  },
+  "target_definition": {
+    "soft": "normalized raw vote fractions, retained as the training target",
+    "hard": "one-hot encoding of the argmax of the same raw vote fractions"
+  },
+  "selection_rule": "minimum fixed-validation soft cross-entropy, then classwise soft calibration discrepancy, then earliest epoch",
+  "evaluation_policy": "new evaluation pools are not loaded during training or checkpoint selection",
+  "budget_note": "The registered 8-way short grid selected epochs 1-3 in every configuration. A 10-epoch feasibility attempt was stopped after the first large-training run because measured CPU cost was disproportionate; the complete paired feasibility comparison therefore uses the pre-recorded 3-epoch budget and reports this limitation."
+}

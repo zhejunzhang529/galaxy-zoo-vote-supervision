@@ -1,0 +1,145 @@
+{
+  "status": "complete",
+  "policy": "seed 20261119 is reused as a screened candidate; 20261120 and 20261121 are new confirmation seeds",
+  "selection_rule": "minimum validation soft CE, then calibration discrepancy, then earliest epoch",
+  "last_ten_definition": "mean validation soft CE over epochs 11--20",
+  "independent_objects_claim": false,
+  "source_files": {
+    "new_confirmation": "round2_resnet/results/closeout/dropout_multiseed_confirmation/dropout_multiseed_confirmation_runs.json",
+    "screened_original": "round2_resnet/results/closeout/training_budget_diagnostic_runs.json",
+    "screened_dropout": "round2_resnet/results/closeout/regularization_diagnostic/regularization_diagnostic_runs.json"
+  },
+  "per_seed": [
+    {
+      "seed": 20261119,
+      "seed_role": "screened_candidate",
+      "original": {
+        "best_epoch": 19,
+        "best_soft_ce": 0.625058650970459,
+        "best_brier": 0.04260287061333656,
+        "best_accuracy": 0.8773333333333333,
+        "last_ten_soft_ce_mean": 0.6289683282375336
+      },
+      "dropout": {
+        "best_epoch": 13,
+        "best_soft_ce": 0.6226779222488403,
+        "best_brier": 0.04150454327464104,
+        "best_accuracy": 0.8853333592414856,
+        "last_ten_soft_ce_mean": 0.6283582091331482
+      },
+      "dropout_minus_original": {
+        "best_soft_ce": -0.0023807287216186523,
+        "best_brier": -0.0010983273386955261,
+        "best_accuracy": 0.008000025908152297,
+        "last_ten_soft_ce_mean": -0.0006101191043853538
+      }
+    },
+    {
+      "seed": 20261120,
+      "seed_role": "new_confirmation",
+      "original": {
+        "best_epoch": 12,
+        "best_soft_ce": 0.6246038675308228,
+        "best_brier": 0.043073490262031555,
+        "best_accuracy": 0.8786666393280029,
+        "last_ten_soft_ce_mean": 0.6280859470367431
+      },
+      "dropout": {
+        "best_epoch": 12,
+        "best_soft_ce": 0.623853325843811,
+        "best_brier": 0.04302771016955376,
+        "best_accuracy": 0.871999979019165,
+        "last_ten_soft_ce_mean": 0.6268118500709534
+      },
+      "dropout_minus_original": {
+        "best_soft_ce": -0.0007505416870117188,
+        "best_brier": -4.578009247779846e-05,
+        "best_accuracy": -0.006666660308837891,
+        "last_ten_soft_ce_mean": -0.0012740969657897283
+      }
+    },
+    {
+      "seed": 20261121,
+      "seed_role": "new_confirmation",
+      "original": {
+        "best_epoch": 17,
+        "best_soft_ce": 0.623649001121521,
+        "best_brier": 0.04197601228952408,
+        "best_accuracy": 0.8813333511352539,
+        "last_ten_soft_ce_mean": 0.6291932880878448
+      },
+      "dropout": {
+        "best_epoch": 18,
+        "best_soft_ce": 0.6252216696739197,
+        "best_brier": 0.04214521497488022,
+        "best_accuracy": 0.8786666393280029,
+        "last_ten_soft_ce_mean": 0.6291897475719452
+      },
+      "dropout_minus_original": {
+        "best_soft_ce": 0.0015726685523986816,
+        "best_brier": 0.00016920268535614014,
+        "best_accuracy": -0.0026667118072509766,
+        "last_ten_soft_ce_mean": -3.5405158995693853e-06
+      }
+    }
+  ],
+  "aggregate_new_confirmation_seeds": {
+    "seed_count": 2,
+    "seeds": [
+      20261120,
+      20261121
+    ],
+    "dropout_minus_original": {
+      "best_soft_ce": {
+        "mean": 0.00041106343269348145,
+        "sample_sd": 0.0016427577144091166,
+        "n": 2
+      },
+      "best_brier": {
+        "mean": 6.171129643917084e-05,
+        "sample_sd": 0.00015201578004469897,
+        "n": 2
+      },
+      "best_accuracy": {
+        "mean": -0.004666686058044434,
+        "sample_sd": 0.002828390709869077,
+        "n": 2
+      },
+      "last_ten_soft_ce_mean": {
+        "mean": -0.0006388187408446488,
+        "sample_sd": 0.0008984190815976372,
+        "n": 2
+      }
+    }
+  },
+  "aggregate_all_three_descriptive": {
+    "seed_count": 3,
+    "seeds": [
+      20261119,
+      20261120,
+      20261121
+    ],
+    "dropout_minus_original": {
+      "best_soft_ce": {
+        "mean": -0.0005195339520772299,
+        "sample_sd": 0.001986796650830576,
+        "n": 3
+      },
+      "best_brier": {
+        "mean": -0.00032496824860572815,
+        "sample_sd": 0.0006783196962787453,
+        "n": 3
+      },
+      "best_accuracy": {
+        "mean": -0.00044444873597885665,
+        "sample_sd": 0.007581672705634776,
+        "n": 3
+      },
+      "last_ten_soft_ce_mean": {
+        "mean": -0.0006292521953582172,
+        "sample_sd": 0.0006354942796493159,
+        "n": 3
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+train_size,target,seed,raw_target_ce,weighted_target_ce,raw_target_brier,weighted_target_brier,interpretation
+large_10000,hard,20261119,0.9480650556149085,0.8877654102301727,0.11417234341774968,0.11286715346687011,post-evaluation target sensitivity; not a weighted-target training run
+large_10000,hard,20261120,0.894720390897803,0.8325963350093724,0.0740848311918078,0.07239808974128932,post-evaluation target sensitivity; not a weighted-target training run
+large_10000,hard,20261121,0.7985696805830814,0.7390543504076159,0.0669273581547628,0.06541854169901705,post-evaluation target sensitivity; not a weighted-target training run
+large_10000,soft,20261119,0.6039951347936084,0.5785176077001603,0.03782674465975408,0.03867952202469455,post-evaluation target sensitivity; not a weighted-target training run
+large_10000,soft,20261120,0.6055755639384869,0.5779580180825312,0.03845392960076764,0.03877399249396427,post-evaluation target sensitivity; not a weighted-target training run
+large_10000,soft,20261121,0.606433448677933,0.5782431943118633,0.038846815895451164,0.039128091337123215,post-evaluation target sensitivity; not a weighted-target training run
+small_3100,hard,20261119,0.835381111649107,0.7879196044309495,0.08122544066339969,0.07993687695484492,post-evaluation target sensitivity; not a weighted-target training run
+small_3100,hard,20261120,0.8974520486621186,0.8455857581695796,0.09504827554158557,0.09353953117730256,post-evaluation target sensitivity; not a weighted-target training run
+small_3100,hard,20261121,0.8914411992172867,0.8360582336885556,0.0878174842431516,0.08623565154810484,post-evaluation target sensitivity; not a weighted-target training run
+small_3100,soft,20261119,0.6141926356603098,0.5878287010598686,0.045199676131972254,0.04581248937271059,post-evaluation target sensitivity; not a weighted-target training run
+small_3100,soft,20261120,0.6165213041574953,0.5938410111219653,0.045372783653155675,0.04668516634923543,post-evaluation target sensitivity; not a weighted-target training run
+small_3100,soft,20261121,0.6162101794787566,0.5926123663024864,0.04626417560750582,0.047481905260225284,post-evaluation target sensitivity; not a weighted-target training run

@@ -1,0 +1,15 @@
+# Recorded versions for the DIS round-2 analysis environment (Python 3.12.6).
+# This is a historical environment record, not a lockfile: it was not freshly
+# installed and verified in this documentation closeout.
+# The review package does not install these automatically.
+numpy==2.5.4
+pandas==3.1.0
+matplotlib==3.11.0
+Pillow==12.3.0
+scipy==1.18.0
+torch==2.14.1
+torchvision==0.29.2
+
+# Only needed to execute the saved-result notebook, not for the core audits.
+jupyter==1.1.1
+nbclient==0.10.2

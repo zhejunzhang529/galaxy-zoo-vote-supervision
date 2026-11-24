@@ -1,0 +1,52 @@
+{
+  "comparison_label": "original-to-extra cross-sample generalisation under selection shift",
+  "original_natural": {
+    "n": 10000,
+    "hard_class_counts": {
+      "0": 7586,
+      "1": 2414
+    },
+    "hard_class_proportions": {
+      "0": 0.7586,
+      "1": 0.2414
+    },
+    "normalized_vote_entropy": {
+      "mean": 0.48720433826727255,
+      "median": 0.4971274399079406,
+      "p10": 0.2442194085187323,
+      "p90": 0.7188470026300133
+    },
+    "top_two_vote_margin": {
+      "mean": 0.6138005283006222,
+      "median": 0.6896896959308512,
+      "p10": 0.19399998242407984,
+      "p90": 0.8860113909428445
+    }
+  },
+  "extra_selected": {
+    "n": 1000,
+    "hard_class_counts": {
+      "0": 613,
+      "1": 383,
+      "2": 4
+    },
+    "hard_class_proportions": {
+      "0": 0.613,
+      "1": 0.383,
+      "2": 0.004
+    },
+    "normalized_vote_entropy": {
+      "mean": 0.5858636928559808,
+      "median": 0.6140447693322998,
+      "p10": 0.3466754123154407,
+      "p90": 0.794900499537378
+    },
+    "top_two_vote_margin": {
+      "mean": 0.48111108302016115,
+      "median": 0.4999999813735481,
+      "p10": 0.08889998912960274,
+      "p90": 0.8219999969005585
+    }
+  },
+  "note": "Extra is a GZ2 sample with a documented selection-history difference; sample name alone is not evidence of OOD or a different survey."
+}

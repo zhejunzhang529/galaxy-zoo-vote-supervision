@@ -1,0 +1,25 @@
+{
+  "status": "small_batch_extra_inference_timing_before_full_score",
+  "python": "3.12.6",
+  "torch": "2.14.1",
+  "device": "cpu",
+  "torch_threads": 6,
+  "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261119.pt",
+  "checkpoint_sha256": "94405dcd58883036862dadead3c7d108b756a6c6b37184f3d57d02efcf220cd4",
+  "image_size": 128,
+  "batch_size": 16,
+  "timed_images": 64,
+  "warmup_passes": 2,
+  "repeats": 5,
+  "seconds": [
+    0.5117091247811913,
+    0.5253592915832996,
+    0.5156956668943167,
+    0.5175138339400291,
+    0.5248442906886339
+  ],
+  "median_seconds": 0.5175138339400291,
+  "images_per_second": 123.66819165536836,
+  "estimated_seconds_for_six_checkpoints_and_1000_images": 48.51692193187773,
+  "timing_boundary": "PIL decode + RGB conversion + bilinear resize + ImageNet normalization + CPU forward; no disk write or metric calculation"
+}

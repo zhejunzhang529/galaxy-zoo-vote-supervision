@@ -1,0 +1,106 @@
+{
+  "status": "frozen_before_extra_cross_sample_inference",
+  "research_label": "original-to-extra cross-sample generalisation under selection shift",
+  "source_sample": "extra",
+  "source_definition": "GZ2 extra Legacy objects added after the original sample because the original query omitted objects carrying both BLENDED and CHILD flags; this is a GZ2 sample distinction, not an OOD proof",
+  "official_sources": [
+    "https://data.galaxyzoo.org/",
+    "https://academic.oup.com/mnras/article/435/4/2835/1022913",
+    "https://academic.oup.com/mnras/article/509/3/3966/6378289",
+    "https://doi.org/10.5281/zenodo.3565488"
+  ],
+  "labels": {
+    "path": "data/processed/normalized_t01_labels.csv.gz",
+    "sha256": "143186bad55790ca4525840a550de5c878df187569bc9a78a498e1bf603db317",
+    "target": "raw_smooth_normalized, raw_features_or_disk_normalized, raw_star_or_artifact_normalized",
+    "raw_votes_are": "volunteer response fractions for the image, not physical truth"
+  },
+  "mapping": {
+    "path": "data/raw/gz2_filename_mapping.csv",
+    "sha256": "7abe9a28b18f7cbaee102383fa29efaa5e1f0b67d6b819e70164eaf9611eb2e7"
+  },
+  "image_archive": {
+    "path": "data/raw/images_gz2.zip",
+    "sha256": "7d780d1b54ae501aa54c3dc175767136ab1c2925133bf890a1b2b595151294b2"
+  },
+  "candidate_audit": {
+    "label_rows_extra": 21844,
+    "mapping_rows_extra": 28174,
+    "joined_rows": 21844,
+    "unique_jpg_stems_in_archive": 243434,
+    "joined_rows_with_archive_jpg": 21836,
+    "excluded_object_ids": 31005,
+    "excluded_asset_ids": 31005,
+    "excluded_image_members": 31005,
+    "eligible_after_all_exclusions": 21836
+  },
+  "selection": {
+    "seed": 20261122,
+    "rng": "numpy.random.default_rng, PCG64",
+    "replacement": false,
+    "class_quota": null,
+    "max_objects": 1000,
+    "selected_objects": 1000,
+    "selection_order": "RNG order retained in selection_rank; no performance result was inspected",
+    "split_path": "round2_resnet/results/extra_cross_sample_split.csv"
+  },
+  "exclusion_policy": "exclude object ID, asset ID, and archive image member appearing in every retained development, validation, historical evaluation, and current natural/diagnostic evaluation manifest",
+  "preprocessing": {
+    "image_size": 128,
+    "resize": "PIL bilinear",
+    "normalization": "ImageNet mean/std recorded in configs/formal.json",
+    "prediction_rule": "argmax of three-class softmax for hard diagnostics; no threshold/calibration change"
+  },
+  "checkpoints": [
+    {
+      "train_size": "large_10000",
+      "target": "hard",
+      "seed": 20261119,
+      "selected_epoch": 1,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261119.pt",
+      "checkpoint_sha256": "94405dcd58883036862dadead3c7d108b756a6c6b37184f3d57d02efcf220cd4"
+    },
+    {
+      "train_size": "large_10000",
+      "target": "soft",
+      "seed": 20261119,
+      "selected_epoch": 3,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261119.pt",
+      "checkpoint_sha256": "3356c3e54373aec5455b10e130e4d9989b61ae21b7670bf8a6dc0ced608bc4d9"
+    },
+    {
+      "train_size": "large_10000",
+      "target": "hard",
+      "seed": 20261120,
+      "selected_epoch": 1,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261120.pt",
+      "checkpoint_sha256": "aae0e0ec958f0b4c9f8cdcfaa2130cd7c11368c5613d56a8bf411b9b1e67ea65"
+    },
+    {
+      "train_size": "large_10000",
+      "target": "soft",
+      "seed": 20261120,
+      "selected_epoch": 3,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261120.pt",
+      "checkpoint_sha256": "31f3e715327c05e73326f3f93d58426227723d6348f3a148d03e42df29739898"
+    },
+    {
+      "train_size": "large_10000",
+      "target": "hard",
+      "seed": 20261121,
+      "selected_epoch": 1,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261121.pt",
+      "checkpoint_sha256": "ed170253103001ae0c32bdb005e30d49447802e69639f2fb5bed6f8299ea417f"
+    },
+    {
+      "train_size": "large_10000",
+      "target": "soft",
+      "seed": 20261121,
+      "selected_epoch": 2,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261121.pt",
+      "checkpoint_sha256": "4871d1d28be6880512e1e01d933ea0588fff4ca7e75f8d040363d6a6307e29d1"
+    }
+  ],
+  "evaluation_policy": "score frozen large_10000 hard/soft checkpoints for three paired seeds; no retraining, tuning, recalibration, or checkpoint reselection",
+  "timing_policy": "measure a small fixed batch before full inference; total inference must remain within 10 minutes"
+}

@@ -1,0 +1,92 @@
+{
+  "status": "planned_not_run",
+  "scope": "read-only convergence review; no training or independent-pool scoring",
+  "evidence": {
+    "grid_config": "round2_resnet/configs/grid.json",
+    "grid_results": "round2_resnet/results/grid_short.json",
+    "formal_config": "round2_resnet/configs/formal.json",
+    "formal_results": "round2_resnet/results/formal_runs.json",
+    "implementation": [
+      "round2_resnet/src/train_resnet.py",
+      "round2_resnet/src/train_formal.py"
+    ],
+    "resource_records": [
+      "round2_resnet/results/throughput.json",
+      "round2_resnet/results/formal_runs.json"
+    ]
+  },
+  "existing_protocol": {
+    "image_size": 128,
+    "batch_size": 32,
+    "optimizer": "Adam",
+    "formal_learning_rate": 0.0003,
+    "formal_weight_decay": 0.0001,
+    "formal_unfreeze_range": "layer4_plus_head",
+    "formal_seeds": [20261119, 20261120, 20261121],
+    "targets": ["hard", "soft"],
+    "train_sizes": ["small_3100", "large_10000"],
+    "short_grid_epochs": 3,
+    "validation_selection": "minimum validation soft CE, then classwise soft calibration discrepancy, then earliest epoch"
+  },
+  "candidates": [
+    {
+      "id": "current_formal",
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "unfreeze_range": "layer4_plus_head",
+      "question": "Does the selected short-run configuration recover after its early validation minimum?",
+      "evidence": "This is the registered formal configuration; grid layer4+head validation soft CE was non-monotone at 3e-4."
+    },
+    {
+      "id": "lower_learning_rate",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "unfreeze_range": "layer4_plus_head",
+      "question": "Does the lower update scale require more epochs to reach a stable validation region?",
+      "evidence": "At 1e-4, layer4+head validation soft CE was still decreasing at epoch 3 in the short grid."
+    }
+  ],
+  "recommended_diagnostic": {
+    "train_size": "small_3100",
+    "targets": ["hard", "soft"],
+    "seeds": [20261119, 20261120, 20261121],
+    "candidate_count": 2,
+    "run_count": 12,
+    "max_epochs": 8,
+    "validation_frequency": "every epoch",
+    "minimum_epochs_before_stopping": 4,
+    "early_stopping": {
+      "monitor": "validation soft cross-entropy",
+      "patience_epochs": 2,
+      "min_delta": 0.001
+    },
+    "checkpoint_selection": "minimum validation soft CE, then classwise soft calibration discrepancy, then earliest epoch",
+    "common_settings": [
+      "fixed split",
+      "128-pixel preprocessing",
+      "batch size 32",
+      "Adam",
+      "paired initialisation per seed",
+      "same epoch-dependent data order within each seed",
+      "no independent evaluation pool"
+    ],
+    "estimated_seconds_per_run": {
+      "lower": 240,
+      "upper": 260,
+      "basis": "extrapolation from recorded 3-epoch small_3100 runs; estimate only"
+    },
+    "estimated_total_seconds": {
+      "lower": 2880,
+      "upper": 3120,
+      "basis": "12 runs before early stopping"
+    },
+    "fairness_note": "This is a convergence diagnostic. Unequal early stopping is not a final hard/soft performance comparison; any later formal comparison must use a common pre-declared budget."
+  },
+  "protected_boundaries": {
+    "independent_evaluation_pools": "not loaded or scored",
+    "historical_results": "preserve",
+    "checkpoints": "preserve",
+    "new_models": false,
+    "new_search_dimensions": false
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "status": "post_hoc_saved_labels_only",
+  "baselines": {
+    "small_3100": {
+      "training_rows": 3100,
+      "soft_mean_probability": [
+        0.6513547721739634,
+        0.30371422793782504,
+        0.04493099988821153
+      ],
+      "hard_frequency_probability": [
+        0.7480645161290322,
+        0.24096774193548387,
+        0.01096774193548387
+      ],
+      "soft_mean_natural_metrics": {
+        "n": 10000,
+        "cross_entropy": 0.7681613950834557,
+        "brier": 0.16759316769633553,
+        "accuracy": 0.7586,
+        "predicted_class_counts": [
+          10000,
+          0,
+          0
+        ],
+        "confusion_matrix_true_rows_predicted_columns": [
+          [
+            7586,
+            0,
+            0
+          ],
+          [
+            2414,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "per_class": [
+          {
+            "class": 0,
+            "precision": 0.7586,
+            "recall": 1.0,
+            "f1": 0.8627317184123736,
+            "support": 7586,
+            "note": ""
+          },
+          {
+            "class": 1,
+            "precision": null,
+            "recall": 0.0,
+            "f1": null,
+            "support": 2414,
+            "note": ""
+          },
+          {
+            "class": 2,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "note": "recall/F1 not estimable without true positives"
+          }
+        ]
+      },
+      "hard_frequency_natural_metrics": {
+        "n": 10000,
+        "cross_entropy": 0.8041734564439826,
+        "brier": 0.18177481395116557,
+        "accuracy": 0.7586,
+        "predicted_class_counts": [
+          10000,
+          0,
+          0
+        ],
+        "confusion_matrix_true_rows_predicted_columns": [
+          [
+            7586,
+            0,
+            0
+          ],
+          [
+            2414,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "per_class": [
+          {
+            "class": 0,
+            "precision": 0.7586,
+            "recall": 1.0,
+            "f1": 0.8627317184123736,
+            "support": 7586,
+            "note": ""
+          },
+          {
+            "class": 1,
+            "precision": null,
+            "recall": 0.0,
+            "f1": null,
+            "support": 2414,
+            "note": ""
+          },
+          {
+            "class": 2,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "note": "recall/F1 not estimable without true positives"
+          }
+        ]
+      }
+    },
+    "large_10000": {
+      "training_rows": 10000,
+      "soft_mean_probability": [
+        0.6501511341532085,
+        0.30949060986924654,
+        0.04035825597754498
+      ],
+      "hard_frequency_probability": [
+        0.7499,
+        0.2467,
+        0.0034
+      ],
+      "soft_mean_natural_metrics": {
+        "n": 10000,
+        "cross_entropy": 0.7677795379754598,
+        "brier": 0.1675558300413748,
+        "accuracy": 0.7586,
+        "predicted_class_counts": [
+          10000,
+          0,
+          0
+        ],
+        "confusion_matrix_true_rows_predicted_columns": [
+          [
+            7586,
+            0,
+            0
+          ],
+          [
+            2414,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "per_class": [
+          {
+            "class": 0,
+            "precision": 0.7586,
+            "recall": 1.0,
+            "f1": 0.8627317184123736,
+            "support": 7586,
+            "note": ""
+          },
+          {
+            "class": 1,
+            "precision": null,
+            "recall": 0.0,
+            "f1": null,
+            "support": 2414,
+            "note": ""
+          },
+          {
+            "class": 2,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "note": "recall/F1 not estimable without true positives"
+          }
+        ]
+      },
+      "hard_frequency_natural_metrics": {
+        "n": 10000,
+        "cross_entropy": 0.8412292950489737,
+        "brier": 0.18187956517557013,
+        "accuracy": 0.7586,
+        "predicted_class_counts": [
+          10000,
+          0,
+          0
+        ],
+        "confusion_matrix_true_rows_predicted_columns": [
+          [
+            7586,
+            0,
+            0
+          ],
+          [
+            2414,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "per_class": [
+          {
+            "class": 0,
+            "precision": 0.7586,
+            "recall": 1.0,
+            "f1": 0.8627317184123736,
+            "support": 7586,
+            "note": ""
+          },
+          {
+            "class": 1,
+            "precision": null,
+            "recall": 0.0,
+            "f1": null,
+            "support": 2414,
+            "note": ""
+          },
+          {
+            "class": 2,
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "note": "recall/F1 not estimable without true positives"
+          }
+        ]
+      }
+    }
+  }
+}

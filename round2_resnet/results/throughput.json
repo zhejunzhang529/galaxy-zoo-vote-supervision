@@ -1,0 +1,102 @@
+{
+  "status": "feasibility_throughput_only_no_training_run",
+  "config": {
+    "split": "data/splits/expanded_split.csv",
+    "image_sizes": [
+      128,
+      224
+    ],
+    "batch_size": 16,
+    "batches": 12,
+    "warmup_batches": 3,
+    "num_workers": 0,
+    "resize": "PIL.Image.Resampling.BILINEAR to square (image_size, image_size)",
+    "normalization": {
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "source": "ImageNet ResNet-18 weights metadata"
+    },
+    "target": "three raw vote fractions normalized per object; hard argmax retained only for diagnostics",
+    "model": "torchvision.models.resnet18 with ImageNet weights, final linear layer replaced by 3 outputs",
+    "device_policy": "MPS if available, otherwise CPU"
+  },
+  "environment": {
+    "python": "3.12.6",
+    "platform": "macOS-14.4-arm64-arm-64bit",
+    "torch": "2.14.1",
+    "torchvision": "0.29.2",
+    "mps_built": true,
+    "mps_available": false,
+    "cuda_available": false,
+    "torch_threads": 6
+  },
+  "weights": {
+    "name": "ResNet18_Weights.IMAGENET1K_V1",
+    "url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+    "cache_file": "resnet18-f37072fd.pth"
+  },
+  "records": [
+    {
+      "image_size": 128,
+      "batch_size": 16,
+      "warmup_batches": 3,
+      "timed_batches": 12,
+      "samples": 192,
+      "median_batch_seconds": 0.2434521042741835,
+      "mean_batch_seconds": 0.2578758019953966,
+      "batch_seconds": [
+        0.24306804221123457,
+        0.23936470784246922,
+        0.24030366726219654,
+        0.24030462466180325,
+        0.2432756256312132,
+        0.24362858291715384,
+        0.24020658433437347,
+        0.287558457814157,
+        0.28426133282482624,
+        0.2929485822096467,
+        0.2885089162737131,
+        0.25108049996197224
+      ],
+      "samples_per_second_median": 65.72134608448604,
+      "device": "cpu",
+      "target_loaded": true,
+      "resize_and_normalization_applied": true
+    },
+    {
+      "image_size": 224,
+      "batch_size": 16,
+      "warmup_batches": 3,
+      "timed_batches": 12,
+      "samples": 192,
+      "median_batch_seconds": 0.5435238326899707,
+      "mean_batch_seconds": 0.5451587429270148,
+      "batch_seconds": [
+        0.5376181248575449,
+        0.550827999599278,
+        0.5500301672145724,
+        0.5407733749598265,
+        0.5434561660513282,
+        0.5351619580760598,
+        0.5430375002324581,
+        0.5372405415400863,
+        0.5530748339369893,
+        0.5476753748953342,
+        0.5435914993286133,
+        0.559417374432087
+      ],
+      "samples_per_second_median": 29.437531599698033,
+      "device": "cpu",
+      "target_loaded": true,
+      "resize_and_normalization_applied": true
+    }
+  ]
+}

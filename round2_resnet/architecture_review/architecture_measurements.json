@@ -1,0 +1,121 @@
+{
+  "dummy_input": [
+    1,
+    3,
+    128,
+    128
+  ],
+  "module_output_shapes": {
+    "conv1": [
+      1,
+      64,
+      64,
+      64
+    ],
+    "maxpool": [
+      1,
+      64,
+      32,
+      32
+    ],
+    "layer1": [
+      1,
+      64,
+      32,
+      32
+    ],
+    "layer2": [
+      1,
+      128,
+      16,
+      16
+    ],
+    "layer3": [
+      1,
+      256,
+      8,
+      8
+    ],
+    "layer4": [
+      1,
+      512,
+      4,
+      4
+    ],
+    "avgpool": [
+      1,
+      512,
+      1,
+      1
+    ],
+    "fc": [
+      1,
+      3
+    ]
+  },
+  "logit_shape": [
+    1,
+    3
+  ],
+  "residual_stages": {
+    "layer1": {
+      "block_type": "BasicBlock",
+      "blocks": 2,
+      "output_channels": 64,
+      "spatial": [
+        32,
+        32
+      ]
+    },
+    "layer2": {
+      "block_type": "BasicBlock",
+      "blocks": 2,
+      "output_channels": 128,
+      "spatial": [
+        16,
+        16
+      ],
+      "first_block_stride": 2
+    },
+    "layer3": {
+      "block_type": "BasicBlock",
+      "blocks": 2,
+      "output_channels": 256,
+      "spatial": [
+        8,
+        8
+      ],
+      "first_block_stride": 2
+    },
+    "layer4": {
+      "block_type": "BasicBlock",
+      "blocks": 2,
+      "output_channels": 512,
+      "spatial": [
+        4,
+        4
+      ],
+      "first_block_stride": 2
+    }
+  },
+  "trainable_parameters": {
+    "stem_conv1": false,
+    "stem_bn1": false,
+    "layer1": false,
+    "layer2": false,
+    "layer3": false,
+    "layer4": true,
+    "classifier": true
+  },
+  "batchnorm_modes_after_set_train_mode": {
+    "bn1_training": false,
+    "layer1_block1_bn_training": false,
+    "layer4_block1_bn_training": true
+  },
+  "reference_dropout": 0.0,
+  "output_classes": [
+    "smooth",
+    "features or disk",
+    "star or artifact"
+  ]
+}

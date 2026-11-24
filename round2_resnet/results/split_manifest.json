@@ -1,0 +1,110 @@
+{
+  "status": "new_resnet_protocol_frozen_before_model_scoring",
+  "config": {
+    "development_split": "data/splits/expanded_split.csv",
+    "historical_eval_split": "data/splits/independent_eval_split.csv",
+    "labels": "data/processed/normalized_t01_labels.csv.gz",
+    "mapping": "data/raw/gz2_filename_mapping.csv",
+    "image_zip": "data/raw/images_gz2.zip",
+    "candidate_sample": "original",
+    "new_natural_eval_rows": 10000,
+    "new_natural_eval_seed": 20261115,
+    "new_diagnostic_seed": 20261116,
+    "additional_large_train_rows": 6900,
+    "additional_large_train_seed": 20261117,
+    "extract_train_and_validation_images": true,
+    "image_output_dir": "data/processed/resnet_round2_images",
+    "small_train_rows": 3100,
+    "large_train_rows": 10000,
+    "validation_rows": 750,
+    "diagnostic_policy": "use all remaining unseen class-2 objects after natural-pool sampling; recall only"
+  },
+  "config_sha256": "8e070b4154c573ece444a1cd83310db440ef7e156a8d7bd4bec3fb8ec59e2977",
+  "development_split_sha256": "2943f26b8580d45b61eb535680b44ae86ecca882b94476aeb246b2681188b21b",
+  "historical_eval_split_sha256": "5f6a3ff35fe4becdd52ea2092636654cc2a9d2ae2759e651d08e2de779651228",
+  "labels_sha256": "143186bad55790ca4525840a550de5c878df187569bc9a78a498e1bf603db317",
+  "mapping_sha256": "7abe9a28b18f7cbaee102383fa29efaa5e1f0b67d6b819e70164eaf9611eb2e7",
+  "image_zip_sha256": "7d780d1b54ae501aa54c3dc175767136ab1c2925133bf890a1b2b595151294b2",
+  "development_excluded": {
+    "rows": 4000,
+    "train_rows": 3100,
+    "validation_rows": 750,
+    "historical_pilot_test_rows": 150,
+    "hard_class_counts": {
+      "0": 2989,
+      "1": 959,
+      "2": 52
+    },
+    "object_ids_sha256": "077fd2139bf3a1ad51cbdb9af20fb517e8fdcbc6d2f7a53e0415241c1038ad1e"
+  },
+  "historical_eval_excluded": {
+    "rows": 10100,
+    "natural_rows": 10000,
+    "class2_diagnostic_rows": 100,
+    "hard_class_counts": {
+      "0": 7559,
+      "1": 2439,
+      "2": 102
+    },
+    "object_ids_sha256": "922c4d953b7fa89746408aa139aada23ae6a947930027afad5c58913849641d0"
+  },
+  "candidate_pool_after_all_historical_exclusion": {
+    "rows": 195140,
+    "hard_class_counts": {
+      "0": 147355,
+      "1": 47780,
+      "2": 5
+    },
+    "object_ids_unique": 195140,
+    "asset_ids_unique": 195140,
+    "image_members_unique": 195140
+  },
+  "new_pools": {
+    "natural": {
+      "rows": 10000,
+      "hard_class_counts": {
+        "0": 7586,
+        "1": 2414
+      },
+      "sampling": "uniform without replacement over the full residual candidate pool"
+    },
+    "diagnostic": {
+      "rows": 5,
+      "hard_class_counts": {
+        "2": 5
+      },
+      "sampling": "all residual class-2 objects after natural sampling; recall only"
+    },
+    "additional_large_train": {
+      "rows": 6900,
+      "hard_class_counts": {
+        "0": 5180,
+        "1": 1720
+      },
+      "sampling": "fixed-seed uniform sample after both new evaluation pools"
+    }
+  },
+  "nested_development": {
+    "small_train_rows": 3100,
+    "large_train_rows": 10000,
+    "validation_rows": 750,
+    "small_train_hard_class_counts": {
+      "0": 2319,
+      "1": 747,
+      "2": 34
+    },
+    "large_train_hard_class_counts": {
+      "0": 7499,
+      "1": 2467,
+      "2": 34
+    },
+    "data_quantity_comparison_caveat": "small training is the existing quota-enriched development train; large training adds a natural seeded residual sample, so size and composition both change and are not separately identified"
+  },
+  "isolation": {
+    "combined_object_ids_unique": true,
+    "combined_asset_ids_unique": true,
+    "combined_image_members_unique": true,
+    "new_eval_disjoint_from_development_and_historical": true
+  },
+  "output_split_sha256": "3dc7a21d30c8017a710949f1fbde0958361b5ae6b0760c25dc77558db0fa3846"
+}

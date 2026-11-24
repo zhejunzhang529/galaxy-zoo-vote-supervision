@@ -1,0 +1,17 @@
+{
+  "split": "data/splits/expanded_split.csv",
+  "image_sizes": [128, 224],
+  "batch_size": 16,
+  "batches": 12,
+  "warmup_batches": 3,
+  "num_workers": 0,
+  "resize": "PIL.Image.Resampling.BILINEAR to square (image_size, image_size)",
+  "normalization": {
+    "mean": [0.485, 0.456, 0.406],
+    "std": [0.229, 0.224, 0.225],
+    "source": "ImageNet ResNet-18 weights metadata"
+  },
+  "target": "three raw vote fractions normalized per object; hard argmax retained only for diagnostics",
+  "model": "torchvision.models.resnet18 with ImageNet weights, final linear layer replaced by 3 outputs",
+  "device_policy": "MPS if available, otherwise CPU"
+}

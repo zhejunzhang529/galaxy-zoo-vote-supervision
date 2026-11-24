@@ -1,0 +1,51 @@
+{
+  "split": "round2_resnet/results/resnet_split.csv",
+  "image_size": 128,
+  "batch_size": 32,
+  "epochs": 20,
+  "seed": 20261119,
+  "learning_rate": 0.0003,
+  "optimizer": "Adam",
+  "unfreeze_range": "layer4_plus_head",
+  "targets": [
+    "hard",
+    "soft"
+  ],
+  "normalization": {
+    "mean": [0.485, 0.456, 0.406],
+    "std": [0.229, 0.224, 0.225]
+  },
+  "validation_frequency": "every epoch",
+  "early_stopping": false,
+  "runs": [
+    {
+      "name": "weight_decay_1e-3",
+      "weight_decay": 0.001,
+      "dropout": 0.0
+    },
+    {
+      "name": "dropout_0.2",
+      "weight_decay": 0.0001,
+      "dropout": 0.2
+    }
+  ],
+  "checkpoint_selection": {
+    "soft_ce": "minimum validation soft cross-entropy, then calibration discrepancy, then earliest epoch",
+    "accuracy": "maximum validation hard accuracy, then earliest epoch"
+  },
+  "reference": {
+    "source": "round2_resnet/results/closeout/training_budget_diagnostic_runs.json",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "dropout": 0.0,
+    "reuse_only": true
+  },
+  "output": "round2_resnet/results/closeout/regularization_diagnostic/regularization_diagnostic_runs.json",
+  "checkpoint_dir": "round2_resnet/results/closeout/regularization_diagnostic/checkpoints",
+  "cost_estimate_before_run": {
+    "basis": "measured seed 20261119 20-epoch endpoint runs at 1e-5, 1e-4, 3e-4 and 1e-3; dropout may add modest compute overhead",
+    "per_run_seconds": [950, 1150],
+    "all_four_seconds": [3800, 4600],
+    "note": "Estimate only; no reference run is repeated."
+  }
+}

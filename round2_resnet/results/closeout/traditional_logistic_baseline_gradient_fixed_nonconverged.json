@@ -1,0 +1,70 @@
+{
+  "status": "post_hoc_fixed_traditional_baseline",
+  "protocol": {
+    "training_rows": 3100,
+    "validation_rows": 750,
+    "natural_evaluation_rows": 10000,
+    "feature": "RGB 16x16 flattened",
+    "standardization": "mean/std fit on training only",
+    "solver": "L-BFGS-B multinomial softmax",
+    "l2": 1.0,
+    "maxiter": 80,
+    "selection": "fixed before scoring; no parameter search",
+    "evaluation_note": "existing evaluation pool reused as supplemental post-hoc analysis, not a new blind result"
+  },
+  "metrics": {
+    "train": {
+      "n": 3100,
+      "cross_entropy": 1.1747608821900724,
+      "brier": 0.11897869769121647,
+      "accuracy": 0.8825806451612903,
+      "predicted_class_counts": [
+        2427,
+        639,
+        34
+      ]
+    },
+    "validation": {
+      "n": 750,
+      "cross_entropy": 1.4923333570210962,
+      "brier": 0.23117338436322882,
+      "accuracy": 0.736,
+      "predicted_class_counts": [
+        609,
+        133,
+        8
+      ]
+    },
+    "natural_evaluation": {
+      "n": 10000,
+      "cross_entropy": 1.3903422478648972,
+      "brier": 0.23747705416429285,
+      "accuracy": 0.7421,
+      "predicted_class_counts": [
+        7851,
+        2118,
+        31
+      ]
+    }
+  },
+  "optimization": {
+    "success": false,
+    "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+    "nit": 80,
+    "nfev": 85,
+    "njev": 85,
+    "final_objective": 0.29878113361438885,
+    "gradient_inf_norm": 0.0016410774429465621,
+    "weights_shape": [
+      3,
+      769
+    ],
+    "gradient_check": {
+      "seed": 20261120,
+      "epsilon": 1e-06,
+      "max_absolute_error": 2.0505315501129218e-10,
+      "max_relative_error": 2.0505315501129218e-10,
+      "passed": true
+    }
+  }
+}

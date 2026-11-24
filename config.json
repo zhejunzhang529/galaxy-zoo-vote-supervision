@@ -1,0 +1,9 @@
+{
+  "labels_path": "data/raw/gz2_hart16.csv.gz",
+  "mapping_path": "data/raw/gz2_filename_mapping.csv",
+  "output_dir": "results",
+  "pilot_candidate_size": 500,
+  "pilot_sample_preference": "original",
+  "id_dtype": "string",
+  "primary_task": "t01_smooth_or_features"
+}

@@ -1,0 +1,36 @@
+{
+  "split": "round2_resnet/results/resnet_split.csv",
+  "image_size": 128,
+  "batch_size": 32,
+  "epochs": 20,
+  "seed": 20261119,
+  "learning_rates": [
+    1e-05,
+    0.001
+  ],
+  "weight_decay": 0.0001,
+  "unfreeze_range": "layer4_plus_head",
+  "optimizer": "Adam",
+  "targets": [
+    "hard",
+    "soft"
+  ],
+  "normalization": {
+    "mean": [0.485, 0.456, 0.406],
+    "std": [0.229, 0.224, 0.225]
+  },
+  "validation_frequency": "every epoch",
+  "early_stopping": false,
+  "checkpoint_selection": {
+    "soft_ce": "minimum validation soft cross-entropy, then calibration discrepancy, then earliest epoch",
+    "accuracy": "maximum validation hard accuracy, then earliest epoch"
+  },
+  "output": "round2_resnet/results/closeout/learning_rate_endpoints/learning_rate_endpoints_runs.json",
+  "checkpoint_dir": "round2_resnet/results/closeout/learning_rate_endpoints/checkpoints",
+  "cost_estimate_before_run": {
+    "basis": "measured 20-epoch seed 20261119 small_3100 runs at lr=1e-4 and 3e-4, with one eval-mode train and one validation pass per epoch",
+    "per_run_seconds": [900, 1100],
+    "all_four_seconds": [3600, 4400],
+    "note": "Estimate only; endpoint learning rates may change runtime or stability."
+  }
+}

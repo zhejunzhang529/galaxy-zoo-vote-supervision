@@ -1,0 +1,37 @@
+data/raw/
+data/processed/
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pt
+*.pth
+*.ckpt
+.DS_Store
+results/image_spotcheck/*.jpg
+
+# Credentials and local secrets (ignore rules do not remove tracked files).
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*credentials*
+*secret*
+*token*
+
+# Common local caches and build products.
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+build/
+dist/
+*.egg-info/
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+.coverage

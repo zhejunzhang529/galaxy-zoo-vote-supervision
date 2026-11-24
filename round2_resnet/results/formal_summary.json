@@ -1,0 +1,773 @@
+{
+  "status": "formal_evaluation_summary_complete",
+  "evaluation_policy": "results are descriptive; no threshold, checkpoint, training, or hyperparameter was changed after scoring",
+  "natural_evaluation_rows": 10000,
+  "diagnostic_rows": 5,
+  "baselines": {
+    "training_mean_soft_label": {
+      "training_rows": 10000,
+      "probability": [
+        0.6501511341532085,
+        0.30949060986924654,
+        0.04035825597754501
+      ],
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.76777953797546,
+        "soft_brier": 0.1675558300413748,
+        "hard_accuracy": 0.7586,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          10000,
+          0,
+          0
+        ]
+      }
+    },
+    "training_hard_class_frequency": {
+      "training_rows": 10000,
+      "probability": [
+        0.7499,
+        0.2467,
+        0.0034
+      ],
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.8412292950489738,
+        "soft_brier": 0.18187956517557013,
+        "hard_accuracy": 0.7586,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          10000,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "records": [
+    {
+      "train_size": "large_10000",
+      "target": "hard",
+      "seed": 20261119,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261119.pt",
+      "checkpoint_sha256": "94405dcd58883036862dadead3c7d108b756a6c6b37184f3d57d02efcf220cd4",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.9480650556149088,
+        "soft_brier": 0.11417234341774968,
+        "hard_accuracy": 0.8726,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          8680,
+          1305,
+          15
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 15,
+        "rate": 0.0015,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 4,
+        "total": 5,
+        "recall": 0.8,
+        "wilson_95_percent_interval": [
+          0.37553462976252533,
+          0.9637758913675698
+        ]
+      }
+    },
+    {
+      "train_size": "large_10000",
+      "target": "hard",
+      "seed": 20261120,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261120.pt",
+      "checkpoint_sha256": "aae0e0ec958f0b4c9f8cdcfaa2130cd7c11368c5613d56a8bf411b9b1e67ea65",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.8947203908978034,
+        "soft_brier": 0.0740848311918078,
+        "hard_accuracy": 0.8964,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7476,
+          2493,
+          31
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 31,
+        "rate": 0.0031,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 4,
+        "total": 5,
+        "recall": 0.8,
+        "wilson_95_percent_interval": [
+          0.37553462976252533,
+          0.9637758913675698
+        ]
+      }
+    },
+    {
+      "train_size": "large_10000",
+      "target": "hard",
+      "seed": 20261121,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_hard_seed20261121.pt",
+      "checkpoint_sha256": "ed170253103001ae0c32bdb005e30d49447802e69639f2fb5bed6f8299ea417f",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.7985696805830818,
+        "soft_brier": 0.06692735815476282,
+        "hard_accuracy": 0.8987,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7750,
+          2235,
+          15
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 15,
+        "rate": 0.0015,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 5,
+        "total": 5,
+        "recall": 1.0,
+        "wilson_95_percent_interval": [
+          0.5655175352168251,
+          1.0
+        ]
+      }
+    },
+    {
+      "train_size": "large_10000",
+      "target": "soft",
+      "seed": 20261119,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261119.pt",
+      "checkpoint_sha256": "3356c3e54373aec5455b10e130e4d9989b61ae21b7670bf8a6dc0ced608bc4d9",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.6039951347936086,
+        "soft_brier": 0.037826744659754066,
+        "hard_accuracy": 0.901,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7395,
+          2604,
+          1
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 1,
+        "rate": 0.0001,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 3,
+        "total": 5,
+        "recall": 0.6,
+        "wilson_95_percent_interval": [
+          0.2307242812760128,
+          0.882379225767352
+        ]
+      }
+    },
+    {
+      "train_size": "large_10000",
+      "target": "soft",
+      "seed": 20261120,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261120.pt",
+      "checkpoint_sha256": "31f3e715327c05e73326f3f93d58426227723d6348f3a148d03e42df29739898",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.6055755639384871,
+        "soft_brier": 0.03845392960076764,
+        "hard_accuracy": 0.9054,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7819,
+          2167,
+          14
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 14,
+        "rate": 0.0014,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 5,
+        "total": 5,
+        "recall": 1.0,
+        "wilson_95_percent_interval": [
+          0.5655175352168251,
+          1.0
+        ]
+      }
+    },
+    {
+      "train_size": "large_10000",
+      "target": "soft",
+      "seed": 20261121,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_large_10000_soft_seed20261121.pt",
+      "checkpoint_sha256": "4871d1d28be6880512e1e01d933ea0588fff4ca7e75f8d040363d6a6307e29d1",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.6064334486779333,
+        "soft_brier": 0.03884681589545116,
+        "hard_accuracy": 0.9038,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7584,
+          2403,
+          13
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 13,
+        "rate": 0.0013,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 5,
+        "total": 5,
+        "recall": 1.0,
+        "wilson_95_percent_interval": [
+          0.5655175352168251,
+          1.0
+        ]
+      }
+    },
+    {
+      "train_size": "small_3100",
+      "target": "hard",
+      "seed": 20261119,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_hard_seed20261119.pt",
+      "checkpoint_sha256": "3632298e7b05cab8082989ce1a2263b5de055cd046d00302d8e20799dbf2488b",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.8353811116491073,
+        "soft_brier": 0.08122544066339969,
+        "hard_accuracy": 0.8884,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7648,
+          2312,
+          40
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 40,
+        "rate": 0.004,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 5,
+        "total": 5,
+        "recall": 1.0,
+        "wilson_95_percent_interval": [
+          0.5655175352168251,
+          1.0
+        ]
+      }
+    },
+    {
+      "train_size": "small_3100",
+      "target": "hard",
+      "seed": 20261120,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_hard_seed20261120.pt",
+      "checkpoint_sha256": "ec3f65ec516282f98ca8382e57f55803117ba9805c468a361d0c1b5c5253fab5",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.897452048662119,
+        "soft_brier": 0.09504827554158557,
+        "hard_accuracy": 0.8714,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7118,
+          2837,
+          45
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 45,
+        "rate": 0.0045,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 5,
+        "total": 5,
+        "recall": 1.0,
+        "wilson_95_percent_interval": [
+          0.5655175352168251,
+          1.0
+        ]
+      }
+    },
+    {
+      "train_size": "small_3100",
+      "target": "hard",
+      "seed": 20261121,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_hard_seed20261121.pt",
+      "checkpoint_sha256": "6865e515b46967169bf9983c11aa9b0d59d58f494725e553143387991c4bbedb",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.891441199217287,
+        "soft_brier": 0.08781748424315161,
+        "hard_accuracy": 0.884,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7528,
+          2432,
+          40
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 40,
+        "rate": 0.004,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 4,
+        "total": 5,
+        "recall": 0.8,
+        "wilson_95_percent_interval": [
+          0.37553462976252533,
+          0.9637758913675698
+        ]
+      }
+    },
+    {
+      "train_size": "small_3100",
+      "target": "soft",
+      "seed": 20261119,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_soft_seed20261119.pt",
+      "checkpoint_sha256": "8e3eaf2a72803f469d968ee3f230b3dd238446486c2ab69ce65d565ca724e9af",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.6141926356603099,
+        "soft_brier": 0.045199676131972254,
+        "hard_accuracy": 0.8865,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7365,
+          2623,
+          12
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 12,
+        "rate": 0.0012,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 2,
+        "total": 5,
+        "recall": 0.4,
+        "wilson_95_percent_interval": [
+          0.11762077423264783,
+          0.769275718723987
+        ]
+      }
+    },
+    {
+      "train_size": "small_3100",
+      "target": "soft",
+      "seed": 20261120,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_soft_seed20261120.pt",
+      "checkpoint_sha256": "a2082342dfd5f762707885474304c92854595f712a9fc521e9c8728308b3161f",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.6165213041574953,
+        "soft_brier": 0.045372783653155675,
+        "hard_accuracy": 0.895,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7668,
+          2325,
+          7
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 7,
+        "rate": 0.0007,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 2,
+        "total": 5,
+        "recall": 0.4,
+        "wilson_95_percent_interval": [
+          0.11762077423264783,
+          0.769275718723987
+        ]
+      }
+    },
+    {
+      "train_size": "small_3100",
+      "target": "soft",
+      "seed": 20261121,
+      "checkpoint": "round2_resnet/checkpoints/formal/resnet18_small_3100_soft_seed20261121.pt",
+      "checkpoint_sha256": "084223b0688b79120823d997863ec582a8ab09e7aa8e81437d9808a63e4f654b",
+      "natural_evaluation": {
+        "n": 10000,
+        "soft_cross_entropy": 0.6162101794787567,
+        "soft_brier": 0.04626417560750581,
+        "hard_accuracy": 0.891,
+        "target_class_counts": [
+          7586,
+          2414,
+          0
+        ],
+        "predicted_class_counts": [
+          7646,
+          2347,
+          7
+        ]
+      },
+      "natural_class2_false_positive": {
+        "count": 7,
+        "rate": 0.0007,
+        "denominator_definition": "all 10,000 natural-pool objects; because the pool contains zero class-2 targets, this is also the rate among known non-class-2 objects"
+      },
+      "class2_diagnostic_recall_only": {
+        "successes": 2,
+        "total": 5,
+        "recall": 0.4,
+        "wilson_95_percent_interval": [
+          0.11762077423264783,
+          0.769275718723987
+        ]
+      }
+    }
+  ],
+  "false_positive_summary": [
+    {
+      "train_size": "small_3100",
+      "target": "hard",
+      "mean_count_across_three_seeds": 41.666666666666664,
+      "mean_rate_across_three_seeds": 0.004166666666666667
+    },
+    {
+      "train_size": "small_3100",
+      "target": "soft",
+      "mean_count_across_three_seeds": 8.666666666666666,
+      "mean_rate_across_three_seeds": 0.0008666666666666666
+    },
+    {
+      "train_size": "large_10000",
+      "target": "hard",
+      "mean_count_across_three_seeds": 20.333333333333332,
+      "mean_rate_across_three_seeds": 0.002033333333333333
+    },
+    {
+      "train_size": "large_10000",
+      "target": "soft",
+      "mean_count_across_three_seeds": 9.333333333333334,
+      "mean_rate_across_three_seeds": 0.0009333333333333333
+    }
+  ],
+  "paired_soft_minus_hard": [
+    {
+      "train_size": "small_3100",
+      "seed": 20261119,
+      "difference": {
+        "soft_minus_hard_ce": {
+          "estimate": -0.22118847598879748,
+          "bootstrap_95_percent_interval": [
+            -0.22723612278762376,
+            -0.21539876614893647
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_brier": {
+          "estimate": -0.03602576453142745,
+          "bootstrap_95_percent_interval": [
+            -0.03822532998356157,
+            -0.0338319580291746
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_accuracy": {
+          "estimate": -0.0019,
+          "bootstrap_95_percent_interval": [
+            -0.0074,
+            0.0037
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        }
+      }
+    },
+    {
+      "train_size": "small_3100",
+      "seed": 20261120,
+      "difference": {
+        "soft_minus_hard_ce": {
+          "estimate": -0.2809307445046235,
+          "bootstrap_95_percent_interval": [
+            -0.2884033876338157,
+            -0.2739436668190387
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_brier": {
+          "estimate": -0.04967549188842991,
+          "bootstrap_95_percent_interval": [
+            -0.052452110273286334,
+            -0.04690514946354603
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_accuracy": {
+          "estimate": 0.0236,
+          "bootstrap_95_percent_interval": [
+            0.0175,
+            0.0293
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        }
+      }
+    },
+    {
+      "train_size": "small_3100",
+      "seed": 20261121,
+      "difference": {
+        "soft_minus_hard_ce": {
+          "estimate": -0.27523101973853054,
+          "bootstrap_95_percent_interval": [
+            -0.2823205574397521,
+            -0.26854962761557677
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_brier": {
+          "estimate": -0.041553308635645804,
+          "bootstrap_95_percent_interval": [
+            -0.043976536741200487,
+            -0.0393324625312041
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_accuracy": {
+          "estimate": 0.007,
+          "bootstrap_95_percent_interval": [
+            0.0022,
+            0.0118
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        }
+      }
+    },
+    {
+      "train_size": "large_10000",
+      "seed": 20261119,
+      "difference": {
+        "soft_minus_hard_ce": {
+          "estimate": -0.3440699208213003,
+          "bootstrap_95_percent_interval": [
+            -0.3511546719410835,
+            -0.3372777719739399
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_brier": {
+          "estimate": -0.0763455987579956,
+          "bootstrap_95_percent_interval": [
+            -0.07972866384409624,
+            -0.07290568257557188
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_accuracy": {
+          "estimate": 0.0284,
+          "bootstrap_95_percent_interval": [
+            0.0211,
+            0.0356
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        }
+      }
+    },
+    {
+      "train_size": "large_10000",
+      "seed": 20261120,
+      "difference": {
+        "soft_minus_hard_ce": {
+          "estimate": -0.2891448269593162,
+          "bootstrap_95_percent_interval": [
+            -0.2952628092424228,
+            -0.2828464068394919
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_brier": {
+          "estimate": -0.03563090159104016,
+          "bootstrap_95_percent_interval": [
+            -0.037510718139297364,
+            -0.03380296954855066
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_accuracy": {
+          "estimate": 0.009,
+          "bootstrap_95_percent_interval": [
+            0.0040975000000000004,
+            0.0142
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        }
+      }
+    },
+    {
+      "train_size": "large_10000",
+      "seed": 20261121,
+      "difference": {
+        "soft_minus_hard_ce": {
+          "estimate": -0.19213623190514859,
+          "bootstrap_95_percent_interval": [
+            -0.19629579095933172,
+            -0.18792075694047136
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_brier": {
+          "estimate": -0.028080542259311652,
+          "bootstrap_95_percent_interval": [
+            -0.029641833668700185,
+            -0.026631870623390758
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        },
+        "soft_minus_hard_accuracy": {
+          "estimate": 0.0051,
+          "bootstrap_95_percent_interval": [
+            0.0008,
+            0.0095
+          ],
+          "resamples": 2000,
+          "unit": "objects from the fixed natural evaluation pool"
+        }
+      }
+    }
+  ],
+  "paired_mean_and_sample_sd": [
+    {
+      "train_size": "small_3100",
+      "metric": "soft_minus_hard_ce",
+      "mean": -0.2591167467439839,
+      "sample_sd_across_three_seeds": 0.03297024427360749,
+      "seed_count": 3
+    },
+    {
+      "train_size": "small_3100",
+      "metric": "soft_minus_hard_brier",
+      "mean": -0.04241818835183439,
+      "sample_sd_across_three_seeds": 0.00686584131208486,
+      "seed_count": 3
+    },
+    {
+      "train_size": "small_3100",
+      "metric": "soft_minus_hard_accuracy",
+      "mean": 0.009566666666666666,
+      "sample_sd_across_three_seeds": 0.012942307882805653,
+      "seed_count": 3
+    },
+    {
+      "train_size": "large_10000",
+      "metric": "soft_minus_hard_ce",
+      "mean": -0.27511699322858835,
+      "sample_sd_across_three_seeds": 0.07693209048440189,
+      "seed_count": 3
+    },
+    {
+      "train_size": "large_10000",
+      "metric": "soft_minus_hard_brier",
+      "mean": -0.04668568086944913,
+      "sample_sd_across_three_seeds": 0.025962184584045384,
+      "seed_count": 3
+    },
+    {
+      "train_size": "large_10000",
+      "metric": "soft_minus_hard_accuracy",
+      "mean": 0.014166666666666668,
+      "sample_sd_across_three_seeds": 0.012479716877130401,
+      "seed_count": 3
+    }
+  ],
+  "interval_note": "Bootstrap intervals resample fixed natural-evaluation objects and do not measure seed variation. Seed sample SD is reported separately and is not a 95% confidence interval."
+}
