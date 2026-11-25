@@ -1,9 +1,8 @@
-# DIS round 2: ResNet-18 vote-distribution feasibility study
+# ResNet-18 vote-distribution study
 
-This is new personal work. It does not modify or import the teacher's coursework
-examples. The earlier TinyCNN results and historical 10-checkpoint evaluation
-remain in the parent repository; this directory contains the ResNet-18 round-2
-protocol and its separate evidence.
+This directory contains the ResNet-18 implementation, configurations, saved
+evidence and report for the vote-distribution study. The report and result
+files describe the fixed protocol and its limits.
 
 ## Research question
 
@@ -67,9 +66,9 @@ cutout retrieval, decoding, storage, inference and quality control.
 
 ## Development diagnostics after the formal protocol
 
-The original formal evaluation remains the three-epoch, two-size,
+The fixed-budget evaluation is a three-epoch, two-size,
 three-paired-seed experiment described in `configs/formal.json` and
-`results/formal_runs.json`. It must not be conflated with the later
+`results/formal_runs.json`. It must not be conflated with the separate
 train/validation-only diagnostics. The fixed 20-epoch budget diagnostic is
 defined by `configs/training_budget_diagnostic.json`, implemented by
 `src/train_budget_diagnostic.py`, and summarised in
@@ -164,13 +163,17 @@ but are not claimed as package-level reproduction:
 ./.venv/bin/python round2_resnet/src/summarize_formal.py
 ```
 
-The original labels, mapping table, image archive, processed images, weights,
+The labels, mapping table, image archive, processed images, weights,
 checkpoints and virtual environment are excluded from publication. The
-training and evaluation commands have not been rerun as part of this review.
+training and evaluation commands have not been rerun from this repository.
 
-The official data source is https://data.galaxyzoo.org/. Place the Hart16 GZ2
-table at `data/raw/gz2_hart16.csv.gz`, the object/sample-to-asset mapping at
-`data/raw/gz2_filename_mapping.csv`, and the official image archive at
+The official data source is https://data.galaxyzoo.org/. The Hart16 table is
+linked directly at https://gz2hart.s3.amazonaws.com/gz2_hart16.csv.gz and the
+image archive is linked through https://zenodo.org/records/3565489 (recorded
+file: https://zenodo.org/records/3565489/files/images_gz2.zip?download=1).
+Place the Hart16 GZ2 table at `data/raw/gz2_hart16.csv.gz`, the
+object/sample-to-asset mapping at `data/raw/gz2_filename_mapping.csv`, and the
+official image archive at
 `data/raw/images_gz2.zip`. From the repository root, run:
 
 ```bash
@@ -188,8 +191,8 @@ frozen split can be regenerated only with those excluded inputs using
 round2_resnet/configs/split.json`; this is distinct from using the retained
 `results/resnet_split.csv` and manifest. Historical pilot/expanded/independent
 draws require their original local inputs and are not directly reproducible
-from the review package alone. The package includes the current ResNet source
-and configs, but not raw assets, processed images or weights.
+without those historical inputs. The repository includes the current ResNet
+source and configs, but not raw assets, processed images or weights.
 
 ## Evidence and limitations
 

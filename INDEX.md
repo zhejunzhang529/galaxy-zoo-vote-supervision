@@ -1,53 +1,38 @@
-# DIS publication candidate
+# Project guide
 
-This package contains the current personal DIS ResNet-18 study and its
-saved-result evidence. It is not a claim that the full training or inference
-workflow is reproducible without the excluded data and checkpoint assets.
-
-Published repository: <https://github.com/zhejunzhang529/galaxy-zoo-vote-supervision>
+This repository studies vote-distribution supervision for three-class Galaxy
+Zoo morphology. It contains the ResNet-18 implementation, saved evidence and
+the one-page report. Raw data and model weights are not distributed.
 
 ## Recommended reading
 
-1. `README.md` - research question, main results, limitations and navigation.
-2. `round2_resnet/reports/pdf/DIS_resnet_stage_report.pdf` - one-page English
-   report; `round2_resnet/reports/DIS_resnet_stage_report_zh.md` provides the
-   Chinese explanation.
-3. `teacher_brief.md` - current teacher-facing summary.
-4. `REPRODUCE.md` - commands separated into saved-result checks and commands
-   requiring excluded assets.
-5. `round2_resnet/results/` and `round2_resnet/requirements_evidence_matrix.md`
-   - traceable evidence and limitations.
+1. `README.md` — research question, representative results, data sources and
+   limitations.
+2. `round2_resnet/reports/pdf/DIS_resnet_stage_report.pdf` — one-page report;
+   `round2_resnet/reports/DIS_resnet_stage_report_zh.md` is the Chinese
+   explanation.
+3. `REPRODUCE.md` — commands separated by required assets.
+4. `round2_resnet/README.md` — methods, diagnostics and result navigation.
 
-## Candidate provenance
+## Main files
 
-- Source repository: local DIS repository, commit
-  `8cdee09e9110f18f55340f0f7d06a6451eacc0f3` (`Clarify DIS reproduction boundaries`).
-- Current study: `round2_resnet/`; historical TinyCNN work is not included.
-- The full architecture SVG/PNG/PDF is under
-  `round2_resnet/architecture_review/`. The report uses the compact classifier
-  asset under `round2_resnet/reports/assets/` to preserve one-page layout.
+- `round2_resnet/src/` — preprocessing, training, evaluation, audit and plot
+  scripts.
+- `round2_resnet/configs/` — fixed split, formal and diagnostic settings.
+- `round2_resnet/results/` — retained metrics, manifests, predictions and
+  derived figures.
+- `round2_resnet/reports/` — Markdown, LaTeX, PDF, Chinese explanation and
+  report figures.
+- `round2_resnet/architecture_review/` — editable architecture source,
+  measurements and vector/raster diagrams.
 
-## Contents and exclusions
+## Scope and exclusions
 
-Included are source scripts, fixed JSON configurations, Markdown/LaTeX report
-sources, PDFs and previews, architecture sources, saved CSV/JSON metrics,
-figures, manifests and the saved-result notebook. The package root also keeps
-the approved `normalize_labels.py`, `audit_gz2.py` and `config.json` sources
-needed to document the official-label audit boundary; they do not include the
-data they read.
+Saved-result commands read the retained CSV/JSON evidence. Training,
+checkpoint inference, label generation, image preparation and split
+regeneration require the excluded official assets. The repository excludes
+raw labels and mapping files, the image archive, extracted images, checkpoints,
+virtual environments, compiled files, `.git`, credentials and secrets.
 
-Excluded are raw labels and mapping files, the image ZIP, extracted images,
-all model checkpoints, virtual environments, compiled/intermediate build
-files, `.git`, teacher coursework, credentials, account information and
-secrets. Commands requiring those assets are listed but are not claimed as
-package-level reproduction.
-
-Checkpoint hash checks therefore report `SKIPPED` in a clean extraction. The
-local repository audit may report `PASS` when the original checkpoint files
-are present.
-
-The package-only Quick Start is the saved-result audit and redraw commands in
-`REPRODUCE.md`. Training, checkpoint inference, data audit, label generation,
-and split regeneration require the excluded assets and are listed separately.
-The notebook source is included, but a full Jupyter execution still depends
-on an installed notebook environment.
+The fixed-budget evaluation and the 20-epoch train/validation diagnostic are
+separate evidence sets; the diagnostic is not a new independent evaluation.

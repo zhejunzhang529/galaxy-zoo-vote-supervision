@@ -1,82 +1,59 @@
-# DIS: vote-distribution supervision for Galaxy Zoo 2 morphology
+# Vote-distribution supervision for Galaxy Zoo morphology
 
-This personal project asks whether retaining three-class GZ2 raw vote fractions
-improves probability-target fitting without an unacceptable recognition trade-off
-relative to their argmax class. Raw votes are volunteer responses for an image,
-not physical truth. The project uses static SDSS/GZ2 data and does not claim
-universal soft-label superiority or general OOD ability.
+This project asks whether retaining the normalized Galaxy Zoo 2 (GZ2) vote
+distribution improves probability fitting without an unacceptable loss of
+recognition of the rare `star or artifact` screening class. Raw vote fractions
+are volunteer responses for an image, not physical truth. The experiment uses
+static SDSS/GZ2 data and does not claim universal soft-label superiority or
+cross-survey OOD ability.
 
 Published repository: <https://github.com/zhejunzhang529/galaxy-zoo-vote-supervision>
-This is a cleaned publication snapshot sourced from local research commit
-`8cdee09e9110f18f55340f0f7d06a6451eacc0f3`; it does not rewrite or replace the
-private/local development history.
 
-## Current round
+## Report and representative result
 
-`round2_resnet/` is the current ResNet-18 study. It contains the fixed
-ImageNet-pretrained model, 128-pixel preprocessing, eight soft-only grid
-records, 12 formal runs, the original natural-pool evaluation, and the frozen
-original-to-extra cross-sample test. The latter uses six existing 10,000-object
-checkpoints on a fixed 1,000-object GZ2-extra pool; it is a selection-shift
-test within GZ2, not cross-survey validation.
+The one-page report is
+[`round2_resnet/reports/pdf/DIS_resnet_stage_report.pdf`](round2_resnet/reports/pdf/DIS_resnet_stage_report.pdf).
+The fixed-budget evaluation means on the natural pool are:
 
-The formal evaluation is the original three-epoch paired hard/soft protocol
-on two training sizes and three seeds. Separately, the development diagnostics
-contain fixed 20-epoch train/validation runs: the learning-rate endpoints are
-at [`configs/learning_rate_endpoints.json`](round2_resnet/configs/learning_rate_endpoints.json)
-with source [`src/train_learning_rate_endpoints.py`](round2_resnet/src/train_learning_rate_endpoints.py)
-and results under
-[`results/closeout/learning_rate_endpoints/`](round2_resnet/results/closeout/learning_rate_endpoints/);
-the budget diagnostic is recorded in
-[`configs/training_budget_diagnostic.json`](round2_resnet/configs/training_budget_diagnostic.json),
-[`src/train_budget_diagnostic.py`](round2_resnet/src/train_budget_diagnostic.py) and
-[`results/closeout/training_budget_diagnostic_runs.json`](round2_resnet/results/closeout/training_budget_diagnostic_runs.json);
-and the finite regularisation and two-new-seed dropout checks are under
-[`configs/regularization_diagnostic.json`](round2_resnet/configs/regularization_diagnostic.json),
-[`configs/dropout_multiseed_confirmation.json`](round2_resnet/configs/dropout_multiseed_confirmation.json),
-their corresponding `src/train_*.py` scripts, and
-[`results/closeout/regularization_diagnostic/`](round2_resnet/results/closeout/regularization_diagnostic/)
-and [`results/closeout/dropout_multiseed_confirmation/`](round2_resnet/results/closeout/dropout_multiseed_confirmation/).
-These diagnostics use only the fixed training and validation split. The two
-new dropout seeds did not show a consistent validation-soft-CE gain, so the
-original dropout=0 reference configuration is retained; this does not turn the
-diagnostics into a new formal multi-seed comparison.
+| target | CE | Brier | accuracy |
+|---|---:|---:|---:|
+| hard | 0.8805 | 0.0851 | 0.8892 |
+| soft | 0.6053 | 0.0384 | 0.9034 |
 
-The current one-page report is
-[`round2_resnet/reports/pdf/DIS_resnet_stage_report.pdf`](round2_resnet/reports/pdf/DIS_resnet_stage_report.pdf)
-and is based on saved results. The safe saved-result checks are:
+These are means over three paired seeds under the fixed three-epoch protocol,
+with 10,000 training objects and a fixed 750-object validation split. The
+separate 20-epoch learning and regularisation diagnostics use train/validation
+only; they are not a new independent evaluation.
+
+## Quick Start: saved evidence only
+
+Run from this repository root. The following commands do not train, load a
+checkpoint or score an independent pool:
 
 ```bash
 python3 round2_resnet/src/audit_resnet_package.py
 python3 round2_resnet/src/closeout_analysis.py
-MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl python3 round2_resnet/src/plot_extra_cross_sample.py
 MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl \
   python3 round2_resnet/reports/plot_dis_report_figures.py \
   --input round2_resnet/results/closeout/training_budget_diagnostic_runs.json \
   --output-stem round2_resnet/reports/assets/dis_training_curves_compact
+MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl \
+  python3 round2_resnet/architecture_review/draw_resnet18_paper_architecture.py \
+  --measurements round2_resnet/architecture_review/architecture_measurements.json \
+  --output-stem round2_resnet/architecture_review/dis_resnet18_paper_architecture \
+  --report-output-stem round2_resnet/reports/assets/dis_resnet18_paper_architecture_report
 ```
 
-`audit_resnet_package.py` and the plotting commands use retained results; the
-data-intensive audit additionally reads the local official labels, mapping and
-image archive. It is therefore not a package-only check. `closeout_analysis.py`
-and the figure command use retained CSV/JSON only. The extra cross-sample
-scoring commands are listed in `round2_resnet/README.md`; they require the
-local official label/mapping/archive assets and, for inference, the excluded
-checkpoint files. The fixed data acquisition source is the official Galaxy Zoo
-data page: https://data.galaxyzoo.org/.
+The audit reports checkpoint hashes as `SKIPPED` when checkpoint binaries are
+absent. The saved-result plotting commands regenerate derived files, so use a
+separate working copy if the retained previews must remain unchanged.
 
-The data-intensive audit is separately documented and requires the local
-archive:
+## Environment
 
-```bash
-python3 round2_resnet/src/audit_data_intensive.py
-```
-
-## Quick Start and data boundary
-
-Run from this DIS repository root. A fresh environment can be created with
-the following commands, but the recorded requirements have not been freshly
-installed and verified in this closeout:
+The recorded versions are in
+[`round2_resnet/requirements.txt`](round2_resnet/requirements.txt). They are a
+historical record, not evidence of a fresh environment installation. A new
+environment recipe is:
 
 ```bash
 python3.12 -m venv .venv
@@ -85,22 +62,36 @@ python -m pip install --upgrade pip
 python -m pip install -r round2_resnet/requirements.txt
 ```
 
-For saved-result audits and plots, the core packages are NumPy, pandas,
-Matplotlib and Pillow. Training and checkpoint inference additionally require
-PyTorch and torchvision. The notebook needs Jupyter/nbconvert and nbclient;
-LaTeX PDF compilation needs a local `latexmk`/pdfLaTeX installation. No
-installation command above was executed here, so it is an environment recipe,
-not a fresh-environment verification.
+Saved-result checks require NumPy, pandas, Matplotlib and Pillow. Training and
+checkpoint inference additionally require PyTorch and torchvision. Notebook
+execution requires Jupyter/nbconvert and nbclient; PDF compilation requires a
+local `latexmk`/pdfLaTeX installation. These optional environments were not
+freshly installed for this publication.
 
-The official source is the Galaxy Zoo data page, https://data.galaxyzoo.org/.
-The expected local assets are `data/raw/gz2_hart16.csv.gz` (Hart16 GZ2 label
-table), `data/raw/gz2_filename_mapping.csv` (object/sample to asset mapping),
-and `data/raw/images_gz2.zip` (official image archive). `normalize_labels.py`
-reads the first file and writes
-`data/processed/normalized_t01_labels.csv.gz` plus
-`results/normalization_manifest.json`; it preserves raw and weighted values,
-normalises each three-class vector by its positive row sum, and derives the
-raw-vote argmax class. Run it from the repository root, for example:
+## Data acquisition and preprocessing
+
+The official GZ2 data page is <https://data.galaxyzoo.org/>. The label table
+used here is the Hart16 catalogue, available from the official page as
+[`gz2_hart16.csv.gz`](https://gz2hart.s3.amazonaws.com/gz2_hart16.csv.gz).
+The official GZ2 image archive is linked from that page through the Zenodo
+record <https://zenodo.org/records/3565489>; its archive download record is
+<https://zenodo.org/records/3565489/files/images_gz2.zip?download=1>.
+
+Place the inputs at these paths relative to the repository root:
+
+```text
+data/raw/gz2_hart16.csv.gz
+data/raw/gz2_filename_mapping.csv
+data/raw/images_gz2.zip
+```
+
+`gz2_filename_mapping.csv` is the project-side object/sample-to-archive-asset
+join table retained with the local audit records; no separate public download
+URL for this mapping table is asserted here. It must be obtained from the
+same permitted GZ2 image preparation record or an equivalent documented
+source before image work.
+
+From the repository root, the approved normalisation command is:
 
 ```bash
 python3 normalize_labels.py \
@@ -109,52 +100,42 @@ python3 normalize_labels.py \
   --manifest results/normalization_manifest.json
 ```
 
-The read-only `audit_gz2.py` checks the label table, mapping and archive
-coverage. The retained frozen ResNet split is
-`round2_resnet/results/resnet_split.csv` with
-`round2_resnet/results/split_manifest.json`. Regenerating it is a separate,
-asset-dependent operation using
-`round2_resnet/src/prepare_split.py --config round2_resnet/configs/split.json`;
-it requires the raw labels, mapping and image ZIP and is not part of the
-package-only Quick Start. The historical pilot/expanded/independent split
-scripts depend on their original local inputs and are not claimed to recreate
-the historical draws from the review package alone. The approved normalization,
-audit and current split-preparation sources are retained in the repository;
-raw inputs, extracted images and weights are intentionally absent.
+It preserves raw and weighted vote fields, normalises the three-class vector
+by its positive row sum and derives the raw-vote argmax class. The read-only
+`audit_gz2.py` checks labels, mapping and archive coverage. These inputs are
+not distributed, and the data audit, image preparation, training and inference
+commands are not package-only Quick Start checks.
 
-## Results and limitations
+The retained split is
+[`round2_resnet/results/resnet_split.csv`](round2_resnet/results/resnet_split.csv)
+with manifest
+[`round2_resnet/results/split_manifest.json`](round2_resnet/results/split_manifest.json).
+Regenerating it with
+`python3 round2_resnet/src/prepare_split.py --config round2_resnet/configs/split.json`
+requires the excluded inputs and is separate from using the frozen files.
 
-On the original natural pool, the 10,000-object model means are hard
-CE/Brier/accuracy `0.8805/0.0851/0.8892` and soft
-`0.6053/0.0384/0.9034`. On the extra pool they are hard
-`0.9592/0.1169/0.7843` and soft `0.7417/0.0611/0.8117`. The extra pool has
-four class-2 objects, so its rare-class metrics are descriptive. The study is
-short-budget, one-architecture, 128-pixel and three-seed; peak memory,
-physical-truth calibration, cross-survey/OOD ability and a larger rare-class
-evaluation remain unestablished.
+## Diagnostics and limits
 
-## Repository navigation
+The eight soft-only grid candidates, four learning-rate endpoints, finite
+regularisation comparison and two additional dropout seeds are documented in
+`round2_resnet/configs/`, `round2_resnet/src/` and
+`round2_resnet/results/closeout/`. The additional dropout seeds did not show a
+consistent validation-soft-CE gain, so dropout=0 remains the reference.
+Selection was by validation soft CE, with calibration discrepancy and earliest
+epoch as tie-breakers; accuracy is therefore not a separately accuracy-tuned
+comparison.
 
-- `round2_resnet/src/`: split, training, evaluation, audit, resource and plot scripts.
-- `round2_resnet/configs/`: fixed formal, grid, throughput and split configurations.
-- `round2_resnet/results/`: retained metrics, manifests, hashes, predictions and figures.
-- `round2_resnet/reports/`: one-page English report, Chinese explanation and teacher brief.
-- `notebooks/analysis_saved_results.ipynb`: saved-result analysis without training.
-- `round2_resnet/requirements.txt`: recorded Python package versions.
-- `round2_resnet/ENVIRONMENT.md`, `REPRODUCE.md`: versions, hardware, asset boundaries and command map.
+The study is limited to one architecture, 128-pixel inputs, a short fixed
+training budget and three paired seeds. Peak memory was not measured. The
+extra sample is an original-to-extra cross-sample test under selection shift,
+not cross-survey validation. Physical-truth calibration and a larger natural
+rare-class evaluation remain open.
 
-The historical TinyCNN work remains in the parent repository for provenance and
-is not substituted for the current ResNet audit. Teacher coursework archives
-are reference examples only and are not part of this repository.
+## Navigation
 
-## Public repository preparation
-
-The `.gitignore` covers raw data, processed images, checkpoints, virtual
-environments, common Python/LaTeX build products, and common credential
-filenames. Ignore rules do not remove files already tracked by Git, so
-`git ls-files` must still be reviewed before publication. Before publication,
-review `git diff`, citations and data-access conditions. The public repository
-is now available at
-<https://github.com/zhejunzhang529/galaxy-zoo-vote-supervision>. Full training,
-data acquisition and checkpoint inference remain asset-dependent and are not
-claimed as package-level reproduction.
+- [`INDEX.md`](INDEX.md) — file map and scope.
+- [`REPRODUCE.md`](REPRODUCE.md) — commands, asset requirements and boundaries.
+- [`round2_resnet/README.md`](round2_resnet/README.md) — method and diagnostic map.
+- [`round2_resnet/src/`](round2_resnet/src/) — source scripts.
+- [`round2_resnet/reports/`](round2_resnet/reports/) — report sources and figures.
+- [`notebooks/analysis_saved_results.ipynb`](notebooks/analysis_saved_results.ipynb) — saved-result analysis.

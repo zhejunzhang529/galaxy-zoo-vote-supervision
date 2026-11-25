@@ -1,4 +1,4 @@
-# DIS reproduction map
+# Reproduction guide
 
 Run from the DIS repository root. The current ResNet-18 report is
 `round2_resnet/reports/pdf/DIS_resnet_stage_report.pdf`; the Markdown source,
@@ -8,8 +8,8 @@ Chinese explanation and architecture source are under
 ## Environment setup
 
 The recorded dependency versions are in `round2_resnet/requirements.txt`.
-They are a historical record and were not freshly installed and verified in
-this closeout. A new environment recipe is:
+They are a historical record and were not freshly installed and verified here.
+A new environment recipe is:
 
 ```bash
 python3.12 -m venv .venv
@@ -60,8 +60,8 @@ jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=120 \
   notebooks/analysis_saved_results.ipynb
 ```
 
-This is an analysis check, not a training notebook. The review package
-includes the notebook source but not its execution environment. In the current
+This is an analysis check, not a training notebook. The repository includes
+the notebook source but not its execution environment. In the current
 machine check, the command was not executable because the `jupyter` command
 was unavailable; a complete notebook execution is therefore `SKIPPED`. A
 Python sequential execution of notebook cells would not by itself be reported
@@ -84,10 +84,10 @@ The report uses the generated PDF assets under
 
 ## Commands requiring excluded assets
 
-The following are provenance commands only. They require the official GZ2
-label/mapping files and image archive, local processed images, and/or model
-checkpoint binaries. They were not rerun for the publication candidate and
-must not be used to tune the frozen protocol:
+The following commands require the official GZ2 label/mapping files and image
+archive, local processed images, and/or model checkpoint binaries. They are
+not part of the saved-evidence check and must not be used to tune the frozen
+protocol:
 
 ```bash
 python3 round2_resnet/src/audit_data_intensive.py
@@ -100,12 +100,17 @@ python3 round2_resnet/src/audit_data_intensive.py
 
 The original-to-extra preparation and scoring commands are listed in
 `round2_resnet/README.md`. They require the fixed image archive and six
-excluded large-model checkpoints; their saved outputs are included only as
-evidence, not as a claim of package-level rerun.
+excluded large-model checkpoints; their saved outputs are included as evidence,
+not as a claim that the commands can run from this repository alone.
 
 ## Data acquisition and split boundary
 
-The official source is the Galaxy Zoo data page, https://data.galaxyzoo.org/.
+The official source is the Galaxy Zoo data page,
+https://data.galaxyzoo.org/. The Hart16 table is linked directly at
+https://gz2hart.s3.amazonaws.com/gz2_hart16.csv.gz. The image archive is
+linked from that page through https://zenodo.org/records/3565489, with the
+recorded archive file at
+https://zenodo.org/records/3565489/files/images_gz2.zip?download=1.
 Expected paths, relative to the repository root, are:
 
 ```text
@@ -133,17 +138,16 @@ package-only Quick Start and must not overwrite retained formal results during
 a documentation check. The retained frozen split is used directly by the
 saved-result commands. Historical pilot, expanded and independent split
 regeneration requires its original local inputs; missing-input steps are not
-claimed reproducible from the review package.
+claimed reproducible without those inputs.
 
 ## Environment and publication boundary
 
 Use `round2_resnet/ENVIRONMENT.md` for the recorded Python, PyTorch,
 torchvision, CPU/MPS and storage details. Raw data, extracted images,
-checkpoints, virtual environments, compiled files, teacher coursework,
-credentials and Git metadata are excluded from the publication candidate;
+checkpoints, virtual environments, compiled files, credentials and Git
+metadata are excluded from this repository;
 `.gitignore` covers common secret filenames and build products but does not
 remove files already tracked by Git, so inspect `git ls-files` before release.
-The publication snapshot is available at
-<https://github.com/zhejunzhang529/galaxy-zoo-vote-supervision>. The local
-development repository remains separate; this snapshot does not claim to
-reproduce its full history.
+The public repository is available at
+<https://github.com/zhejunzhang529/galaxy-zoo-vote-supervision>. Full training,
+data acquisition and checkpoint inference remain asset-dependent.
