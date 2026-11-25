@@ -1,4 +1,4 @@
-# DIS - Vote-distribution supervision for Galaxy Zoo morphology
+# Vote-distribution supervision for Galaxy Zoo morphology
 
 ## Research Background
 
@@ -25,16 +25,16 @@ epoch only as tie-breakers.
 
 ![ResNet-18 feature-map and classifier schematic](../architecture_review/dis_resnet18_paper_architecture.svg)
 
-*Figure 1. ResNet-18 feature-map schematic; GAP yields a 512-dimensional vector
-after flattening before Linear produces 3 logits. Softmax is applied only for
-evaluation; hard and soft runs share this architecture. The detailed
-residual-block drawing is retained separately.*
+*Figure 1. ResNet-18 feature-map schematic; GAP is flattened to a 512-dimensional
+vector before Linear produces 3 logits. The inset shows separate identity and
+projection shortcuts; BN/ReLU are omitted. Hard and soft runs share this
+architecture.*
 
 ## Results and Discussion
 
-The original three-epoch evaluation used training sizes 3,100 and 10,000, a
-fixed 750-object validation split, and a 10,000-object natural evaluation
-pool. The table reports means over three paired seeds:
+Under the fixed-budget evaluation (three epochs; training sizes 3,100 and
+10,000; fixed 750-object validation split and a 10,000-object natural pool),
+the table reports means over three paired seeds:
 
 | training / target | CE | Brier | accuracy |
 |---|---:|---:|---:|
@@ -47,9 +47,9 @@ pool. The table reports means over three paired seeds:
 
 The 10,000-object run also receives about 3.23 times as many updates while
 class-2 remains 34 training objects, so scale and update budget are confounded.
-These formal values are distinct from the later 20-epoch train/validation
-diagnostics on the 3,100-object training split, fixed 750-object validation
-split and seed `20261119`:
+The separate 20-epoch train/validation diagnostic used the 3,100-object
+training split, fixed 750-object validation split and seed `20261119`; it is
+not an independent evaluation:
 
 ![Training curves](assets/dis_training_curves_compact.svg)
 
@@ -60,19 +60,14 @@ grey lines mark selected epochs (1 and 19); panels have independent y-scales.*
 Hard training CE falls towards zero while validation soft CE rises from 0.8676
 at epoch 1 to 2.1351 at epoch 20. Soft validation CE continues to improve
 after epoch 3, reaching 0.6251 at epoch 19 and 0.6290 at epoch 20; the
-`lr=1e-4` soft run selected epoch 11 and ended at 0.6288. These curves show
-target mismatch and train/validation separation consistent with overfitting of
-hard supervision; they do not identify learning rate as the sole cause or
-prove convergence. Training losses for hard and soft targets are not compared
-by absolute value.
+`lr=1e-4` soft run selected epoch 11 and ended at 0.6288. The separation is
+consistent with target mismatch and hard-supervision overfitting; it does not
+identify learning rate as the sole cause or prove convergence.
 
-The 20-epoch endpoint and regularization checks are finite diagnostics rather
-than a complete search or new final comparison. Two additional seeds showed no
-consistent benefit from dropout `0.2`, so dropout `0` remains the reference;
-`weight_decay=1e-3` likewise supplied no consistent advantage. Accuracy is
-secondary here: selecting both targets by validation soft CE answers a
-vote-distribution fitting question, not two separately accuracy-optimized
-questions.
+Finite learning-rate and regularisation checks found no consistent advantage
+for dropout `0.2` or `weight_decay=1e-3`. Selecting both targets by validation
+soft CE answers a vote-distribution fitting question, not two separately
+accuracy-optimised questions.
 
 For the 10,000-object training condition, the natural-pool group with vote
 entropy `H > 0.5462` and top-two vote margin `M <= 0.6897` contained 4,520
@@ -84,9 +79,9 @@ difference, not a physical or universal claim. On five `star or artifact`
 objects, soft detected fewer at 3,100 but matched hard's mean at 10,000;
 repeated objects preclude a population recall estimate.
 
-The GZ2 `extra` result is original-to-extra cross-sample generalisation under
-selection shift, not cross-survey OOD validation. It comes from the earlier
-frozen evaluation, not from the 20-epoch diagnostics. This remains a
+The GZ2 `extra` result is an original-to-extra cross-sample generalisation under
+selection shift, not cross-survey OOD validation. It uses the frozen
+evaluation protocol, not the 20-epoch diagnostic. This remains a
 short-budget, one-architecture study and does not establish physical-truth
 calibration, universal soft-label superiority or a causal explanation of vote
 disagreement.
