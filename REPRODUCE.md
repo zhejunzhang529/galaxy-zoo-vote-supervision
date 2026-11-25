@@ -38,11 +38,8 @@ MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl \
   python3 round2_resnet/reports/plot_dis_report_figures.py \
   --input round2_resnet/results/closeout/training_budget_diagnostic_runs.json \
   --output-stem round2_resnet/reports/assets/dis_training_curves_compact
-MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl \
-  python3 round2_resnet/architecture_review/draw_resnet18_paper_architecture.py \
-  --measurements round2_resnet/architecture_review/architecture_measurements.json \
-  --output-stem round2_resnet/architecture_review/dis_resnet18_paper_architecture \
-  --report-output-stem round2_resnet/reports/assets/dis_resnet18_paper_architecture_report
+MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl_handoff \
+  python3 round2_resnet/architecture_review/draw_resnet18.py
 ```
 
 `audit_resnet_package.py` returns non-zero when a required saved-evidence
@@ -111,12 +108,21 @@ https://gz2hart.s3.amazonaws.com/gz2_hart16.csv.gz. The image archive is
 linked from that page through https://zenodo.org/records/3565489, with the
 recorded archive file at
 https://zenodo.org/records/3565489/files/images_gz2.zip?download=1.
+The verified mapping file is at
+https://zenodo.org/records/3565489/files/gz2_filename_mapping.csv?download=1.
 Expected paths, relative to the repository root, are:
 
 ```text
 data/raw/gz2_hart16.csv.gz
 data/raw/gz2_filename_mapping.csv
 data/raw/images_gz2.zip
+```
+
+From the repository root, acquire the mapping file with:
+
+```bash
+curl --fail --location -o data/raw/gz2_filename_mapping.csv \
+  'https://zenodo.org/records/3565489/files/gz2_filename_mapping.csv?download=1'
 ```
 
 From the repository root, `normalize_labels.py` generates

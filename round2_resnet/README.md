@@ -130,11 +130,8 @@ MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl \
   python3 round2_resnet/reports/plot_dis_report_figures.py \
   --input round2_resnet/results/closeout/training_budget_diagnostic_runs.json \
   --output-stem round2_resnet/reports/assets/dis_training_curves_compact
-MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl \
-  python3 round2_resnet/architecture_review/draw_resnet18_paper_architecture.py \
-  --measurements round2_resnet/architecture_review/architecture_measurements.json \
-  --output-stem round2_resnet/architecture_review/dis_resnet18_paper_architecture \
-  --report-output-stem round2_resnet/reports/assets/dis_resnet18_paper_architecture_report
+MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl_handoff \
+  python3 round2_resnet/architecture_review/draw_resnet18.py
 ```
 
 The first four commands read retained CSV/JSON evidence and regenerate
@@ -170,7 +167,9 @@ training and evaluation commands have not been rerun from this repository.
 The official data source is https://data.galaxyzoo.org/. The Hart16 table is
 linked directly at https://gz2hart.s3.amazonaws.com/gz2_hart16.csv.gz and the
 image archive is linked through https://zenodo.org/records/3565489 (recorded
-file: https://zenodo.org/records/3565489/files/images_gz2.zip?download=1).
+file: https://zenodo.org/records/3565489/files/images_gz2.zip?download=1). The
+mapping file is linked at
+https://zenodo.org/records/3565489/files/gz2_filename_mapping.csv?download=1.
 Place the Hart16 GZ2 table at `data/raw/gz2_hart16.csv.gz`, the
 object/sample-to-asset mapping at `data/raw/gz2_filename_mapping.csv`, and the
 official image archive at
@@ -181,6 +180,13 @@ python3 normalize_labels.py \
   --input data/raw/gz2_hart16.csv.gz \
   --output data/processed/normalized_t01_labels.csv.gz \
   --manifest results/normalization_manifest.json
+```
+
+Acquire the mapping file from the same official record with:
+
+```bash
+curl --fail --location -o data/raw/gz2_filename_mapping.csv \
+  'https://zenodo.org/records/3565489/files/gz2_filename_mapping.csv?download=1'
 ```
 
 This creates the preserved raw and weighted columns, normalized vote fractions
@@ -288,7 +294,7 @@ python3 round2_resnet/src/audit_resnet_package.py
 
 It checks all 12 ResNet records, selected epochs, split hashes, evaluation
 probabilities, recomputed metrics and paired summaries. Checkpoint binary hash
-checks are reported as SKIPPED when the binaries are absent from a review pack.
+checks are reported as SKIPPED when the binaries are absent from a public checkout.
 
 src/closeout_analysis.py writes vote entropy/top-two-margin groups, the five
 remaining star or artifact cases, weighted-target sensitivity, scale-matched

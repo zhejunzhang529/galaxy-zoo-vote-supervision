@@ -37,11 +37,8 @@ MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl \
   python3 round2_resnet/reports/plot_dis_report_figures.py \
   --input round2_resnet/results/closeout/training_budget_diagnostic_runs.json \
   --output-stem round2_resnet/reports/assets/dis_training_curves_compact
-MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl \
-  python3 round2_resnet/architecture_review/draw_resnet18_paper_architecture.py \
-  --measurements round2_resnet/architecture_review/architecture_measurements.json \
-  --output-stem round2_resnet/architecture_review/dis_resnet18_paper_architecture \
-  --report-output-stem round2_resnet/reports/assets/dis_resnet18_paper_architecture_report
+MPLBACKEND=Agg MPLCONFIGDIR=/tmp/dis_mpl_handoff \
+  python3 round2_resnet/architecture_review/draw_resnet18.py
 ```
 
 The audit reports checkpoint hashes as `SKIPPED` when checkpoint binaries are
@@ -85,11 +82,18 @@ data/raw/gz2_filename_mapping.csv
 data/raw/images_gz2.zip
 ```
 
-`gz2_filename_mapping.csv` is the project-side object/sample-to-archive-asset
-join table retained with the local audit records; no separate public download
-URL for this mapping table is asserted here. It must be obtained from the
-same permitted GZ2 image preparation record or an equivalent documented
-source before image work.
+`gz2_filename_mapping.csv` is the object/sample-to-archive-asset join table
+provided with the GZ2 image record. The verified public file is
+[`gz2_filename_mapping.csv`](https://zenodo.org/records/3565489/files/gz2_filename_mapping.csv?download=1).
+From the repository root, its expected acquisition command is:
+
+```bash
+curl --fail --location -o data/raw/gz2_filename_mapping.csv \
+  'https://zenodo.org/records/3565489/files/gz2_filename_mapping.csv?download=1'
+```
+
+The image archive and mapping are used together to resolve object IDs to
+archive members; neither input is distributed in this repository.
 
 From the repository root, the approved normalisation command is:
 
