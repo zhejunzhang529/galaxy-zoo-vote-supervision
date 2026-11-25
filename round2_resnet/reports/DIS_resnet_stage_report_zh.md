@@ -4,7 +4,7 @@
 
 星系形态可用于研究星系结构和演化。GZ2 为同一图像收集多名志愿者的响应；若只取 argmax，会丢掉分歧信息。分歧可能来自分辨率或信噪比限制、形态处于类别之间，或标注者判断差异，不能仅凭投票熵判断其原因。raw vote fraction 是给定图像上的志愿者响应，不是物理真值。`star or artifact`（class-2）是分类树根节点的筛除类别，不是第三种星系形态。
 
-模型为 ImageNet 预训练 ResNet-18，128 像素 RGB 输入、ImageNet 归一化、batch size 32、Adam、learning rate `3e-4`、weight decay `1e-4`，仅解冻 layer4 和线性分类头。新版结构图用特征图堆叠、空间尺寸变化和残差块提示表达实际网络；hard 和 soft 共享架构，只改变监督目标。128 像素来自已有 CPU 吞吐对照（65.72 samples/s；224 像素为 29.44 samples/s），是资源约束下的设计判断，不是对天文图像最优性的证明。八组 soft-only grid 使用 learning rate `1e-4/3e-4`、weight decay `0/1e-4` 和 head-only/layer4+head，分别考察更新尺度、正则化和域适配成本；共同配置按 validation soft CE 选择，calibration discrepancy 和最早 epoch 仅作平局判据。
+模型为 ImageNet 预训练 ResNet-18，128 像素 RGB 输入、ImageNet 归一化、batch size 32、Adam、learning rate `3e-4`、weight decay `1e-4`，仅解冻 layer4 和线性分类头。报告使用定稿的展开式 ResNet-18 结构图：竖条表示卷积，弧线表示逐块 shortcut，下方括号标出 stage 和输出尺寸；hard 和 soft 共享架构，只改变监督目标。128 像素来自已有 CPU 吞吐对照（65.72 samples/s；224 像素为 29.44 samples/s），是资源约束下的设计判断，不是对天文图像最优性的证明。八组 soft-only grid 使用 learning rate `1e-4/3e-4`、weight decay `0/1e-4` 和 head-only/layer4+head，分别考察更新尺度、正则化和域适配成本；共同配置按 validation soft CE 选择，calibration discrepancy 和最早 epoch 仅作平局判据。
 
 ## 主要证据与解释
 

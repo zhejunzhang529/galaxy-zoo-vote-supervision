@@ -68,7 +68,7 @@ reenables gradients only for `layer4` and `fc`. The dummy check confirms:
 - `layer4` BatchNorm remains in training mode, as does the classifier (which
   has no BatchNorm).
 
-The diagram uses blue for the frozen region and orange for the fine-tuned
+The final handoff diagram `resnet18_final.svg`/`.png` uses blue for the frozen region and orange for the fine-tuned
 region, with text labels so the distinction does not rely on colour alone.
 The reference model has `dropout=0`; no tested alternative dropout or MLP
 head is included.

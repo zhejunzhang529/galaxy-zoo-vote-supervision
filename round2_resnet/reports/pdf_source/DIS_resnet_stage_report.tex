@@ -22,11 +22,11 @@
 \textbf{Methodology.} The model is ImageNet-pretrained ResNet-18 with 128-pixel RGB input, Adam ($lr=3\times10^{-4}$, weight decay $10^{-4}$), batch size 32, and only layer4 plus the linear classifier unfrozen. Hard targets are one-hot argmax labels; soft targets are normalized raw vote fractions. The 128-pixel choice follows measured CPU throughput (65.72 versus 29.44 samples/s at 224 px). The soft-only search varied $lr\in\{10^{-4},3\times10^{-4}\}$, weight decay $\in\{0,10^{-4}\}$, and head-only versus layer4+head; validation soft CE selected the common configuration, with calibration discrepancy and earliest epoch as tie-breakers.
 
 \begin{center}
-\includegraphics[width=0.90\linewidth]{round2_resnet/reports/assets/dis_resnet18_paper_architecture_report.pdf}
-\par\vspace{-3pt}\scriptsize\textit{Figure 1. ResNet-18 feature-map schematic; GAP is flattened to a 512-dimensional vector before Linear produces 3 logits. The inset shows separate identity and projection shortcuts; BN/ReLU are omitted. Hard and soft runs share this architecture.}
+\includegraphics[width=0.99\linewidth]{round2_resnet/architecture_review/resnet18_final.pdf}
+\par\vspace{-3pt}\scriptsize\textit{Figure 1. ResNet-18 shared by hard and soft supervision. Solid shortcuts are identities; dashed shortcuts are 1×1 stride-2 projections. Unmarked convolutions have stride 1. Global average pooling is followed by flattening and a 512-to-3 linear classifier. Batch normalization and ReLU are omitted for clarity.}
 \end{center}
 
-\textbf{Results and Discussion.} Under the fixed-budget evaluation (three epochs; training sizes 3,100 and 10,000; fixed 750-object validation and a 10,000-object natural pool), the table reports means over three paired seeds. Mean-soft and hard-frequency baselines were $(CE,\,Brier,\,accuracy)=(0.7678,0.1676,0.7586)$ and $(0.8412,0.1819,0.7586)$.
+\textbf{Results and Discussion.} Under the fixed-budget evaluation protocol described in \texttt{configs/formal.json}, with training sizes 3,100 and 10,000, fixed 750-object validation and a 10,000-object natural pool, the table reports means over three paired seeds. Mean-soft and hard-frequency baselines were $(CE,\,Brier,\,accuracy)=(0.7678,0.1676,0.7586)$ and $(0.8412,0.1819,0.7586)$.
 
 \begin{center}\scriptsize\setlength{\tabcolsep}{5.5pt}
 \begin{tabular}{lrrr}\toprule
@@ -39,7 +39,7 @@ training / target & CE & Brier & accuracy\\\midrule
 \end{center}
 The 10,000-object run also receives about 3.23 times as many updates while class-2 remains 34 training objects, so scale and update budget are confounded.
 
-The separate 20-epoch train/validation diagnostic used the 3,100-object training split, fixed 750-object validation split and seed 20261119; it is not an independent evaluation:
+The separate 20-epoch train/validation diagnostic used the 3,100-object training split, fixed 750-object validation split and seed 20261119; it is an optimization diagnostic, not an independent evaluation:
 
 \begin{center}
 \includegraphics[width=0.82\linewidth]{round2_resnet/reports/assets/dis_training_curves_compact.pdf}

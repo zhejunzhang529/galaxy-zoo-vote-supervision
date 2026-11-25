@@ -23,18 +23,19 @@ decay `{0, 1e-4}`, and head-only versus layer4+head; validation soft CE
 selected the common configuration, with calibration discrepancy and earliest
 epoch only as tie-breakers.
 
-![ResNet-18 feature-map and classifier schematic](../architecture_review/dis_resnet18_paper_architecture.svg)
+![ResNet-18 architecture](../architecture_review/resnet18_final.svg)
 
-*Figure 1. ResNet-18 feature-map schematic; GAP is flattened to a 512-dimensional
-vector before Linear produces 3 logits. The inset shows separate identity and
-projection shortcuts; BN/ReLU are omitted. Hard and soft runs share this
-architecture.*
+*Figure 1. ResNet-18 shared by hard and soft supervision. Solid shortcuts are
+identities; dashed shortcuts are 1×1 stride-2 projections. Unmarked
+convolutions have stride 1. Global average pooling is followed by flattening
+and a 512-to-3 linear classifier. Batch normalization and ReLU are omitted for
+clarity.*
 
 ## Results and Discussion
 
-Under the fixed-budget evaluation (three epochs; training sizes 3,100 and
-10,000; fixed 750-object validation split and a 10,000-object natural pool),
-the table reports means over three paired seeds:
+Under the fixed-budget evaluation protocol in `configs/formal.json`, with
+training sizes 3,100 and 10,000, fixed 750-object validation split and a
+10,000-object natural pool, the table reports means over three paired seeds:
 
 | training / target | CE | Brier | accuracy |
 |---|---:|---:|---:|
@@ -48,8 +49,8 @@ the table reports means over three paired seeds:
 The 10,000-object run also receives about 3.23 times as many updates while
 class-2 remains 34 training objects, so scale and update budget are confounded.
 The separate 20-epoch train/validation diagnostic used the 3,100-object
-training split, fixed 750-object validation split and seed `20261119`; it is
-not an independent evaluation:
+training split, fixed 750-object validation split and seed `20261119`; it is an
+optimization diagnostic, not an independent evaluation:
 
 ![Training curves](assets/dis_training_curves_compact.svg)
 
