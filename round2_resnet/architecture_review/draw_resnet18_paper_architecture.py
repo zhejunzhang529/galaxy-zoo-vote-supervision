@@ -142,16 +142,19 @@ def residual_block_example(ax, x: float, y: float, title: str, projection: bool)
 
     # A separate shortcut path starts at the same input and ends at this block's
     # own addition node; it is never drawn as a second path into another key.
+    shortcut_style = "--" if projection else "-"
     ax.plot([input_x, input_x, x + 1.42], [main_y + 0.03, shortcut_y, shortcut_y],
-            color=accent, linewidth=0.9)
+            color=accent, linewidth=0.9, linestyle=shortcut_style)
     if projection:
         ax.add_patch(Rectangle((x + 1.43, shortcut_y - 0.22), 1.35, 0.44,
                                facecolor="#fff8f1", edgecolor=accent, linewidth=0.7))
         ax.text(x + 2.105, shortcut_y, "1×1, s=2", ha="center", va="center",
                 fontsize=5.4, color="#8b4b12")
         ax.plot([x + 2.78, plus_x, plus_x], [shortcut_y, shortcut_y, main_y + 0.17],
-                color=accent, linewidth=0.9)
-        arrow(ax, x + 2.84, plus_x - 0.12, shortcut_y, accent)
+                color=accent, linewidth=0.9, linestyle=shortcut_style)
+        ax.add_patch(FancyArrowPatch((x + 2.84, shortcut_y), (plus_x - 0.12, shortcut_y),
+                                     arrowstyle="-|>", mutation_scale=7, linewidth=0.9,
+                                     linestyle=shortcut_style, color=accent))
         ax.text(x + 0.12, y + 1.98, "projection shortcut", ha="left", va="center",
                 fontsize=5.55, color="#8b4b12")
     else:
@@ -160,8 +163,10 @@ def residual_block_example(ax, x: float, y: float, title: str, projection: bool)
         ax.text(x + 1.97, shortcut_y, "identity", ha="center", va="center",
                 fontsize=5.4, color=ink)
         ax.plot([x + 2.51, plus_x, plus_x], [shortcut_y, shortcut_y, main_y + 0.17],
-                color=accent, linewidth=0.9)
-        arrow(ax, x + 2.57, plus_x - 0.12, shortcut_y, accent)
+                color=accent, linewidth=0.9, linestyle=shortcut_style)
+        ax.add_patch(FancyArrowPatch((x + 2.57, shortcut_y), (plus_x - 0.12, shortcut_y),
+                                     arrowstyle="-|>", mutation_scale=7, linewidth=0.9,
+                                     linestyle=shortcut_style, color=accent))
         ax.text(x + 0.12, y + 1.98, "identity shortcut", ha="left", va="center",
                 fontsize=5.55, color=ink)
 
@@ -175,10 +180,67 @@ def residual_key(ax, x: float, y: float) -> None:
     residual_block_example(ax, x + 8.75, y, "(b) downsampling shortcut", projection=True)
 
 
+def compact_residual_block(ax, x: float, y: float, title: str, projection: bool) -> None:
+    """Draw one small, independent block with its shortcut ending at ⊕."""
+
+    ink = "#52606d"
+    accent = "#a85b16" if projection else ink
+    style = "--" if projection else "-"
+    main_y = y + 0.42
+    shortcut_y = y + 1.15
+    plus_x = x + 5.35
+    box_w = 1.55
+    box_h = 0.30
+    ax.text(x, y + 1.58, title, ha="left", va="center", fontsize=5.8,
+            weight="bold", color="#1f2933")
+    first = "3×3, s=2" if projection else "3×3, s=1"
+    for offset, label in ((0.55, first), (2.65, "3×3, s=1")):
+        ax.add_patch(Rectangle((x + offset, main_y - box_h / 2), box_w, box_h,
+                               facecolor="#ffffff", edgecolor=ink, linewidth=0.65))
+        ax.text(x + offset + box_w / 2, main_y, label, ha="center", va="center",
+                fontsize=4.8, color="#1f2933")
+    for start, end in ((0.18, 0.52), (2.12, 2.62), (4.22, plus_x - x - 0.14)):
+        ax.add_patch(FancyArrowPatch((x + start, main_y), (x + end, main_y),
+                                     arrowstyle="-|>", mutation_scale=5,
+                                     linewidth=0.65, color=ink))
+    ax.text(plus_x, main_y, "⊕", ha="center", va="center", fontsize=9,
+            weight="bold", color="#1f2933")
+    ax.plot([x + 0.18, x + 0.18, x + 1.25], [main_y, shortcut_y, shortcut_y],
+            color=accent, linewidth=0.75, linestyle=style)
+    shortcut_label = "1×1, stride 2" if projection else "identity"
+    shortcut_w = 1.58 if projection else 1.05
+    shortcut_x = x + 1.28
+    ax.add_patch(Rectangle((shortcut_x, shortcut_y - box_h / 2), shortcut_w, box_h,
+                           facecolor="#fff8f1" if projection else "#f7f9fa",
+                           edgecolor=accent, linewidth=0.65))
+    ax.text(shortcut_x + shortcut_w / 2, shortcut_y, shortcut_label, ha="center",
+            va="center", fontsize=4.8, color=accent)
+    ax.plot([shortcut_x + shortcut_w, plus_x, plus_x],
+            [shortcut_y, shortcut_y, main_y + 0.10], color=accent,
+            linewidth=0.75, linestyle=style)
+    ax.add_patch(FancyArrowPatch((shortcut_x + shortcut_w + 0.04, shortcut_y),
+                                 (plus_x - 0.14, shortcut_y), arrowstyle="-|>",
+                                 mutation_scale=5, linewidth=0.75,
+                                 linestyle=style, color=accent))
+
+
+def compact_residual_key(ax, x: float, y: float) -> None:
+    """Draw the two independent shortcut examples used in the report figure."""
+
+    ax.text(x + 9.45, y + 1.92, "Representative residual blocks",
+            ha="center", va="center", fontsize=6.2, weight="bold", color="#1f2933")
+    compact_residual_block(ax, x, y, "(a) identity shortcut", projection=False)
+    compact_residual_block(ax, x + 9.0, y, "(b) downsampling shortcut", projection=True)
+    ax.text(x + 9.45, y - 0.02,
+            "Identity: solid shortcut   |   projection: dashed shortcut; BN/ReLU omitted",
+            ha="center", va="center", fontsize=4.9, color="#52606d")
+
+
 def draw(
     measurements: dict,
     output_stem: Path,
     include_residual_key: bool = True,
+    report_residual_key: bool = False,
     tight: bool = False,
 ) -> None:
     """Draw the architecture schematic as publication-style SVG and PNG."""
@@ -237,6 +299,8 @@ def draw(
         residual_key(ax, 0.45, 1.05)
         ax.text(9.50, 0.34, "The first block of layers 2–4 uses a stride-2 projection shortcut; all other shortcuts are identities.",
                 ha="center", va="center", fontsize=5.9, color="#52606d")
+    elif report_residual_key:
+        compact_residual_key(ax, 0.45, 2.15)
     else:
         ax.text(9.50, 3.62, "First block of layers 2–4: stride-2 projection shortcut; other shortcuts: identity.",
                 ha="center", va="center", fontsize=6.3, color="#52606d")
@@ -288,7 +352,8 @@ def main() -> None:
     measurements = load_measurements(args.measurements)
     draw(measurements, args.output_stem, include_residual_key=True, tight=False)
     if args.report_output_stem is not None:
-        draw(measurements, args.report_output_stem, include_residual_key=False, tight=True)
+        draw(measurements, args.report_output_stem, include_residual_key=False,
+             report_residual_key=True, tight=True)
         crop_report_raster(args.report_output_stem)
 
 
