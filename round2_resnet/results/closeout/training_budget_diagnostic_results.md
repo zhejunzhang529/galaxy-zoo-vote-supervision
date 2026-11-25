@@ -81,7 +81,7 @@ curves from the saved JSON only, use system Python with an existing
 Matplotlib installation (the project venv has no Matplotlib):
 
 ```bash
-MPLCONFIGDIR=/private/tmp/dis_mpl_config MPLBACKEND=Agg \
+MPLCONFIGDIR=/tmp/dis_mpl_config MPLBACKEND=Agg \
 python3 round2_resnet/src/plot_training_budget_diagnostic.py \
   --input round2_resnet/results/closeout/training_budget_diagnostic_runs.json \
   --output round2_resnet/results/closeout/training_budget_curves.png

@@ -92,13 +92,13 @@ unchanged. Its full presentation assets are
 Run from the DIS repository root:
 
 ```bash
-MPLCONFIGDIR=/private/tmp/dis_mpl_config \
+MPLCONFIGDIR=/tmp/dis_mpl_config \
   .venv/bin/python round2_resnet/architecture_review/draw_resnet18_architecture.py \
   --measure-only
-MPLCONFIGDIR=/private/tmp/dis_mpl_config MPLBACKEND=Agg \
+MPLCONFIGDIR=/tmp/dis_mpl_config MPLBACKEND=Agg \
   python3 round2_resnet/architecture_review/draw_resnet18_architecture.py \
   --draw-only
-MPLCONFIGDIR=/private/tmp/dis_mpl_config MPLBACKEND=Agg \
+MPLCONFIGDIR=/tmp/dis_mpl_config MPLBACKEND=Agg \
   python3 round2_resnet/architecture_review/draw_resnet18_paper_architecture.py
 ```
 
