@@ -3,7 +3,8 @@
 ## Research Background
 
 Galaxy morphology supports studies of galaxy evolution and structure. GZ2
-collects multiple volunteer responses per image, so an argmax label discards
+collects multiple volunteer responses per image; this study uses the debiased
+Hart16 catalogue (Hart et al., 2016), so an argmax label discards
 disagreement. Disagreement may reflect observation limits, intermediate
 morphology or annotator differences; vote entropy alone is not causal evidence.
 Raw fractions are responses, not physical truth, and `star or artifact` is the
@@ -88,5 +89,9 @@ calibration, universal soft-label superiority or a causal explanation of vote
 disagreement.
 
 References: Willett et al. (2013), MNRAS 435, 2835, doi:10.1093/mnras/stt1458;
-Walmsley et al. (2022), MNRAS 509, 3966, doi:10.1093/mnras/stab3679; official
-GZ2 data: https://data.galaxyzoo.org/.
+Hart, R. E., Bamford, S. P., Willett, K. W., Masters, K. L., Cardamone, C.,
+Lintott, C. J., Mackay, R. J., Nichol, R. C., Rosslowe, C. K., Simmons, B. D.,
+& Smethurst, R. J. (2016), “Galaxy Zoo: comparing the demographics of spiral
+arm number and a new method for correcting redshift bias”, MNRAS, 461(4),
+3663–3682, doi:10.1093/mnras/stw1588; Walmsley et al. (2022), MNRAS 509, 3966,
+doi:10.1093/mnras/stab3679; official GZ2 data: https://data.galaxyzoo.org/.

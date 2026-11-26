@@ -68,7 +68,10 @@ freshly installed for this publication.
 ## Data acquisition and preprocessing
 
 The official GZ2 data page is <https://data.galaxyzoo.org/>. The label table
-used here is the Hart16 catalogue, available from the official page as
+used here is the debiased Hart16 catalogue (Hart et al., 2016; Hart et al.,
+“Galaxy Zoo: comparing the demographics of spiral arm number and a new
+method for correcting redshift bias”, MNRAS 461(4), 3663–3682,
+doi:10.1093/mnras/stw1588), available from the official page as
 [`gz2_hart16.csv.gz`](https://gz2hart.s3.amazonaws.com/gz2_hart16.csv.gz).
 The official GZ2 image archive is linked from that page through the Zenodo
 record <https://zenodo.org/records/3565489>; its archive download record is

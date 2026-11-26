@@ -102,7 +102,10 @@ not as a claim that the commands can run from this repository alone.
 
 ## Data acquisition and split boundary
 
-The official source is the Galaxy Zoo data page,
+The official source is the Galaxy Zoo data page. The debiased Hart16 catalogue
+is the dataset described by Hart et al. (2016), *Galaxy Zoo: comparing the
+demographics of spiral arm number and a new method for correcting redshift
+bias*, MNRAS 461(4), 3663–3682, doi:10.1093/mnras/stw1588.
 https://data.galaxyzoo.org/. The Hart16 table is linked directly at
 https://gz2hart.s3.amazonaws.com/gz2_hart16.csv.gz. The image archive is
 linked from that page through https://zenodo.org/records/3565489, with the

@@ -17,7 +17,7 @@
 \vspace{-1pt}\normalsize\href{https://github.com/zhejunzhang529/galaxy-zoo-vote-supervision}{\textcolor{blue}{\underline{Code and saved results: GitHub}}}
 \end{center}
 
-\textbf{Research Background.} Galaxy morphology supports studies of galaxy evolution and structure. GZ2 collects multiple volunteer responses per image, so an argmax label discards disagreement. Disagreement may reflect observation limits, intermediate morphology or annotator differences; vote entropy alone is not causal evidence. Raw fractions are responses, not physical truth, and \textit{star or artifact} is the root screening class rather than a third galaxy morphology. The question is whether retaining votes improves probability fitting without obscuring the classification trade-off.
+\textbf{Research Background.} Galaxy morphology supports studies of galaxy evolution and structure. GZ2 collects multiple volunteer responses; this study uses the debiased Hart16 catalogue (Hart et al., 2016), so argmax discards disagreement. Disagreement may reflect observation limits, intermediate morphology or annotator differences; entropy is not causal evidence. Raw fractions are responses, not physical truth; \textit{star or artifact} is a root screening class, not a third morphology. The question is whether retaining votes improves probability fitting without obscuring classification trade-offs.
 
 \textbf{Methodology.} The model is ImageNet-pretrained ResNet-18 with 128-pixel RGB input, Adam ($lr=3\times10^{-4}$, weight decay $10^{-4}$), batch size 32, and only layer4 plus the linear classifier unfrozen. Hard targets are one-hot argmax labels; soft targets are normalized raw vote fractions. The 128-pixel choice follows measured CPU throughput (65.72 versus 29.44 samples/s at 224 px). The soft-only search varied $lr\in\{10^{-4},3\times10^{-4}\}$, weight decay $\in\{0,10^{-4}\}$, and head-only versus layer4+head; validation soft CE selected the common configuration, with calibration discrepancy and earliest epoch as tie-breakers.
 
@@ -52,7 +52,7 @@ Finite learning-rate and regularisation checks found no consistent advantage for
 
 For the 10,000-object condition, the natural-pool group with $H>0.5462$ and $M\leq0.6897$ contained 4,520 objects ($H$: entropy of normalized votes; $M$: largest minus second-largest vote fraction). Soft/hard means were CE $0.794/1.136$, Brier $0.052/0.133$, and accuracy $0.808/0.793$: a conditional probability-fitting difference. On five \textit{star or artifact} objects, soft detected fewer at 3,100 but matched hard's mean at 10,000; repeated objects preclude population recall. GZ2 \texttt{extra} is an original-to-extra selection-shift test, not cross-survey OOD.
 
-\begingroup\footnotesize
-\textbf{References.} Willett et al. (2013), MNRAS 435, 2835; Walmsley et al. (2022), MNRAS 509, 3966; official GZ2 data: \url{https://data.galaxyzoo.org/}.
+\begingroup\scriptsize
+\textbf{References.} Willett et al. (2013), MNRAS 435, 2835; Hart et al. (2016), ``Galaxy Zoo: comparing the demographics of spiral arm number and a new method for correcting redshift bias'', MNRAS 461(4), 3663--3682, \url{https://doi.org/10.1093/mnras/stw1588}; Walmsley et al. (2022), MNRAS 509, 3966.
 \endgroup
 \end{document}

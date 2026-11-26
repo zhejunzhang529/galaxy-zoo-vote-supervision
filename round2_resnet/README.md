@@ -43,7 +43,8 @@ hard-target search.
 
 ## Data-intensive evidence
 
-The local Hart16 label table contains 239,695 labelled objects (209,294
+The local Hart16 label table (Hart et al. 2016, MNRAS 461, 3663–3682,
+doi:10.1093/mnras/stw1588) contains 239,695 labelled objects (209,294
 `original`, 21,844 `extra`, and 8,557 `stripe82` rows). The mapping table has
 355,990 rows and the official image archive is 3.35 GB compressed with 243,434
 non-metadata JPG members. The formal large run uses 10,000 training objects,
